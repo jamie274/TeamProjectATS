@@ -42,6 +42,8 @@ public class WelcomePage extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setForeground(java.awt.Color.white);
         setPreferredSize(new java.awt.Dimension(1200, 600));
+        pack();
+        setLocationRelativeTo(null);
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1200, 600));

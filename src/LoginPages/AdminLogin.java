@@ -45,6 +45,8 @@ public class AdminLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("System Administrator login");
         setPreferredSize(new java.awt.Dimension(1200, 600));
+        pack();
+        setLocationRelativeTo(null);
 
         myPanel.setBackground(new java.awt.Color(153, 204, 255));
         myPanel.setPreferredSize(new java.awt.Dimension(1200, 600));

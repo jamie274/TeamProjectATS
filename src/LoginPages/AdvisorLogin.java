@@ -41,6 +41,9 @@ public class AdvisorLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sales Advisor Login");
+        setPreferredSize(new java.awt.Dimension(1200, 600));
+        pack();
+        setLocationRelativeTo(null);
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1200, 600));
