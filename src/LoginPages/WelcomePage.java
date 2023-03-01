@@ -42,6 +42,7 @@ public class WelcomePage extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setForeground(java.awt.Color.white);
         setPreferredSize(new java.awt.Dimension(1200, 600));
+        setResizable(false);
         pack();
         setLocationRelativeTo(null);
 
