@@ -1,10 +1,5 @@
 package AdminClasses;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
 /**
  *
  * @author gordo
@@ -66,7 +61,7 @@ public class AdministrationMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Blank Stock and Accounts");
-        setPreferredSize(new java.awt.Dimension(1400, 600));
+        setPreferredSize(new java.awt.Dimension(1420, 600));
         setResizable(false);
         pack();
         setLocationRelativeTo(null);
@@ -194,6 +189,12 @@ public class AdministrationMenu extends javax.swing.JFrame {
 
         updateButton.setText("UPDATE DETAILS");
 
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
+
         addBlankButton.setText("ADD NEW BLANK");
         addBlankButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,6 +211,12 @@ public class AdministrationMenu extends javax.swing.JFrame {
         jLabel9.setText("Manage Staff Accounts");
 
         registerButton1.setText("REGISTER NEW STAFF");
+
+        registerButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
 
         deleteBlankButton.setText("DELETE BLANK");
 
@@ -426,7 +433,15 @@ public class AdministrationMenu extends javax.swing.JFrame {
     }
 
     private void addBlankButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        new AddBlank().setVisible(true);
+    }
+
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new RegisterStaff().setVisible(true);
+    }
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new UpdateStaff().setVisible(true);
     }
 
     /**

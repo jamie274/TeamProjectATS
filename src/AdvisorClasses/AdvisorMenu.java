@@ -5,6 +5,9 @@ package AdvisorClasses;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import ManagerClasses.IndividualDomestic;
+import ManagerClasses.IndividualInterline;
+
 /**
  *
  * @author gordo
@@ -184,12 +187,6 @@ public class AdvisorMenu extends javax.swing.JFrame {
 
         jLabel4.setText("Search Ticket (Enter Ticket ID)");
 
-        searchBlankBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchBlankBox1ActionPerformed(evt);
-            }
-        });
-
         refundButton.setText("REFUND TICKET");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -203,12 +200,32 @@ public class AdvisorMenu extends javax.swing.JFrame {
         voidBlankButton.setText("VOID BLANK");
 
         recordSaleButton.setText("RECORD TICKET SALE");
+        recordSaleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                recordSaleButtonActionPerformed(evt);
+            }
+        });
 
         interlineButton.setText("GENERATE INDIVIDUAL INTERLINE REPORT");
+        interlineButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                interlineButtonActionPerformed(evt);
+            }
+        });
 
         domesticButton.setText("GENERATE INDIVIDUAL DOMESTIC REPORT");
+        domesticButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                domesticButtonActionPerformed(evt);
+            }
+        });
 
         customerMenuButton.setText("VIEW CUSTOMER MENU");
+        customerMenuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customerMenuButtonActionPerformed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
@@ -409,16 +426,28 @@ public class AdvisorMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
-    private void searchBlankBox1ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
     private void refreshStaffButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
     private void refreshBlanksButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+    }
+
+    private void interlineButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new IndividualInterline().setVisible(true);
+    }
+
+    private void domesticButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new IndividualDomestic().setVisible(true);
+    }
+
+    private void customerMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new CustomerMenu().setVisible(true);
+    }
+
+    private void recordSaleButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new RecordTicketSale().setVisible(true);
     }
 
     /**
