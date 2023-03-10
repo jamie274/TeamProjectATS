@@ -7,6 +7,8 @@ package LoginPages;
  */
 public class WelcomePage extends javax.swing.JFrame {
 
+    private int code;
+
     /**
      * Creates new form Login
      */
@@ -59,6 +61,7 @@ public class WelcomePage extends javax.swing.JFrame {
         advisorIcon.setIcon(new javax.swing.ImageIcon("data/advisor.png")); // NOI18N
 
         adminLoginButton.setText("LOGIN");
+
         adminLoginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adminLoginButtonActionPerformed(evt);
@@ -67,7 +70,19 @@ public class WelcomePage extends javax.swing.JFrame {
 
         managerLoginButton.setText("LOGIN");
 
+        managerLoginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                managerLoginButtonActionPerformed(evt);
+            }
+        });
+
         advisorLoginButton.setText("LOGIN");
+
+        advisorLoginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                advisorLoginButtonActionPerformed(evt);
+            }
+        });
 
         adminText.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         adminText.setText("System Administrator");
@@ -78,7 +93,7 @@ public class WelcomePage extends javax.swing.JFrame {
         advisorText.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         advisorText.setText("Sales Advisor");
 
-        uniJetLogo.setIcon(new javax.swing.ImageIcon("C:\\Users\\gordo\\OneDrive\\Documents\\UNIVERSITY\\YEAR 2\\SEMESTER 2\\TEAM PROJECT\\icons\\uniJetLogo.png")); // NOI18N
+        uniJetLogo.setIcon(new javax.swing.ImageIcon("data/uniJetLogo.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -164,8 +179,25 @@ public class WelcomePage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    // Generates random 6-digit number for two-factor authentication
+    private int generateSixDigit() {
+        return (int) ((Math.random() * (999999)));
+    }
+
     private void adminLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        new AdminLogin().setVisible(true);
+        code = generateSixDigit(); // new 6-digit code is generated
+        System.out.println(code); // new code is printed to the console
+    }
+    private void managerLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new ManagerLogin().setVisible(true);
+        code = generateSixDigit();
+        System.out.println(code);
+    }
+    private void advisorLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new AdvisorLogin().setVisible(true);
+        code = generateSixDigit();
+        System.out.println(code);
     }
 
     /**

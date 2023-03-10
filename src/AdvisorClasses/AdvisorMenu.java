@@ -53,8 +53,8 @@ public class AdvisorMenu extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         voidBlankButton = new javax.swing.JButton();
         recordSaleButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        interlineButton = new javax.swing.JButton();
+        domesticButton = new javax.swing.JButton();
         customerMenuButton = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -65,7 +65,7 @@ public class AdvisorMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Travel Advisor Menu");
-        setPreferredSize(new java.awt.Dimension(1400, 600));
+        setPreferredSize(new java.awt.Dimension(1420, 600));
         setResizable(false);
         pack();
         setLocationRelativeTo(null);
@@ -204,9 +204,9 @@ public class AdvisorMenu extends javax.swing.JFrame {
 
         recordSaleButton.setText("RECORD TICKET SALE");
 
-        jButton1.setText("GENERATE INDIVIDUAL DOMESTIC REPORT");
+        interlineButton.setText("GENERATE INDIVIDUAL INTERLINE REPORT");
 
-        jButton2.setText("GENERATE INDIVIDUAL DOMESTIC REPORT");
+        domesticButton.setText("GENERATE INDIVIDUAL DOMESTIC REPORT");
 
         customerMenuButton.setText("VIEW CUSTOMER MENU");
 
@@ -226,7 +226,7 @@ public class AdvisorMenu extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(interlineButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addContainerGap())
                                         .addGroup(jPanel3Layout.createSequentialGroup()
                                                 .addComponent(jLabel2)
@@ -236,7 +236,7 @@ public class AdvisorMenu extends javax.swing.JFrame {
                                                         .addComponent(searchBlankBox, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
                                                 .addContainerGap(18, Short.MAX_VALUE))
                                         .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(domesticButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addContainerGap())
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                                 .addComponent(customerMenuButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -274,9 +274,9 @@ public class AdvisorMenu extends javax.swing.JFrame {
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
-                                .addComponent(jButton2)
+                                .addComponent(domesticButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)
+                                .addComponent(interlineButton)
                                 .addGap(24, 24, 24)
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -460,8 +460,8 @@ public class AdvisorMenu extends javax.swing.JFrame {
     private javax.swing.JButton backButton;
     private javax.swing.JTable blankStockTable;
     private javax.swing.JButton customerMenuButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton domesticButton;
+    private javax.swing.JButton interlineButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;

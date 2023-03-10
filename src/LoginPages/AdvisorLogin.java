@@ -1,9 +1,6 @@
 package LoginPages;
+import AdvisorClasses.AdvisorMenu;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
 /**
  *
@@ -53,6 +50,12 @@ public class AdvisorLogin extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(1200, 600));
 
         loginButton.setText("LOGIN");
+
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Username");
@@ -173,6 +176,10 @@ public class AdvisorLogin extends javax.swing.JFrame {
 
     private void sixDigitBoxActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+    }
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new AdvisorMenu().setVisible(true);
     }
 
     /**

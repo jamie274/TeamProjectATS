@@ -73,6 +73,8 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
         setTitle("Office Manager Menu");
         setPreferredSize(new java.awt.Dimension(1400, 600));
         setResizable(false);
+        pack();
+        setLocationRelativeTo(null);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1400, 600));
 
@@ -112,7 +114,7 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
         nameLabel5.setForeground(new java.awt.Color(255, 255, 255));
         nameLabel5.setText("Staff ID :");
 
-        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\gordo\\OneDrive\\Documents\\UNIVERSITY\\YEAR 2\\SEMESTER 2\\TEAM PROJECT\\icons\\AirViaLogo.png")); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon("data/AirViaLogo.png")); // NOI18N
         jLabel10.setText("jLabel6");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -212,7 +214,7 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
 
         reportsButton.setText("GENERATE REPORTS");
 
-        jLabel5.setText("Enter Agent ID");
+        jLabel5.setText("Enter Advisor ID");
 
         reassignBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,7 +222,7 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Enter Agent ID");
+        jLabel6.setText("Enter Advisor ID");
 
         jButton3.setText("SET DISCOUNT PLANS");
 
@@ -255,7 +257,7 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
                                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                                                                 .addComponent(jLabel5)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(reassignBox, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                                                                .addComponent(reassignBox)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(jButton1))
                                                         .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -383,7 +385,7 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
                                                                 .addGap(203, 203, 203)
                                                                 .addComponent(refreshBlanksButton)
                                                                 .addGap(12, 12, 12)))
-                                                .addContainerGap(75, Short.MAX_VALUE))
+                                                .addContainerGap(71, Short.MAX_VALUE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jLabel13)
