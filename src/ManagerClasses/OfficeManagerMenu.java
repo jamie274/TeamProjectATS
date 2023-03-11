@@ -55,13 +55,13 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
         deleteBlankButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        modifyCommissionButton = new javax.swing.JButton();
         reportsButton = new javax.swing.JButton();
         assignBox = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         reassignBox = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        setDiscountPlansButton = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -210,9 +210,19 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Manage Blanks and Tickets");
 
-        jButton2.setText("MODIFY COMMISSION");
+        modifyCommissionButton.setText("MODIFY COMMISSION");
+        modifyCommissionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyCommissionButtonActionPerformed(evt);
+            }
+        });
 
         reportsButton.setText("GENERATE REPORTS");
+        reportsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportsButtonActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Enter Advisor ID");
 
@@ -224,7 +234,12 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
 
         jLabel6.setText("Enter Advisor ID");
 
-        jButton3.setText("SET DISCOUNT PLANS");
+        setDiscountPlansButton.setText("SET DISCOUNT PLANS");
+        setDiscountPlansButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setDiscountPlansButtonActionPerformed(evt);
+            }
+        });
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
@@ -260,7 +275,7 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
                                                                 .addComponent(reassignBox)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(jButton1))
-                                                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(modifyCommissionButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                                                                 .addGap(0, 0, Short.MAX_VALUE)
                                                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,7 +284,7 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
                                                                                 .addGap(15, 15, 15))
                                                                         .addComponent(deleteBlankButton, javax.swing.GroupLayout.Alignment.TRAILING))))
                                                 .addContainerGap())
-                                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(setDiscountPlansButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanel6Layout.createSequentialGroup()
                                                 .addGap(57, 57, 57)
                                                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -319,11 +334,11 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)
+                                .addComponent(modifyCommissionButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel16)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3)
+                                .addComponent(setDiscountPlansButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel12)
                                 .addGap(18, 18, 18)
@@ -465,6 +480,18 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
+    private void reportsButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new ReportsMenu().setVisible(true);
+    }
+
+    private void modifyCommissionButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new ModifyCommission().setVisible(true);
+    }
+
+    private void setDiscountPlansButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new SetDiscountPlans().setVisible(true);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -506,8 +533,8 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
     private javax.swing.JTable blankStockTable;
     private javax.swing.JButton deleteBlankButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton modifyCommissionButton;
+    private javax.swing.JButton setDiscountPlansButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -47,6 +47,10 @@ public class SetDiscountPlans extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Manage Discount Plans");
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
+        pack();
+        setLocationRelativeTo(null);
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
