@@ -29,11 +29,11 @@ public class ReportsMenu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        individualDomesticButton = new javax.swing.JButton();
+        globalInterlineButton = new javax.swing.JButton();
+        globalDomesticButton = new javax.swing.JButton();
+        ticketTurnoverButton = new javax.swing.JButton();
+        individualInterlineButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,15 +49,40 @@ public class ReportsMenu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Generate Report");
 
-        jButton1.setText("Inidvidual Domestic Report");
+        individualDomesticButton.setText("Inidvidual Domestic Report");
+        individualDomesticButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                individualDomesticButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Global Interline Report");
+        globalInterlineButton.setText("Global Interline Report");
+        globalInterlineButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                globalInterlineButtonActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Global Domestic Report");
+        globalDomesticButton.setText("Global Domestic Report");
+        globalDomesticButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                globalDomesticButtonActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Ticket Turnover Report");
+        ticketTurnoverButton.setText("Ticket Turnover Report");
+        ticketTurnoverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ticketTurnoverButtonActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("Inidvidual Interline Report");
+        individualInterlineButton.setText("Inidvidual Interline Report");
+        individualInterlineButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                individualInterlineButtonActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Select the report to be generated:");
 
@@ -73,11 +98,11 @@ public class ReportsMenu extends javax.swing.JFrame {
                                 .addContainerGap(133, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel2)
-                                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(individualInterlineButton, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ticketTurnoverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(globalDomesticButton, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(globalInterlineButton, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(individualDomesticButton, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(126, 126, 126))
         );
         jPanel1Layout.setVerticalGroup(
@@ -88,15 +113,15 @@ public class ReportsMenu extends javax.swing.JFrame {
                                 .addGap(57, 57, 57)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton5)
+                                .addComponent(individualInterlineButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)
+                                .addComponent(individualDomesticButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)
+                                .addComponent(globalInterlineButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3)
+                                .addComponent(globalDomesticButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4)
+                                .addComponent(ticketTurnoverButton)
                                 .addContainerGap(204, Short.MAX_VALUE))
         );
 
@@ -113,6 +138,22 @@ public class ReportsMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>
+
+    private void individualInterlineButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new IndividualInterline().setVisible(true);
+    }
+    private void individualDomesticButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new IndividualDomestic().setVisible(true);
+    }
+    private void globalInterlineButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new GlobalInterline().setVisible(true);
+    }
+    private void globalDomesticButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new GlobalDomestic().setVisible(true);
+    }
+    private void ticketTurnoverButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new TurnoverReport().setVisible(true);
+    }
 
     /**
      * @param args the command line arguments
@@ -150,11 +191,11 @@ public class ReportsMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton individualDomesticButton;
+    private javax.swing.JButton globalInterlineButton;
+    private javax.swing.JButton globalDomesticButton;
+    private javax.swing.JButton ticketTurnoverButton;
+    private javax.swing.JButton individualInterlineButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
