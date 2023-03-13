@@ -91,7 +91,7 @@ public class WelcomePage extends javax.swing.JFrame {
         managerText.setText("Office Manager");
 
         advisorText.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        advisorText.setText("Sales Advisor");
+        advisorText.setText("Travel Advisor");
 
         uniJetLogo.setIcon(new javax.swing.ImageIcon("data/uniJetLogo.png")); // NOI18N
 
