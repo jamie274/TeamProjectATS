@@ -1,6 +1,5 @@
 package LoginPages;
 import AdvisorClasses.AdvisorMenu;
-import ManagerClasses.OfficeManagerMenu;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -39,6 +38,7 @@ public class AdvisorLogin extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         passwordBox = new javax.swing.JPasswordField();
         sixDigitBox = new javax.swing.JPasswordField();
+        sixDigitBox.setVisible(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sales Advisor Login");
@@ -70,6 +70,7 @@ public class AdvisorLogin extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("6 digit code");
+        jLabel3.setVisible(false);
 
         jLabel6.setIcon(new javax.swing.ImageIcon("data/AirViaLogo.png")); // NOI18N
         jLabel6.setText("jLabel6");

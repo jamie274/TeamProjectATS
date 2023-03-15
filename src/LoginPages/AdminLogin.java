@@ -33,6 +33,7 @@ public class AdminLogin extends javax.swing.JFrame {
         usernameBox = new javax.swing.JTextField();
         passwordBox = new javax.swing.JPasswordField();
         sixDigitBox = new javax.swing.JPasswordField();
+        sixDigitBox.setVisible(false);
         loginButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -86,6 +87,7 @@ public class AdminLogin extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("6 digit code");
+        jLabel3.setVisible(false);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Password");

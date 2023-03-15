@@ -35,6 +35,7 @@ public class RegisterStaff extends javax.swing.JFrame {
         idLabel = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         usernameLabel = new javax.swing.JTextField();
+        usernameLabel.setVisible(false);
         jLabel11 = new javax.swing.JLabel();
         firstNameLabel = new javax.swing.JTextField();
         lastNameLabel = new javax.swing.JTextField();
@@ -57,6 +58,7 @@ public class RegisterStaff extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Enter Username");
+        jLabel7.setVisible(false);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Register new Staff Member");
