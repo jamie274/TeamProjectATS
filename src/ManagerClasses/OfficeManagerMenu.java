@@ -11,10 +11,16 @@ package ManagerClasses;
  */
 public class OfficeManagerMenu extends javax.swing.JFrame {
 
+    // id and name is passed through the constructor so that it can be shown in the dashboard
+    private String id;
+    private String name;
+
     /**
      * Creates new form OfficeManagerMenu
      */
-    public OfficeManagerMenu() {
+    public OfficeManagerMenu(String i, String n) {
+        id = i;
+        name = n;
         initComponents();
     }
 
@@ -108,11 +114,13 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
 
         nameLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         nameLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        nameLabel4.setText("Name :");
+
+        nameLabel4.setText("Name : " + name);
 
         nameLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         nameLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        nameLabel5.setText("Staff ID :");
+
+        nameLabel5.setText("Staff ID : " + id);
 
         jLabel10.setIcon(new javax.swing.ImageIcon("data/AirViaLogo.png")); // NOI18N
         jLabel10.setText("jLabel6");
@@ -522,7 +530,7 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OfficeManagerMenu().setVisible(true);
+                //new OfficeManagerMenu().setVisible(true);
             }
         });
     }

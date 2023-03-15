@@ -14,10 +14,16 @@ import ManagerClasses.IndividualInterline;
  */
 public class AdvisorMenu extends javax.swing.JFrame {
 
+    // id and name is passed through the constructor so that it can be shown in the dashboard
+    private String id;
+    private String name;
+
     /**
      * Creates new form AdvisorMenu
      */
-    public AdvisorMenu() {
+    public AdvisorMenu(String i, String n) {
+        id = i;
+        name = n;
         initComponents();
     }
 
@@ -103,11 +109,13 @@ public class AdvisorMenu extends javax.swing.JFrame {
 
         nameLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         nameLabel.setForeground(new java.awt.Color(255, 255, 255));
-        nameLabel.setText("Name :");
+
+        nameLabel.setText("Name : " + name);
 
         nameLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         nameLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        nameLabel1.setText("Staff ID :");
+
+        nameLabel1.setText("Staff ID : " + id);
 
         jLabel6.setIcon(new javax.swing.ImageIcon("data/AirViaLogo.png")); // NOI18N
         jLabel6.setText("jLabel6");
@@ -480,7 +488,7 @@ public class AdvisorMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdvisorMenu().setVisible(true);
+                //new AdvisorMenu().setVisible(true);
             }
         });
     }

@@ -9,7 +9,14 @@ public class AdministrationMenu extends javax.swing.JFrame {
     /**
      * Creates new form BlankStock
      */
-    public AdministrationMenu() {
+
+    // id and name is passed through the constructor so that it can be shown in the dashboard
+    private String id;
+    private String name;
+
+    public AdministrationMenu(String i, String n) {
+        id = i;
+        name = n;
         initComponents();
     }
 
@@ -96,11 +103,13 @@ public class AdministrationMenu extends javax.swing.JFrame {
 
         nameLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         nameLabel.setForeground(new java.awt.Color(255, 255, 255));
-        nameLabel.setText("Name :");
+
+        nameLabel.setText("Name : " + name);
 
         nameLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         nameLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        nameLabel1.setText("Staff ID :");
+
+        nameLabel1.setText("Staff ID : " + id);
 
         jLabel6.setIcon(new javax.swing.ImageIcon("data/AirViaLogo.png")); // NOI18N
         jLabel6.setText("jLabel6");
@@ -475,7 +484,7 @@ public class AdministrationMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdministrationMenu().setVisible(true);
+               //new AdministrationMenu(, name).setVisible(true);
             }
         });
     }

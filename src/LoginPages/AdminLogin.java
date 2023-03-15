@@ -176,7 +176,7 @@ public class AdminLogin extends javax.swing.JFrame {
         SQLLoginHelper l = new SQLLoginHelper(); // new SQLHelper instance
 
         if (l.attemptLogin("System Administrator", id, pwd)) {
-            new AdministrationMenu().setVisible(true); // if the login is successful, the admin dashboard successfully opens
+            new AdministrationMenu(l.getStaffID(),l.getName()).setVisible(true); // if the login is successful, the admin dashboard successfully opens
         } else {
             // if details are incorrect, an info box will pop up and show that the user may try again
             JOptionPane.showMessageDialog(null, "Incorrect username or password, please try again");

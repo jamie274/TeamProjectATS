@@ -195,7 +195,7 @@ public class AdvisorLogin extends javax.swing.JFrame {
         SQLLoginHelper l = new SQLLoginHelper(); // new SQLHelper instance
 
         if (l.attemptLogin("Travel Advisor", id, pwd)) {
-            new AdvisorMenu().setVisible(true); // if the login is successful, the advisor dashboard successfully opens
+            new AdvisorMenu(l.getStaffID(),l.getName()).setVisible(true); // if the login is successful, the advisor dashboard successfully opens
         } else {
             // if details are incorrect, an info box will pop up and show that the user may try again
             JOptionPane.showMessageDialog(null, "Incorrect username or password, please try again");

@@ -6,6 +6,10 @@ import java.sql.*;
 // Class used to read data from the database to confirm a login
 public class SQLLoginHelper {
 
+    private String name;
+    private int staffID;
+    private String staffIDStr;
+
     public SQLLoginHelper() {}
 
     // attemptLogin method will pass through the entered username and password of the user and compare with data in the database
@@ -25,6 +29,9 @@ public class SQLLoginHelper {
 
             if (result.next()) {
                 b = true; // if the id AND password match, then the login is successful
+                name = result.getString("FirstName") + " " + result.getString("LastName");
+                staffID = result.getInt("ID");
+                staffIDStr = Integer.toString(staffID);
             }
 
         } catch (SQLException s) {
@@ -33,4 +40,12 @@ public class SQLLoginHelper {
 
         return b; // the boolean is returned to indicate a successful or failed login
     }
+
+    public String getName() {
+        return name;
+    }
+    public String getStaffID() {
+        return staffIDStr;
+    }
+
 }
