@@ -1,5 +1,9 @@
 package LoginPages;
 import AdvisorClasses.AdvisorMenu;
+import ManagerClasses.OfficeManagerMenu;
+
+import javax.swing.*;
+import java.sql.SQLException;
 
 
 /**
@@ -53,7 +57,11 @@ public class AdvisorLogin extends javax.swing.JFrame {
 
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
+                try {
+                    loginButtonActionPerformed(evt);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -178,8 +186,20 @@ public class AdvisorLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new AdvisorMenu().setVisible(true);
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {
+        // Storing the data entered by the user from the username and password boxes
+        String idStr = usernameBox.getText();
+        int id = Integer.valueOf(idStr);
+        String pwd = String.valueOf(passwordBox.getPassword());
+
+        SQLLoginHelper l = new SQLLoginHelper(); // new SQLHelper instance
+
+        if (l.attemptLogin("Travel Advisor", id, pwd)) {
+            new AdvisorMenu().setVisible(true); // if the login is successful, the advisor dashboard successfully opens
+        } else {
+            // if details are incorrect, an info box will pop up and show that the user may try again
+            JOptionPane.showMessageDialog(null, "Incorrect username or password, please try again");
+        }
     }
 
     /**
