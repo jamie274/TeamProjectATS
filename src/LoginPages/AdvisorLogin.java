@@ -41,7 +41,7 @@ public class AdvisorLogin extends javax.swing.JFrame {
         sixDigitBox.setVisible(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sales Advisor Login");
+        setTitle("Travel Advisor Login");
         setPreferredSize(new java.awt.Dimension(1200, 600));
         setResizable(false);
         pack();
@@ -76,7 +76,7 @@ public class AdvisorLogin extends javax.swing.JFrame {
         jLabel6.setText("jLabel6");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Login as Sales Advisor");
+        jLabel1.setText("Login as Travel Advisor");
 
         usernameBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
