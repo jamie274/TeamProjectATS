@@ -1,6 +1,9 @@
 package LoginPages;
 import AdminClasses.*;
 
+import javax.swing.*;
+import java.sql.SQLException;
+
 /**
  *
  * @author gordo
@@ -70,7 +73,11 @@ public class AdminLogin extends javax.swing.JFrame {
 
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
+                try {
+                    loginButtonActionPerformed(evt);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -160,8 +167,18 @@ public class AdminLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new AdministrationMenu().setVisible(true);
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {
+        String idStr = usernameBox.getText();
+        int id = Integer.valueOf(idStr);
+        String pwd = String.valueOf(passwordBox.getPassword());
+
+        SQLLoginHelper l = new SQLLoginHelper();
+
+        if (l.attemptLogin("System Administrator", id, pwd)) {
+            new AdministrationMenu().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Incorrect username or password, please try again");
+        }
     }
 
     /**
