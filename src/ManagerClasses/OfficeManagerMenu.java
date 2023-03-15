@@ -5,6 +5,8 @@ package ManagerClasses;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import LoginPages.WelcomePage;
+
 /**
  *
  * @author gordo
@@ -105,8 +107,18 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(51, 51, 255));
 
         backButton2.setText("BACK");
+        backButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBackButtonActionPerformed(evt);
+            }
+        });
 
         logOutButton2.setText("LOG OUT");
+        logOutButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addLogoutButtonActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 0, 51));
@@ -498,6 +510,17 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
 
     private void setDiscountPlansButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new SetDiscountPlans().setVisible(true);
+    }
+
+    // navigates to previous page when 'BACK' is pressed
+    private void addBackButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        this.dispose();
+    }
+
+    // navigates to welcome page when 'LOG OUT' is pressed
+    private void addLogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        this.dispose();
+        new WelcomePage().setVisible(true);
     }
 
     /**

@@ -1,5 +1,7 @@
 package AdminClasses;
 
+import LoginPages.WelcomePage;
+
 /**
  *
  * @author gordo
@@ -94,8 +96,18 @@ public class AdministrationMenu extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(51, 51, 255));
 
         backButton.setText("BACK");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBackButtonActionPerformed(evt);
+            }
+        });
 
         logOutButton.setText("LOG OUT");
+        logOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addLogoutButtonActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 0, 51));
@@ -451,6 +463,17 @@ public class AdministrationMenu extends javax.swing.JFrame {
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new UpdateStaff().setVisible(true);
+    }
+
+    // navigates to previous page when 'BACK' is pressed
+    private void addBackButtonActionPerformed(java.awt.event.ActionEvent evt) {
+       this.dispose();
+    }
+
+    // navigates to welcome page when 'LOG OUT' is pressed
+    private void addLogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        this.dispose();
+        new WelcomePage().setVisible(true);
     }
 
     /**
