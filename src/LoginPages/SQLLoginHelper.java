@@ -2,7 +2,10 @@ package LoginPages;
 
 import java.sql.*;
 
-// @Jamie-Lee
+/**
+ *
+ * @author Jamie-Lee Gordon
+ */
 // Class used to read data from the database to confirm a login
 public class SQLLoginHelper {
 
@@ -29,6 +32,7 @@ public class SQLLoginHelper {
 
             if (result.next()) {
                 b = true; // if the id AND password match, then the login is successful
+                // fetching the name and ID of the found staff member so that it can be displayed in their dashboard
                 name = result.getString("FirstName") + " " + result.getString("LastName");
                 staffID = result.getInt("ID");
                 staffIDStr = Integer.toString(staffID);
