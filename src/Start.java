@@ -9,7 +9,9 @@ public class Start {
     }
 
     public static void test () throws SQLException {
-        SQLLoginHelper s = new SQLLoginHelper();
+        int id = 200081454;
+        String pwd = "SivaT##_01";
+        SQLLoginHelper s = new SQLLoginHelper("Office Manager", id, pwd);
     }
 }
 
