@@ -2,6 +2,8 @@ package AdminClasses;
 
 import LoginPages.WelcomePage;
 
+import javax.swing.*;
+
 /**
  *
  * @author gordo
@@ -15,6 +17,8 @@ public class AdministrationMenu extends javax.swing.JFrame {
     // id and name is passed through the constructor so that it can be shown in the dashboard
     private String id;
     private String name;
+
+    DisplayTablesHelper displayTablesHelper = new DisplayTablesHelper();
 
     public AdministrationMenu(String i, String n) {
         id = i;
@@ -169,17 +173,10 @@ public class AdministrationMenu extends javax.swing.JFrame {
                                         .addContainerGap(139, Short.MAX_VALUE)))
         );
 
-        staffTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                },
-                new String [] {
-                        "Staff ID", "First Name", "Last Name", "Role"
-                }
-        ));
+        staffTable.setModel(new javax.swing.table.DefaultTableModel());
+
+        displayTablesHelper.DisplayUserTable(staffTable);
+
         scrollpane5.setViewportView(staffTable);
 
         jScrollPane1.setViewportView(scrollpane5);
@@ -476,6 +473,8 @@ public class AdministrationMenu extends javax.swing.JFrame {
         new WelcomePage().setVisible(true);
     }
 
+
+
     /**
      * @param args the command line arguments
      */
@@ -550,4 +549,8 @@ public class AdministrationMenu extends javax.swing.JFrame {
     private javax.swing.JTable staffTable;
     private javax.swing.JButton updateButton;
     // End of variables declaration
+
+    public JTable getStaffTable(){
+        return staffTable;
+    }
 }
