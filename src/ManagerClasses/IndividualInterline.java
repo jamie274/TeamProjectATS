@@ -58,7 +58,7 @@ public class IndividualInterline extends javax.swing.JFrame {
                         {null, null, null, null, null, null}
                 },
                 new String [] {
-                        "Ticket ID", "Customer ID", "Amount Paid", "USD", "CC Number", "Commission"
+                        "Ticket ID", "Customer ID", "Amount Paid", "USD", "Payment Type", "Commission"
                 }
         ));
         jScrollPane3.setViewportView(reportTable);
