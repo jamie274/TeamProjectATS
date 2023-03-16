@@ -84,13 +84,13 @@ public class AdministrationMenu extends javax.swing.JFrame {
 
         blankStockTable.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
+                        {null, null, null, null, null},
+                        {null, null, null, null, null},
+                        {null, null, null, null, null},
+                        {null, null, null, null, null}
                 },
                 new String [] {
-                        "Advisor ID", "Blank ID", "Blank Type", "Blank Status"
+                        "Advisor ID", "Blank ID", "Blank Type", "Blank Status", "Used Status"
                 }
         ));
         jScrollPane3.setViewportView(blankStockTable);
@@ -443,7 +443,8 @@ public class AdministrationMenu extends javax.swing.JFrame {
     }
 
     private void refreshStaffButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        displayTablesHelper.ClearTable(staffTable);
+        displayTablesHelper.DisplayUserTable(staffTable);
     }
 
     private void refreshBlanksButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -549,8 +550,4 @@ public class AdministrationMenu extends javax.swing.JFrame {
     private javax.swing.JTable staffTable;
     private javax.swing.JButton updateButton;
     // End of variables declaration
-
-    public JTable getStaffTable(){
-        return staffTable;
-    }
 }
