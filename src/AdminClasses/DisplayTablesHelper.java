@@ -14,7 +14,6 @@ public class DisplayTablesHelper {
 
     public DisplayTablesHelper(){}
 
-
     public void DisplayBlankTable(JTable blankTable){
 
         try {
@@ -63,7 +62,6 @@ public class DisplayTablesHelper {
     }
     //This method takes in JTable to edit the staff table model then add rows of data retrieved from db
     public void DisplayUserTable(JTable staffTable){
-
         try {
             // connecting to the database server
             Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
