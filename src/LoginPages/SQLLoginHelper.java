@@ -10,7 +10,6 @@ import java.sql.*;
 public class SQLLoginHelper {
 
     private String name;
-    private int staffID;
     private String staffIDStr;
 
     public SQLLoginHelper() {}
@@ -34,10 +33,10 @@ public class SQLLoginHelper {
                 b = true; // if the id AND password match, then the login is successful
                 // fetching the name and ID of the found staff member so that it can be displayed in their dashboard
                 name = result.getString("FirstName") + " " + result.getString("LastName");
-                staffID = result.getInt("ID");
+                int staffID = result.getInt("ID");
                 staffIDStr = Integer.toString(staffID);
             }
-
+            con.close(); // close the connection
         } catch (SQLException s) {
             s.printStackTrace();
         }
