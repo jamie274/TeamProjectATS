@@ -12,7 +12,7 @@ import java.sql.*;
 // it in tables on the User Dashboards
 public class DisplayTablesHelper {
 
-    public DisplayTablesHelper(){}
+    public DisplayTablesHelper() {}
 
     public void DisplayBlankTable(JTable blankTable){
 
