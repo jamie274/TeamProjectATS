@@ -82,17 +82,11 @@ public class AdministrationMenu extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1200, 600));
 
-        blankStockTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null}
-                },
-                new String [] {
-                        "Advisor ID", "Blank ID", "Blank Type", "Blank Status", "Used Status"
-                }
-        ));
+        blankStockTable.setModel(new javax.swing.table.DefaultTableModel());
+
+        //Displays the blank stocks table to the admin dashboard
+        displayTablesHelper.DisplayBlankTable(blankStockTable);
+
         jScrollPane3.setViewportView(blankStockTable);
 
         jScrollPane2.setViewportView(jScrollPane3);
@@ -174,7 +168,7 @@ public class AdministrationMenu extends javax.swing.JFrame {
         );
 
         staffTable.setModel(new javax.swing.table.DefaultTableModel());
-
+        //Displays the user accounts table display on the admin dashboard
         displayTablesHelper.DisplayUserTable(staffTable);
 
         scrollpane5.setViewportView(staffTable);
