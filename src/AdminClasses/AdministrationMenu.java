@@ -54,7 +54,7 @@ public class AdministrationMenu extends javax.swing.JFrame {
         searchStaffButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         searchStaffBox = new javax.swing.JTextField();
-        deleteButton = new javax.swing.JButton();
+        deleteUser = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         addBlankButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -199,7 +199,12 @@ public class AdministrationMenu extends javax.swing.JFrame {
 
         jLabel4.setText("Search Staff (Enter Staff ID)");
 
-        deleteButton.setText("DELETE ACCOUNT");
+        deleteUser.setText("DELETE ACCOUNT");
+        deleteUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteUserButtonAction(evt);
+            }
+        });
 
         updateButton.setText("UPDATE DETAILS");
 
@@ -267,7 +272,7 @@ public class AdministrationMenu extends javax.swing.JFrame {
                                                 .addComponent(searchBlankButton)
                                                 .addGap(33, 33, 33))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                                .addComponent(deleteButton)
+                                                .addComponent(deleteUser)
                                                 .addContainerGap())
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                                 .addComponent(updateButton)
@@ -307,7 +312,7 @@ public class AdministrationMenu extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(searchStaffButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(deleteButton)
+                                .addComponent(deleteUser)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(updateButton)
                                 .addGap(21, 21, 21))
@@ -479,6 +484,10 @@ public class AdministrationMenu extends javax.swing.JFrame {
         displayTablesHelper.searchBlank(blankStockTable, searchBlankBox.getText());
     }
 
+    private void deleteUserButtonAction(java.awt.event.ActionEvent evt) {
+        //displayTablesHelper.deleteStaff(staffTable, searchStaffBox.getText());
+    }
+
 
     /**
      * @param args the command line arguments
@@ -522,7 +531,7 @@ public class AdministrationMenu extends javax.swing.JFrame {
     private javax.swing.JButton backUpButton;
     private javax.swing.JTable blankStockTable;
     private javax.swing.JButton deleteBlankButton;
-    private javax.swing.JButton deleteButton;
+    private javax.swing.JButton deleteUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
