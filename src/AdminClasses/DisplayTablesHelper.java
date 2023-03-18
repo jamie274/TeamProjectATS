@@ -70,7 +70,7 @@ public class DisplayTablesHelper {
             Statement stm = con.createStatement();
             ResultSet result = stm.executeQuery("SELECT ID, FirstName, LastName, Role FROM AirViaUser");
 
-            //this stores all the meta data recived from the query result
+            //this stores all the meta-data received from the query result
             ResultSetMetaData rsmd = result.getMetaData();
 
             //this creates a default model of the staff table
@@ -103,7 +103,104 @@ public class DisplayTablesHelper {
         }catch (SQLException s) {
             s.printStackTrace();
         }
+    }
 
+    public void searchStaff(JTable table, String user) {
+
+        try {
+            // connecting to the database server
+            Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
+                    "in2018g08_a", "R8pV1HmN");
+
+            Statement stm = con.createStatement();
+            ResultSet result = stm.executeQuery("SELECT ID, FirstName, LastName, Role FROM AirViaUser WHERE ID = " + user);
+
+            //this stores all the meta-data received from the query result
+            ResultSetMetaData rsmd = result.getMetaData();
+
+            //this creates a default model of the staff table
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+            //checks the number of columns and creates a string object of column names
+            int cols = rsmd.getColumnCount();
+            String[] colName = new String[cols];
+
+            //inserts column names to the table
+            for(int i = 0; i < cols; i++){
+                colName[i] = rsmd.getColumnName(i+1);
+            }
+            model.setColumnIdentifiers(colName);
+
+            //inserts all the data in the respective columns
+            if(result.next()){
+                // The variable UserID, UserFirstName, UserLastName and UserRole are to store the data retrieved from the db.
+                String userID = result.getString("ID");
+                String userFirstName = result.getString("FirstName");
+                String userLastName = result.getString("LastName");
+                String userRole = result.getString("Role");
+
+                String[] row = {userID, userFirstName, userLastName, userRole};
+                model.addRow(row);
+            } else { // user has not been found
+                ClearTable(table); // clears the table
+                DisplayUserTable(table); // refreshes the table by re-displaying the data
+                JOptionPane.showMessageDialog(null, "User does not exist, please try again");
+            }
+            //closes the connection to db
+            con.close();
+        }catch (SQLException s) {
+            s.printStackTrace();
+        }
+    }
+
+    public void searchBlank(JTable table, String blank) {
+
+        try {
+            // connecting to the database server
+            Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
+                    "in2018g08_a", "R8pV1HmN");
+
+            Statement stm = con.createStatement();
+            ResultSet result = stm.executeQuery("SELECT AdvisorID, ID, BlankType, Status, UsedStatus FROM BlankStock WHERE ID = " + blank);
+
+            //this stores all the meta-data received from the query result
+            ResultSetMetaData rsmd = result.getMetaData();
+
+            //this creates a default model of the staff table
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+            //checks the number of columns and creates a string object of column names
+            int cols = rsmd.getColumnCount();
+            String[] colName = new String[cols];
+
+            //inserts column names to the table
+            for(int i = 0; i < cols; i++){
+                colName[i] = rsmd.getColumnName(i+1);
+            }
+            model.setColumnIdentifiers(colName);
+
+            //inserts all the data in the respective columns
+            if(result.next()){
+                //"Advisor ID", "Blank ID", "Blank Type", "Blank Status", "Used Status"
+                String btAdvisorID = result.getString("AdvisorID");
+                String btBlankID = Integer.toString(result.getInt("ID"));
+                String btBlankType = Integer.toString(result.getInt("BlankType"));
+                String btBlankStatus = result.getString("Status");
+                String btBlankUsedStatus = result.getString("UsedStatus");
+
+                String[] row = {btAdvisorID, btBlankID, btBlankType, btBlankStatus, btBlankUsedStatus};
+                //add the rows to the table
+                model.addRow(row);
+            } else { // user has not been found
+                ClearTable(table); // clears the table
+                DisplayBlankTable(table); // refreshes the table by re-displaying the data
+                JOptionPane.showMessageDialog(null, "Blank does not exist, please try again");
+            }
+            //closes the connection to db
+            con.close();
+        }catch (SQLException s) {
+            s.printStackTrace();
+        }
     }
 
     public void ClearTable(JTable table){

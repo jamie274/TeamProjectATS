@@ -1,7 +1,8 @@
 import LoginPages.*;
 
 public class Start {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
+        // Starts the program at the welcome page
         new WelcomePage().setVisible(true);
     }
 }
