@@ -167,7 +167,7 @@ public class AdministrationMenu extends javax.swing.JFrame {
 
         staffTable.setModel(new javax.swing.table.DefaultTableModel());
         //Displays the user accounts table display on the admin dashboard
-        displayTablesHelper.DisplayUserTable(staffTable);
+        displayTablesHelper.DisplayUserTableAdmin(staffTable);
 
         scrollpane5.setViewportView(staffTable);
 
@@ -441,7 +441,7 @@ public class AdministrationMenu extends javax.swing.JFrame {
 
     private void refreshStaffButtonActionPerformed(java.awt.event.ActionEvent evt) {
         displayTablesHelper.ClearTable(staffTable); // clears the table
-        displayTablesHelper.DisplayUserTable(staffTable); // refreshes the table by re-displaying the data
+        displayTablesHelper.DisplayUserTableAdmin(staffTable); // refreshes the table by re-displaying the data
     }
 
     private void refreshBlanksButtonActionPerformed(java.awt.event.ActionEvent evt) {
