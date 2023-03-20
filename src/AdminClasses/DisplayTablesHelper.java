@@ -259,7 +259,9 @@ public class DisplayTablesHelper {
                     "in2018g08_a", "R8pV1HmN");
 
             Statement stm = con.createStatement();
+            stm.execute("SET FOREIGN_KEY_CHECKS=0");
             stm.executeUpdate("DELETE FROM AirViaUser WHERE ID = " + user);
+            stm.execute("SET FOREIGN_KEY_CHECKS=0");
             ResultSet result = stm.executeQuery("SELECT ID, FirstName, LastName, Role FROM AirViaUser WHERE ID = " + user);
 
             //this stores all the meta-data received from the query result
@@ -291,7 +293,7 @@ public class DisplayTablesHelper {
             } else { // user has not been found
                 ClearTable(table); // clears the table
                 DisplayUserTableAdmin(table); // refreshes the table by re-displaying the data
-                JOptionPane.showMessageDialog(null, "User does not exist, please try again");
+                JOptionPane.showMessageDialog(null, "User has been deleted");
             }
             //closes the connection to db
             con.close();
