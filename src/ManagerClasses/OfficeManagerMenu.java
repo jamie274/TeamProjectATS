@@ -5,6 +5,7 @@ package ManagerClasses;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import AdminClasses.DisplayTablesHelper;
 import LoginPages.WelcomePage;
 
 /**
@@ -17,6 +18,7 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
     private String id;
     private String name;
 
+    DisplayTablesHelper displayTablesHelper = new DisplayTablesHelper();
     /**
      * Creates new form OfficeManagerMenu
      */
@@ -89,17 +91,11 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(153, 204, 255));
         jPanel4.setPreferredSize(new java.awt.Dimension(1400, 600));
 
-        blankStockTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                },
-                new String [] {
-                        "Advisor ID", "Blank ID", "Blank Type", "Blank Status"
-                }
-        ));
+        blankStockTable.setModel(new javax.swing.table.DefaultTableModel());
+
+        //displays the blanks table
+        displayTablesHelper.DisplayBlankTable(blankStockTable);
+
         jScrollPane3.setViewportView(blankStockTable);
 
         jScrollPane2.setViewportView(jScrollPane3);
@@ -175,17 +171,11 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
                                 .addGap(23, 23, 23))
         );
 
-        staffTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null}
-                },
-                new String [] {
-                        "Staff ID", "First Name", "Last Name"
-                }
-        ));
+        staffTable.setModel(new javax.swing.table.DefaultTableModel());
+
+        //displays the advisor table.
+        displayTablesHelper.DisplayAdvisorTableManager(staffTable);
+
         scrollpane5.setViewportView(staffTable);
 
         jScrollPane1.setViewportView(scrollpane5);
