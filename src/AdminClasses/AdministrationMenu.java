@@ -2,6 +2,8 @@ package AdminClasses;
 
 import LoginPages.WelcomePage;
 
+import javax.swing.*;
+
 /**
  *
  * @author gordo
@@ -485,7 +487,10 @@ public class AdministrationMenu extends javax.swing.JFrame {
     }
 
     private void deleteUserButtonAction(java.awt.event.ActionEvent evt) {
-        displayTablesHelper.deleteStaff(staffTable, searchStaffBox.getText());
+        int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this user?","Delete user", JOptionPane.YES_NO_OPTION);
+        if (d == JOptionPane.YES_OPTION) {
+            displayTablesHelper.deleteStaff(staffTable, searchStaffBox.getText());
+        }
     }
 
 

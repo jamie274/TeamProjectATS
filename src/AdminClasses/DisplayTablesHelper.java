@@ -260,41 +260,15 @@ public class DisplayTablesHelper {
 
             Statement stm = con.createStatement();
             stm.execute("SET FOREIGN_KEY_CHECKS=0");
+            // user is deleted, as their id is passed through
             stm.executeUpdate("DELETE FROM AirViaUser WHERE ID = " + user);
-            stm.execute("SET FOREIGN_KEY_CHECKS=0");
-            ResultSet result = stm.executeQuery("SELECT ID, FirstName, LastName, Role FROM AirViaUser WHERE ID = " + user);
+            stm.execute("SET FOREIGN_KEY_CHECKS=1");
 
-            //this stores all the meta-data received from the query result
-            ResultSetMetaData rsmd = result.getMetaData();
+            // message box, showing that the user has been successfully deleted
+            JOptionPane.showMessageDialog(null, "User has been deleted");
+            ClearTable(table); // clears the table
+            DisplayUserTableAdmin(table); // refreshes the table by re-displaying the data
 
-            //this creates a default model of the staff table
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-
-            //checks the number of columns and creates a string object of column names
-            int cols = rsmd.getColumnCount();
-            String[] colName = new String[cols];
-
-            //inserts column names to the table
-            for(int i = 0; i < cols; i++){
-                colName[i] = rsmd.getColumnName(i+1);
-            }
-            model.setColumnIdentifiers(colName);
-
-            //inserts all the data in the respective columns
-            if(result.next()){
-                // The variable UserID, UserFirstName, UserLastName and UserRole are to store the data retrieved from the db.
-                String userID = result.getString("ID");
-                String userFirstName = result.getString("FirstName");
-                String userLastName = result.getString("LastName");
-                String userRole = result.getString("Role");
-
-                String[] row = {userID, userFirstName, userLastName, userRole};
-                model.addRow(row);
-            } else { // user has not been found
-                ClearTable(table); // clears the table
-                DisplayUserTableAdmin(table); // refreshes the table by re-displaying the data
-                JOptionPane.showMessageDialog(null, "User has been deleted");
-            }
             //closes the connection to db
             con.close();
         }catch (SQLException s) {

@@ -5,9 +5,11 @@ package AdminClasses;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import javax.swing.*;
+
 /**
  *
- * @author gordo
+ * @author Sahi
  */
 public class RegisterStaff extends javax.swing.JFrame {
 
@@ -76,6 +78,11 @@ public class RegisterStaff extends javax.swing.JFrame {
         jLabel11.setText("Enter Password");
 
         registerStaffButton.setText("Register Staff");
+        registerStaffButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Enter ID");
@@ -171,6 +178,20 @@ public class RegisterStaff extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>
+
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // message box asking the user to confirm that they want to register the user
+        int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to register this user?",
+                "Register user", JOptionPane.YES_NO_OPTION);
+        if (d == JOptionPane.YES_OPTION) {
+            // user is registered if they press 'yes'
+            SQLRegisterHelper s = new SQLRegisterHelper();
+            // data from the text boxes are passed through as parameters
+            s.registerStaff(idLabel.getText(),roleLabel.getText(),firstNameLabel.getText(),lastNameLabel.getText()
+                    ,emailLabel.getText(),String.valueOf(passwordLabel.getPassword()));
+            dispose(); // the register staff frame is disposed of
+        }
+    }
 
     /**
      * @param args the command line arguments

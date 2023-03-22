@@ -47,7 +47,7 @@ public class UpdateStaff extends javax.swing.JFrame {
         roleLabel = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Register Staff ");
+        setTitle("Update Staff ");
         setPreferredSize(new java.awt.Dimension(500, 500));
         setResizable(false);
         pack();
