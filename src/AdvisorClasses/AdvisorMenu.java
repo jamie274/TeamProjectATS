@@ -18,6 +18,7 @@ public class AdvisorMenu extends javax.swing.JFrame {
     // id and name is passed through the constructor so that it can be shown in the dashboard
     private String id;
     private String name;
+    SQLDisplayAdvisorTables sqlDisplay;
 
     /**
      * Creates new form AdvisorMenu
@@ -83,17 +84,11 @@ public class AdvisorMenu extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1400, 600));
 
-        blankStockTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                },
-                new String [] {
-                        "Advisor ID", "Blank ID", "Blank Type", "Blank Status"
-                }
-        ));
+        blankStockTable.setModel(new javax.swing.table.DefaultTableModel());
+        sqlDisplay = new SQLDisplayAdvisorTables();
+        sqlDisplay.DisplayAdvisorBlankTable(blankStockTable, id);
+
+
         jScrollPane3.setViewportView(blankStockTable);
 
         jScrollPane2.setViewportView(jScrollPane3);

@@ -47,7 +47,7 @@ public class DisplayTablesHelper {
                 //"Advisor ID", "Blank ID", "Blank Type", "Blank Status", "Used Status"
                 String btAdvisorID = result.getString("AdvisorID");
                 String btBlankID = Integer.toString(result.getInt("ID"));
-                String btBlankType = Integer.toString(result.getInt("BlankType"));
+                String btBlankType = result.getString("BlankType");
                 String btBlankStatus = result.getString("Status");
                 String btBlankUsedStatus = result.getString("UsedStatus");
 
