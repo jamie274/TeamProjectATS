@@ -240,6 +240,11 @@ public class AdministrationMenu extends javax.swing.JFrame {
         });
 
         deleteBlankButton.setText("DELETE BLANK");
+        deleteBlankButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBlankButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -492,6 +497,14 @@ public class AdministrationMenu extends javax.swing.JFrame {
             displayTablesHelper.deleteStaff(staffTable, searchStaffBox.getText());
         }
     }
+
+    private void deleteBlankButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this blank?","Delete blank", JOptionPane.YES_NO_OPTION);
+        if (d == JOptionPane.YES_OPTION) {
+            displayTablesHelper.deleteBlank(blankStockTable, searchBlankBox.getText());
+        }
+    }
+
 
 
     /**

@@ -8,6 +8,8 @@ package ManagerClasses;
 import AdminClasses.DisplayTablesHelper;
 import LoginPages.WelcomePage;
 
+import javax.swing.*;
+
 /**
  *
  * @author gordo
@@ -58,7 +60,7 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
         searchBlankBox = new javax.swing.JTextField();
         searchStaffButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        searchBlankBox1 = new javax.swing.JTextField();
+        searchStaffBox = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         registerButton1 = new javax.swing.JButton();
@@ -183,6 +185,12 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(102, 102, 255));
 
         searchBlankButton.setText("SEARCH");
+        searchBlankButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBlankButtonActionPerformed(evt);
+            }
+        });
+
 
         jLabel2.setText("Search Blank (Enter Blank ID)");
 
@@ -193,10 +201,16 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
         });
 
         searchStaffButton.setText("SEARCH");
+        searchStaffButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchStaffButtonActionPerformed(evt);
+            }
+        });
+
 
         jLabel4.setText("Search Staff (Enter Staff ID)");
 
-        searchBlankBox1.addActionListener(new java.awt.event.ActionListener() {
+        searchStaffBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchBlankBox1ActionPerformed(evt);
             }
@@ -213,6 +227,11 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
         registerButton1.setText("ASSIGN BLANK");
 
         deleteBlankButton.setText("DELETE BLANK");
+        deleteBlankButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBlankButtonActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("REASSIGN BLANK");
 
@@ -267,7 +286,7 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
                                                         .addGroup(jPanel6Layout.createSequentialGroup()
                                                                 .addComponent(jLabel4)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                .addComponent(searchBlankBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addComponent(searchStaffBox, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                                                                 .addComponent(jLabel2)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -354,7 +373,7 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel4)
-                                        .addComponent(searchBlankBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(searchStaffBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(searchStaffButton)
                                 .addGap(30, 30, 30))
@@ -471,11 +490,13 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void refreshBlanksButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        displayTablesHelper.ClearTable(blankStockTable); // clears the table
+        displayTablesHelper.DisplayBlankTable(blankStockTable); // refreshes the table by re-displaying the data
     }
 
     private void refreshStaffButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        displayTablesHelper.ClearTable(staffTable); // clears the table
+        displayTablesHelper.DisplayAdvisorTableManager(staffTable); // refreshes the table by re-displaying the data
     }
 
     private void reassignBoxActionPerformed(java.awt.event.ActionEvent evt) {
@@ -512,6 +533,26 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
         this.dispose();
         new WelcomePage().setVisible(true);
     }
+
+    private void searchBlankButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        displayTablesHelper.ClearTable(blankStockTable);
+        // displays the record of the blank that is being searched for
+        displayTablesHelper.searchBlank(blankStockTable, searchBlankBox.getText());
+    }
+
+    private void searchStaffButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        displayTablesHelper.ClearTable(staffTable);
+        // displays the record of the staff that is being searched for
+        displayTablesHelper.searchAdvisor(staffTable, searchStaffBox.getText());
+    }
+
+    private void deleteBlankButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this blank?","Delete blank", JOptionPane.YES_NO_OPTION);
+        if (d == JOptionPane.YES_OPTION) {
+            displayTablesHelper.deleteBlank(blankStockTable, searchBlankBox.getText());
+        }
+    }
+
 
     /**
      * @param args the command line arguments
@@ -586,7 +627,7 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
     private javax.swing.JButton reportsButton;
     private javax.swing.JScrollPane scrollpane5;
     private javax.swing.JTextField searchBlankBox;
-    private javax.swing.JTextField searchBlankBox1;
+    private javax.swing.JTextField searchStaffBox;
     private javax.swing.JButton searchBlankButton;
     private javax.swing.JButton searchStaffButton;
     private javax.swing.JTable staffTable;

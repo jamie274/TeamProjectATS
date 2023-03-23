@@ -186,18 +186,21 @@ public class WelcomePage extends javax.swing.JFrame {
 
     private void adminLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new AdminLogin().setVisible(true);
-        code = generateSixDigit(); // new 6-digit code is generated
-        System.out.println(code); // new code is printed to the console
+        dispose();
+        //code = generateSixDigit(); // new 6-digit code is generated
+        //System.out.println(code); // new code is printed to the console
     }
     private void managerLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new ManagerLogin().setVisible(true);
-        code = generateSixDigit();
-        System.out.println(code);
+        dispose();
+        //code = generateSixDigit();
+        //System.out.println(code);
     }
     private void advisorLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new AdvisorLogin().setVisible(true);
-        code = generateSixDigit();
-        System.out.println(code);
+        dispose();
+        //code = generateSixDigit();
+        //System.out.println(code);
     }
 
     /**
