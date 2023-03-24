@@ -6,7 +6,7 @@ public class Start {
         // Starts the program at the welcome page
         new WelcomePage().setVisible(true);
 
-        //new OfficeManagerMenu("21Savage","Abdul").setVisible(true);
+
     }
 }
 

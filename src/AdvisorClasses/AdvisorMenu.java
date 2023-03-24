@@ -170,17 +170,9 @@ public class AdvisorMenu extends javax.swing.JFrame {
                                         .addContainerGap(139, Short.MAX_VALUE)))
         );
 
-        salesTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null}
-                },
-                new String [] {
-                        "Customer ID", "Ticket ID", "Blank ID", "Customer First Name", "Customer Last Name", "Amount Paid"
-                }
-        ));
+        salesTable.setModel(new javax.swing.table.DefaultTableModel());
+        sqlDisplay.DisplaySalesTable(salesTable);
+
         scrollpane5.setViewportView(salesTable);
 
         jScrollPane1.setViewportView(scrollpane5);

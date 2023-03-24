@@ -55,6 +55,63 @@ public class SQLDisplayAdvisorTables {
     }
 
 
+    public void DisplaySalesTable(JTable blankTable){
+
+        try {
+            // connecting to the database server
+            Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
+                    "in2018g08_a", "R8pV1HmN");
+
+            Statement stm = con.createStatement();
+            ResultSet result = stm.executeQuery("SELECT ID, BlankStockID, CustomerID, CommissionRateTicketType, AdvisorID, DiscountPlanType, PaymentType, SaleType, Country, TotalAmount, AmountPaid, Status, Date  FROM Sales");
+
+            //this stores all the meta-data received from the query result
+            ResultSetMetaData rsmd = result.getMetaData();
+
+            //this creates a default model of the blank table
+            DefaultTableModel model = (DefaultTableModel) blankTable.getModel();
+
+            //checks the number of columns and creates a string object of column names
+            int cols = rsmd.getColumnCount();
+            String[] colName = new String[cols];
+
+            //inserts column names to the table
+            for(int i = 0; i < cols; i++){
+                colName[i] = rsmd.getColumnName(i+1);
+            }
+            model.setColumnIdentifiers(colName);
+
+            //inserts all the data in the respective columns
+            while(result.next()){
+                //ID, BlankStockID, CustomerID, CommissionRateTicketType, AdvisorID, DiscountPlanType, PaymentType, SaleType,
+                // ExchangeRateCurrency, TotalAmount, AmountPaid, Status, Date
+                String ID = Integer.toString(result.getInt(1));
+                String BlankID = Integer.toString(result.getInt(2));
+                String CustomerID = Integer.toString(result.getInt(3));
+                String Commission = Integer.toString(result.getInt(4));
+                String AdvisorID = Integer.toString(result.getInt(5));
+                String Discount = result.getString(6);
+                String Payment = result.getString(7);
+                String SaleType = result.getString(8);
+                String Country = result.getString(9);
+                String Total =  Integer.toString(result.getInt(10));
+                String Paid = Integer.toString(result.getInt(11));
+                String Status = result.getString(12);
+                String Date = String.valueOf(result.getDate(13));
+
+
+                String[] row = {ID, BlankID, CustomerID, Commission, AdvisorID, Discount, Payment, SaleType, Country, Total, Paid, Status, Date};
+                //add the rows to the table
+                model.addRow(row);
+            }
+            //closes the connection to db
+            con.close();
+        }catch (SQLException s) {
+            s.printStackTrace();
+        }
+
+    }
+
     public void ClearTable(JTable table){
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
