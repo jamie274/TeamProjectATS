@@ -9,6 +9,9 @@ import LoginPages.WelcomePage;
 import ManagerClasses.IndividualDomestic;
 import ManagerClasses.IndividualInterline;
 
+import javax.swing.*;
+import javax.swing.table.TableColumn;
+
 /**
  *
  * @author gordo
@@ -71,7 +74,7 @@ public class AdvisorMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        refreshStaffButton = new javax.swing.JButton();
+        refreshSalesButton = new javax.swing.JButton();
         refreshBlanksButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -171,8 +174,21 @@ public class AdvisorMenu extends javax.swing.JFrame {
         );
 
         salesTable.setModel(new javax.swing.table.DefaultTableModel());
-        sqlDisplay.DisplaySalesTable(salesTable);
+        salesTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
+        //changing the width of the columns
+        for (int i = 0; i < salesTable.getColumnCount(); i++) {
+            TableColumn column = salesTable.getColumnModel().getColumn(i);
+            column.setPreferredWidth(300);
+        }
+        //adding the horizontall scroll bar
+        JScrollPane scrollPane = new JScrollPane(salesTable);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        JPanel panel = new JPanel();
+        panel.add(scrollPane);
+
+        //displays the table
+        sqlDisplay.DisplaySalesTable(salesTable, id);
         scrollpane5.setViewportView(salesTable);
 
         jScrollPane1.setViewportView(scrollpane5);
@@ -339,10 +355,12 @@ public class AdvisorMenu extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setText("Manage Tickets and Sales");
 
-        refreshStaffButton.setText("Refresh Table");
-        refreshStaffButton.addActionListener(new java.awt.event.ActionListener() {
+        refreshSalesButton.setText("Refresh Table");
+        refreshSalesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshStaffButtonActionPerformed(evt);
+                sqlDisplay.ClearTable(salesTable);
+                sqlDisplay.DisplaySalesTable(salesTable, id);
             }
         });
 
@@ -350,6 +368,8 @@ public class AdvisorMenu extends javax.swing.JFrame {
         refreshBlanksButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshBlanksButtonActionPerformed(evt);
+                sqlDisplay.ClearTable(blankStockTable);
+                sqlDisplay.DisplaySalesTable(blankStockTable, id);
             }
         });
 
@@ -373,7 +393,7 @@ public class AdvisorMenu extends javax.swing.JFrame {
                                                                         .addGap(325, 325, 325)
                                                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                        .addComponent(refreshStaffButton)
+                                                                        .addComponent(refreshSalesButton)
                                                                         .addGap(14, 14, 14)))
                                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                                                 .addComponent(jLabel3)
@@ -407,7 +427,7 @@ public class AdvisorMenu extends javax.swing.JFrame {
                                                                 .addGap(38, 38, 38)
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                         .addComponent(jLabel1)
-                                                                        .addComponent(refreshStaffButton))
+                                                                        .addComponent(refreshSalesButton))
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -529,7 +549,7 @@ public class AdvisorMenu extends javax.swing.JFrame {
     private javax.swing.JLabel nameLabel1;
     private javax.swing.JButton recordSaleButton;
     private javax.swing.JButton refreshBlanksButton;
-    private javax.swing.JButton refreshStaffButton;
+    private javax.swing.JButton refreshSalesButton;
     private javax.swing.JButton refundButton;
     private javax.swing.JTable salesTable;
     private javax.swing.JScrollPane scrollpane5;

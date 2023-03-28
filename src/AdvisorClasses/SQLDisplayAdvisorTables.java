@@ -55,7 +55,7 @@ public class SQLDisplayAdvisorTables {
     }
 
 
-    public void DisplaySalesTable(JTable blankTable){
+    public void DisplaySalesTable(JTable blankTable, String staffID){
 
         try {
             // connecting to the database server
@@ -63,7 +63,8 @@ public class SQLDisplayAdvisorTables {
                     "in2018g08_a", "R8pV1HmN");
 
             Statement stm = con.createStatement();
-            ResultSet result = stm.executeQuery("SELECT ID, BlankStockID, CustomerID, CommissionRateTicketType, AdvisorID, DiscountPlanType, PaymentType, SaleType, Country, TotalAmount, AmountPaid, Status, Date  FROM Sales");
+            ResultSet result = stm.executeQuery("SELECT ID, BlankStockID, CustomerID, CommissionRateTicketType, AdvisorID, PaymentType, SaleType, Country, TotalAmount, AmountPaid, Status, Date  " +
+                    "FROM Sales Where AdvisorID =" + staffID);
 
             //this stores all the meta-data received from the query result
             ResultSetMetaData rsmd = result.getMetaData();
@@ -90,17 +91,16 @@ public class SQLDisplayAdvisorTables {
                 String CustomerID = Integer.toString(result.getInt(3));
                 String Commission = Integer.toString(result.getInt(4));
                 String AdvisorID = Integer.toString(result.getInt(5));
-                String Discount = result.getString(6);
-                String Payment = result.getString(7);
-                String SaleType = result.getString(8);
-                String Country = result.getString(9);
-                String Total =  Integer.toString(result.getInt(10));
-                String Paid = Integer.toString(result.getInt(11));
-                String Status = result.getString(12);
-                String Date = String.valueOf(result.getDate(13));
+                String Payment = result.getString(6);
+                String SaleType = result.getString(7);
+                String Country = result.getString(8);
+                String Total =  Integer.toString(result.getInt(9));
+                String Paid = Integer.toString(result.getInt(10));
+                String Status = result.getString(11);
+                String Date = String.valueOf(result.getDate(12));
 
 
-                String[] row = {ID, BlankID, CustomerID, Commission, AdvisorID, Discount, Payment, SaleType, Country, Total, Paid, Status, Date};
+                String[] row = {ID, BlankID, CustomerID, Commission, AdvisorID, Payment, SaleType, Country, Total, Paid, Status, Date};
                 //add the rows to the table
                 model.addRow(row);
             }
