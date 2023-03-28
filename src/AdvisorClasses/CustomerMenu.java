@@ -14,6 +14,8 @@ public class CustomerMenu extends javax.swing.JFrame {
     /**
      * Creates new form CustomerMenu
      */
+
+    SQLDisplayAdvisorTables sqlDisplay = new SQLDisplayAdvisorTables();
     public CustomerMenu() {
         initComponents();
     }
@@ -58,17 +60,9 @@ public class CustomerMenu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Manage Customers");
 
-        customerTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                },
-                new String [] {
-                        "Customer ID", "First Name", "Last Name", "Customer Type"
-                }
-        ));
+        customerTable.setModel(new javax.swing.table.DefaultTableModel());
+        sqlDisplay.DisplayCustomersTable(customerTable);
+
         jScrollPane3.setViewportView(customerTable);
 
         jScrollPane2.setViewportView(jScrollPane3);
@@ -79,6 +73,8 @@ public class CustomerMenu extends javax.swing.JFrame {
         refreshBlanksButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshBlanksButtonActionPerformed(evt);
+                sqlDisplay.ClearTable(customerTable);
+                sqlDisplay.DisplayCustomersTable(customerTable);
             }
         });
 

@@ -54,7 +54,53 @@ public class SQLDisplayAdvisorTables {
 
     }
 
+    public void DisplayCustomersTable(JTable blankTable){
+        try {
+            // connecting to the database server
+            Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
+                    "in2018g08_a", "R8pV1HmN");
 
+            Statement stm = con.createStatement();
+
+            ResultSet result = stm.executeQuery("SELECT ID, FirstName, LastName, Type, DiscountPlan, Percentage FROM Customer");
+
+            //this stores all the meta-data received from the query result
+            ResultSetMetaData rsmd = result.getMetaData();
+
+            //this creates a default model of the blank table
+            DefaultTableModel model = (DefaultTableModel) blankTable.getModel();
+
+            //checks the number of columns and creates a string object of column names
+            int cols = rsmd.getColumnCount();
+            String[] colName = new String[cols];
+
+            //inserts column names to the table
+            for(int i = 0; i < cols; i++){
+                colName[i] = rsmd.getColumnName(i+1);
+            }
+            model.setColumnIdentifiers(colName);
+
+            //inserts all the data in the respective columns
+            while(result.next()){//, FirstName, LastName, Type, DiscountPlan, Percentage
+                String ID = Integer.toString(result.getInt(1));
+                String FirstName = result.getString(2);
+                String LastName = result.getString(3);
+                String Type = result.getString(4);
+                String DiscountPlan = Float.toString(result.getFloat(5));
+                String Percentage = Float.toString(result.getFloat(6));
+
+
+
+                String[] row = {ID, FirstName, LastName, Type, DiscountPlan, Percentage};
+                //add the rows to the table
+                model.addRow(row);
+            }
+            //closes the connection to db
+            con.close();
+        }catch (SQLException s) {
+            s.printStackTrace();
+        }
+    }
     public void DisplaySalesTable(JTable blankTable, String staffID){
 
         try {
