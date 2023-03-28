@@ -5,11 +5,18 @@ package ManagerClasses;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 ////////
+
+import AdminClasses.DisplayTablesHelper;
+
+import javax.swing.*;
+
 /**
  *
  * @author gordo
  */
 public class ModifyCommission extends javax.swing.JFrame {
+
+    private DisplayTablesHelper display = new DisplayTablesHelper();
 
     /**
      * Creates new form ModifyCommission
@@ -31,8 +38,8 @@ public class ModifyCommission extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        searchBlankBox = new javax.swing.JTextField();
-        searchAgentButton = new javax.swing.JButton();
+        searchCommissionBox = new javax.swing.JTextField();
+        searchTypeButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         addBox = new javax.swing.JTextField();
@@ -41,10 +48,10 @@ public class ModifyCommission extends javax.swing.JFrame {
         changeBox = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        refreshBlanksButton = new javax.swing.JButton();
+        refreshTableButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane3 = new javax.swing.JScrollPane();
-        blankStockTable = new javax.swing.JTable();
+        commissionTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Modify Commission");
@@ -61,23 +68,43 @@ public class ModifyCommission extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 255));
 
-        jLabel2.setText("Enter Ticket ID");
+        jLabel2.setText("Enter Ticket Type");
 
-        searchBlankBox.addActionListener(new java.awt.event.ActionListener() {
+        searchCommissionBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchBlankBoxActionPerformed(evt);
             }
         });
 
-        searchAgentButton.setText("SEARCH");
+        searchTypeButton.setText("SEARCH");
+        searchTypeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTypeButtonBoxActionPerformed(evt);
+            }
+        });
 
         addButton.setText("ADD COMMISSION");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonBoxActionPerformed(evt);
+            }
+        });
 
         deleteButton.setText("DELETE COMMISSION");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonBoxActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Enter new");
 
         changeButton.setText("CHANGE COMMISSION");
+        changeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeButtonBoxActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Enter new");
 
@@ -89,7 +116,7 @@ public class ModifyCommission extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(searchAgentButton)
+                                                .addComponent(searchTypeButton)
                                                 .addGap(15, 15, 15))
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addContainerGap()
@@ -97,7 +124,7 @@ public class ModifyCommission extends javax.swing.JFrame {
                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                 .addComponent(jLabel2)
                                                                 .addGap(18, 18, 18)
-                                                                .addComponent(searchBlankBox))
+                                                                .addComponent(searchCommissionBox))
                                                         .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                                                 .addGap(9, 9, 9)
@@ -119,10 +146,10 @@ public class ModifyCommission extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(searchBlankBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(searchCommissionBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel2))
                                 .addGap(9, 9, 9)
-                                .addComponent(searchAgentButton)
+                                .addComponent(searchTypeButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(addButton)
@@ -141,25 +168,17 @@ public class ModifyCommission extends javax.swing.JFrame {
 
         jLabel5.setText("Ticket's sold Table");
 
-        refreshBlanksButton.setText("Refresh Table");
-        refreshBlanksButton.addActionListener(new java.awt.event.ActionListener() {
+        refreshTableButton.setText("Refresh Table");
+        refreshTableButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshBlanksButtonActionPerformed(evt);
+                refreshTableButtonActionPerformed(evt);
             }
         });
 
-        blankStockTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                },
-                new String [] {
-                        "Ticket ID", "Advisor ID", "Ticket Type", "Commission"
-                }
-        ));
-        jScrollPane3.setViewportView(blankStockTable);
+        commissionTable.setModel(new javax.swing.table.DefaultTableModel());
+        display.DisplayCommissionTable(commissionTable);
+
+        jScrollPane3.setViewportView(commissionTable);
 
         jScrollPane2.setViewportView(jScrollPane3);
 
@@ -179,7 +198,7 @@ public class ModifyCommission extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jLabel5)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(refreshBlanksButton))
+                                                .addComponent(refreshTableButton))
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(38, 38, 38))
         );
@@ -195,7 +214,7 @@ public class ModifyCommission extends javax.swing.JFrame {
                                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(refreshBlanksButton)
+                                                        .addComponent(refreshTableButton)
                                                         .addComponent(jLabel5))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -220,8 +239,39 @@ public class ModifyCommission extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
-    private void refreshBlanksButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    private void refreshTableButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        display.ClearTable(commissionTable);
+        display.DisplayCommissionTable(commissionTable);
+    }
+
+    private void searchTypeButtonBoxActionPerformed(java.awt.event.ActionEvent evt) {
+        display.ClearTable(commissionTable);
+        // displays the record of the ticket type that is being searched for
+        display.searchTicketType(commissionTable, searchCommissionBox.getText());
+    }
+
+    private void addButtonBoxActionPerformed(java.awt.event.ActionEvent evt) {
+        int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to add this commission ?"
+                ,"Add commission", JOptionPane.YES_NO_OPTION);
+        if (d == JOptionPane.YES_OPTION) {
+            display.addCommission(commissionTable, searchCommissionBox.getText(), addBox.getText());
+        }
+    }
+
+    private void changeButtonBoxActionPerformed(java.awt.event.ActionEvent evt) {
+        int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to change this commission ?"
+                ,"Change commission", JOptionPane.YES_NO_OPTION);
+        if (d == JOptionPane.YES_OPTION) {
+            display.addCommission(commissionTable, searchCommissionBox.getText(), changeBox.getText());
+        }
+    }
+
+    private void deleteButtonBoxActionPerformed(java.awt.event.ActionEvent evt) {
+        int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this commission ?"
+                ,"Change commission", JOptionPane.YES_NO_OPTION);
+        if (d == JOptionPane.YES_OPTION) {
+            display.deleteCommission(commissionTable, searchCommissionBox.getText());
+        }
     }
 
     /**
@@ -262,7 +312,7 @@ public class ModifyCommission extends javax.swing.JFrame {
     // Variables declaration - do not modify
     private javax.swing.JTextField addBox;
     private javax.swing.JButton addButton;
-    private javax.swing.JTable blankStockTable;
+    private javax.swing.JTable commissionTable;
     private javax.swing.JTextField changeBox;
     private javax.swing.JButton changeButton;
     private javax.swing.JButton deleteButton;
@@ -275,8 +325,8 @@ public class ModifyCommission extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JButton refreshBlanksButton;
-    private javax.swing.JButton searchAgentButton;
-    private javax.swing.JTextField searchBlankBox;
+    private javax.swing.JButton refreshTableButton;
+    private javax.swing.JButton searchTypeButton;
+    private javax.swing.JTextField searchCommissionBox;
     // End of variables declaration
 }

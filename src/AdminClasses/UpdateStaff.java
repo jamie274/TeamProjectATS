@@ -5,16 +5,25 @@ package AdminClasses;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import AdvisorClasses.SQLCustomerHelper;
+
+import javax.swing.*;
+
 /**
  *
  * @author gordo
  */
 public class UpdateStaff extends javax.swing.JFrame {
 
+    private String staffID;
+    private JTable staffTable;
+
     /**
      * Creates new form RegisterStaff
      */
-    public UpdateStaff() {
+    public UpdateStaff(String sID, JTable sTable) {
+        staffID = sID;
+        staffTable = sTable;
         initComponents();
     }
 
@@ -53,6 +62,9 @@ public class UpdateStaff extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
 
+        idLabel.setVisible(false);
+        jLabel5.setVisible(false);
+
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(500, 500));
 
@@ -76,6 +88,11 @@ public class UpdateStaff extends javax.swing.JFrame {
         jLabel11.setText("Enter new password");
 
         updateStaffButton.setText("Update Staff");
+        updateStaffButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateStaffButtonActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Enter new ID");
@@ -173,6 +190,23 @@ public class UpdateStaff extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    private void updateStaffButtonActionPerformed(java.awt.event.ActionEvent evt) {
+
+        //System.out.println(String.valueOf(passwordLabel.getPassword()));
+
+        // message box asking the user to confirm that they want to register the user
+        int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to update this customer's details?",
+                "Update customer", JOptionPane.YES_NO_OPTION);
+        if (d == JOptionPane.YES_OPTION) {
+            // user is registered if they press 'yes'
+            DisplayTablesHelper display = new DisplayTablesHelper();
+            // data from the text boxes are passed through as parameters
+            display.updateStaff(staffTable, staffID, roleLabel.getText(), firstNameLabel.getText(), lastNameLabel.getText(),
+                    emailLabel.getText(), String.valueOf(passwordLabel.getPassword()));
+            dispose(); // the register staff frame is disposed of
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -204,7 +238,7 @@ public class UpdateStaff extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UpdateStaff().setVisible(true);
+                //new UpdateStaff().setVisible(true);
             }
         });
     }

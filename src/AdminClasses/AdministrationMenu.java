@@ -465,7 +465,7 @@ public class AdministrationMenu extends javax.swing.JFrame {
     }
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new UpdateStaff().setVisible(true);
+        new UpdateStaff(searchStaffBox.getText(), staffTable).setVisible(true);
     }
 
     // navigates to previous page when 'BACK' is pressed
