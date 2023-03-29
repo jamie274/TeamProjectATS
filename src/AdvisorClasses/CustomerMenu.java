@@ -5,17 +5,19 @@ package AdvisorClasses;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import javax.swing.*;
+
 /**
  *
  * @author gordo
  */
 public class CustomerMenu extends javax.swing.JFrame {
 
+    private SQLCustomerHelper custHelper = new SQLCustomerHelper();
+
     /**
      * Creates new form CustomerMenu
      */
-
-    SQLDisplayAdvisorTables sqlDisplay = new SQLDisplayAdvisorTables();
     public CustomerMenu() {
         initComponents();
     }
@@ -35,7 +37,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         customerTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        refreshBlanksButton = new javax.swing.JButton();
+        refreshTableButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         typeBox = new javax.swing.JTextField();
@@ -61,7 +63,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         jLabel1.setText("Manage Customers");
 
         customerTable.setModel(new javax.swing.table.DefaultTableModel());
-        sqlDisplay.DisplayCustomersTable(customerTable);
+        custHelper.DisplayCustomers(customerTable);
 
         jScrollPane3.setViewportView(customerTable);
 
@@ -69,12 +71,10 @@ public class CustomerMenu extends javax.swing.JFrame {
 
         jLabel2.setText("Customer Table");
 
-        refreshBlanksButton.setText("Refresh Table");
-        refreshBlanksButton.addActionListener(new java.awt.event.ActionListener() {
+        refreshTableButton.setText("Refresh Table");
+        refreshTableButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshBlanksButtonActionPerformed(evt);
-                sqlDisplay.ClearTable(customerTable);
-                sqlDisplay.DisplayCustomersTable(customerTable);
+                refreshTableButtonActionPerformed(evt);
             }
         });
 
@@ -89,6 +89,11 @@ public class CustomerMenu extends javax.swing.JFrame {
         });
 
         searchButton.setText("SEARCH");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Enter new type");
 
@@ -106,10 +111,25 @@ public class CustomerMenu extends javax.swing.JFrame {
         });
 
         registerButton.setText("REGISTER CUSTOMER");
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
 
         deleteButton.setText("DELETE CUSTOMER");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
         updateButton.setText("UPDATE CUSTOMER");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -178,7 +198,7 @@ public class CustomerMenu extends javax.swing.JFrame {
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(refreshBlanksButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(refreshTableButton, javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(59, 59, 59))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -193,7 +213,7 @@ public class CustomerMenu extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(29, 29, 29)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(refreshBlanksButton)
+                                        .addComponent(refreshTableButton)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jLabel1)
                                                 .addGap(26, 26, 26)
@@ -227,8 +247,9 @@ public class CustomerMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void refreshBlanksButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    private void refreshTableButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        custHelper.ClearTable(customerTable);
+        custHelper.DisplayCustomers(customerTable);
     }
 
     private void typeBoxActionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,7 +261,33 @@ public class CustomerMenu extends javax.swing.JFrame {
     }
 
     private void changeButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to change this customer's type?",
+                "Change type", JOptionPane.YES_NO_OPTION);
+        if (d == JOptionPane.YES_OPTION) {
+            custHelper.changeType(customerTable, searchCustomerBox.getText(), typeBox.getText());
+        }
+    }
+
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new RegisterCustomer().setVisible(true);
+    }
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new UpdateCustomer(searchCustomerBox.getText(), customerTable).setVisible(true);
+    }
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        custHelper.ClearTable(customerTable);
+        // displays the record of the customer that is being searched for
+        custHelper.searchCustomer(customerTable, searchCustomerBox.getText());
+    }
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this customer?",
+                "Delete customer", JOptionPane.YES_NO_OPTION);
+        if (d == JOptionPane.YES_OPTION) {
+            custHelper.deleteCustomer(customerTable, searchCustomerBox.getText());
+        }
     }
 
     /**
@@ -290,7 +337,7 @@ public class CustomerMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JButton refreshBlanksButton;
+    private javax.swing.JButton refreshTableButton;
     private javax.swing.JButton registerButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchCustomerBox;
