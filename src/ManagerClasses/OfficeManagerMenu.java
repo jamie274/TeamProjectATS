@@ -65,13 +65,13 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         assignBlankButton = new javax.swing.JButton();
         deleteBlankButton = new javax.swing.JButton();
-        reassignBlankButton = new javax.swing.JButton();
+        assignButton = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         modifyCommissionButton = new javax.swing.JButton();
         reportsButton = new javax.swing.JButton();
-        assignBox = new javax.swing.JTextField();
+        idBox = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        reassignBox = new javax.swing.JTextField();
+        dateBox = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         setDiscountPlansButton = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
@@ -224,6 +224,7 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("View Sales Advisors");
 
+        assignBlankButton.setVisible(false);
         assignBlankButton.setText("ASSIGN BLANK");
         assignBlankButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -238,10 +239,10 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
             }
         });
 
-        reassignBlankButton.setText("REASSIGN BLANK");
-        reassignBlankButton.addActionListener(new java.awt.event.ActionListener() {
+        assignButton.setText("ASSIGN BLANK");
+        assignButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reassignBlankButtonActionPerformed(evt);
+                assignButtonActionPerformed(evt);
             }
         });
 
@@ -263,9 +264,9 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Enter Advisor ID");
+        jLabel5.setText("Enter Date");
 
-        reassignBox.addActionListener(new java.awt.event.ActionListener() {
+        dateBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reassignBoxActionPerformed(evt);
             }
@@ -304,16 +305,16 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
                                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                                                                 .addComponent(jLabel6)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(assignBox)
+                                                                .addComponent(idBox)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(assignBlankButton))
                                                         .addComponent(reportsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                                                                 .addComponent(jLabel5)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(reassignBox)
+                                                                .addComponent(dateBox)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(reassignBlankButton))
+                                                                .addComponent(assignButton))
                                                         .addComponent(modifyCommissionButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                                                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -361,12 +362,12 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(assignBlankButton)
-                                        .addComponent(assignBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(idBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel6))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(reassignBlankButton)
-                                        .addComponent(reassignBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(assignButton)
+                                        .addComponent(dateBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel5))
                                 .addGap(4, 4, 4)
                                 .addComponent(deleteBlankButton)
@@ -564,18 +565,16 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
     }
 
     private void assignBlankButtonActionPerformed(java.awt.event.ActionEvent evt) {
+
+    }
+
+    private void assignButtonActionPerformed(java.awt.event.ActionEvent evt) {
         int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to assign this blank?"
                 ,"Assign blank", JOptionPane.YES_NO_OPTION);
-        if (d == JOptionPane.YES_OPTION) {
-            displayTablesHelper.assignBlank(blankStockTable, assignBox.getText(),searchBlankBox.getText());
+        if (d == JOptionPane.YES_OPTION) { // blankid, advisorid, date
+            displayTablesHelper.assignBlank(blankStockTable, idBox.getText(),searchBlankBox.getText(), dateBox.getText());
         }
-    }
-    private void reassignBlankButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to re-assign this blank?"
-                ,"Re-assign blank", JOptionPane.YES_NO_OPTION);
-        if (d == JOptionPane.YES_OPTION) {
-            displayTablesHelper.assignBlank(blankStockTable, reassignBox.getText(),searchBlankBox.getText());
-        }
+
     }
 
 
@@ -615,11 +614,11 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JTextField assignBox;
+    private javax.swing.JTextField idBox;
     private javax.swing.JButton backButton2;
     private javax.swing.JTable blankStockTable;
     private javax.swing.JButton deleteBlankButton;
-    private javax.swing.JButton reassignBlankButton;
+    private javax.swing.JButton assignButton;
     private javax.swing.JButton modifyCommissionButton;
     private javax.swing.JButton setDiscountPlansButton;
     private javax.swing.JLabel jLabel1;
@@ -645,7 +644,7 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
     private javax.swing.JButton logOutButton2;
     private javax.swing.JLabel nameLabel4;
     private javax.swing.JLabel nameLabel5;
-    private javax.swing.JTextField reassignBox;
+    private javax.swing.JTextField dateBox;
     private javax.swing.JButton refreshBlanksButton;
     private javax.swing.JButton refreshStaffButton;
     private javax.swing.JButton assignBlankButton;

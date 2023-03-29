@@ -55,7 +55,7 @@ public class AddBlank extends javax.swing.JFrame {
         jLabel6.setText("Enter Blank ID");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel7.setText("Enter Blank Status");
+        jLabel7.setText("Enter Date Received");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Add new blank");

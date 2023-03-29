@@ -5,11 +5,17 @@ package ManagerClasses;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import AdvisorClasses.SQLCustomerHelper;
+
+import javax.swing.*;
+
 /**
  *
  * @author gordo
  */
 public class SetDiscountPlans extends javax.swing.JFrame {
+
+    private SQLCustomerHelper custHelper = new SQLCustomerHelper();
 
     /**
      * Creates new form SetDiscountPlans
@@ -58,22 +64,14 @@ public class SetDiscountPlans extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Manage Discount Plans");
 
-        customerTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null}
-                },
-                new String [] {
-                        "Customer ID", "First Name", "Last Name", "Discount Plan", "Discount %"
-                }
-        ));
+        customerTable.setModel(new javax.swing.table.DefaultTableModel());
+        custHelper.DisplayCustomers(customerTable);
+
         jScrollPane3.setViewportView(customerTable);
 
         jScrollPane2.setViewportView(jScrollPane3);
 
-        jLabel2.setText("Valued Customers Table");
+        jLabel2.setText("Customers Table");
 
         refreshButton.setText("Refresh Table");
         refreshButton.addActionListener(new java.awt.event.ActionListener() {
@@ -87,6 +85,11 @@ public class SetDiscountPlans extends javax.swing.JFrame {
         jLabel3.setText("Enter Customer ID");
 
         searchButton.setText("SEARCH");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         searchCustomerBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,6 +105,11 @@ public class SetDiscountPlans extends javax.swing.JFrame {
         jLabel6.setText("Enter Discount %");
 
         setDiscountButton.setText("SET DISCOUNT");
+        setDiscountButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setDiscountButtonBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -217,11 +225,27 @@ public class SetDiscountPlans extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        custHelper.ClearTable(customerTable);
+        custHelper.DisplayCustomers(customerTable);
     }
 
     private void searchCustomerBoxActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+    }
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        custHelper.ClearTable(customerTable);
+        // displays the record of the customer that is being searched for
+        custHelper.searchCustomer(customerTable, searchCustomerBox.getText());
+    }
+
+
+    private void setDiscountButtonBoxActionPerformed(java.awt.event.ActionEvent evt) {
+        int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to add this discount plan to the customer? ",
+                "Set Discount", JOptionPane.YES_NO_OPTION);
+        if (d == JOptionPane.YES_OPTION) {
+            custHelper.setDiscount(customerTable, searchCustomerBox.getText(), discountPlanBox.getText(), percentageBox.getText());
+        }
     }
 
     /**

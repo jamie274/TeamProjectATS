@@ -23,8 +23,10 @@ public class DisplayTablesHelper {
             Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
                     "in2018g08_a", "R8pV1HmN");
 
+            String d = "Date";
+
             Statement stm = con.createStatement();
-            ResultSet result = stm.executeQuery("SELECT AdvisorID, ID, BlankType, Status, UsedStatus FROM BlankStock");
+            ResultSet result = stm.executeQuery("SELECT AdvisorID, ID, BlankType, Status," + d + "  FROM BlankStock");
 
             //this stores all the meta-data received from the query result
             ResultSetMetaData rsmd = result.getMetaData();
@@ -49,9 +51,9 @@ public class DisplayTablesHelper {
                 String btBlankID = Integer.toString(result.getInt("ID"));
                 String btBlankType = result.getString("BlankType");
                 String btBlankStatus = result.getString("Status");
-                String btBlankUsedStatus = result.getString("UsedStatus");
+                String Date = String.valueOf(result.getDate("Date"));
 
-                String[] row = {btAdvisorID, btBlankID, btBlankType, btBlankStatus, btBlankUsedStatus};
+                String[] row = {btAdvisorID, btBlankID, btBlankType, btBlankStatus, Date};
                 //add the rows to the table
                 model.addRow(row);
             }
@@ -208,8 +210,10 @@ public class DisplayTablesHelper {
             Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
                     "in2018g08_a", "R8pV1HmN");
 
+            String d = "Date";
+
             Statement stm = con.createStatement();
-            ResultSet result = stm.executeQuery("SELECT AdvisorID, ID, BlankType, Status, UsedStatus FROM BlankStock WHERE ID = " + blank);
+            ResultSet result = stm.executeQuery("SELECT AdvisorID, ID, BlankType, Status, " + d + " FROM BlankStock WHERE ID = " + blank);
 
             //this stores all the meta-data received from the query result
             ResultSetMetaData rsmd = result.getMetaData();
@@ -234,9 +238,9 @@ public class DisplayTablesHelper {
                 String btBlankID = Integer.toString(result.getInt("ID"));
                 String btBlankType = result.getString("BlankType");
                 String btBlankStatus = result.getString("Status");
-                String btBlankUsedStatus = result.getString("UsedStatus");
+                String Date = String.valueOf(result.getDate("Date"));
 
-                String[] row = {btAdvisorID, btBlankID, btBlankType, btBlankStatus, btBlankUsedStatus};
+                String[] row = {btAdvisorID, btBlankID, btBlankType, btBlankStatus, Date};
                 //add the rows to the table
                 model.addRow(row);
             } else { // user has not been found
@@ -349,17 +353,19 @@ public class DisplayTablesHelper {
     }
 
     // Method used to assign and re-assign blanks to advisors
-    public void assignBlank(JTable table, String advisorID, String blankID) {
+    public void assignBlank(JTable table, String advisorID, String blankID, String date) {
 
         try {
             // connecting to the database server
             Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
                     "in2018g08_a", "R8pV1HmN");
 
+            String d = "Date";
+
             Statement stm = con.createStatement();
             stm.execute("SET FOREIGN_KEY_CHECKS=0");
             // Blank stock record is updated to assign the blanlk to an advisor and change the status to 'assigned'
-            stm.executeUpdate("UPDATE BlankStock SET AdvisorID = " + "'" + advisorID + "' ," + "Status = 'Assigned'" + " WHERE ID = " + blankID);
+            stm.executeUpdate("UPDATE BlankStock SET AdvisorID = " + "'" + advisorID + "' ," + "Status = 'Assigned'," + d + " = " + "'" + date + "'" + " WHERE ID = " + blankID);
             stm.execute("SET FOREIGN_KEY_CHECKS=1");
             // message box, showing that the blank has been successfully assigned
             JOptionPane.showMessageDialog(null, "Blank has been successfully assigned to " + advisorID);
@@ -468,7 +474,7 @@ public class DisplayTablesHelper {
 
             Statement stm = con.createStatement();
             stm.execute("SET FOREIGN_KEY_CHECKS=0");
-            // Blank stock record is updated to assign the blanlk to an advisor and change the status to 'assigned'
+            // Blank stock record is updated to assign the blank to an advisor and change the status to 'assigned'
             stm.executeUpdate("UPDATE CommisionRate SET Percentage = " + "'" + rate + "'" + " WHERE TicketType = " + type);
             stm.execute("SET FOREIGN_KEY_CHECKS=1");
             // message box, showing that the blank has been successfully assigned

@@ -61,7 +61,7 @@ public class AdvisorMenu extends javax.swing.JFrame {
         searchBlankBox = new javax.swing.JTextField();
         searchTicketButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        searchBlankBox1 = new javax.swing.JTextField();
+        searchSaleBox = new javax.swing.JTextField();
         refundButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -74,7 +74,7 @@ public class AdvisorMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        refreshStaffButton = new javax.swing.JButton();
+        refreshSalesButton = new javax.swing.JButton();
         refreshBlanksButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -196,6 +196,11 @@ public class AdvisorMenu extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(102, 102, 255));
 
         searchBlankButton.setText("SEARCH");
+        searchBlankButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBlankButtonActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Search Blank (Enter Blank ID)");
 
@@ -206,10 +211,20 @@ public class AdvisorMenu extends javax.swing.JFrame {
         });
 
         searchTicketButton.setText("SEARCH");
+        searchTicketButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchSaleButtonActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Search Ticket (Enter Ticket ID)");
 
         refundButton.setText("REFUND TICKET");
+        refundButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refundButtonActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -220,6 +235,11 @@ public class AdvisorMenu extends javax.swing.JFrame {
         jLabel9.setText("Manage Ticket Sales");
 
         voidBlankButton.setText("VOID BLANK");
+        voidBlankButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voidBlankButtonActionPerformed(evt);
+            }
+        });
 
         recordSaleButton.setText("RECORD TICKET SALE");
         recordSaleButton.addActionListener(new java.awt.event.ActionListener() {
@@ -288,7 +308,7 @@ public class AdvisorMenu extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(refundButton)
-                                                        .addComponent(searchBlankBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(searchSaleBox, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGap(12, 12, 12))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -337,7 +357,7 @@ public class AdvisorMenu extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel4)
-                                        .addComponent(searchBlankBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(searchSaleBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(searchTicketButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -355,10 +375,10 @@ public class AdvisorMenu extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setText("Manage Tickets and Sales");
 
-        refreshStaffButton.setText("Refresh Table");
-        refreshStaffButton.addActionListener(new java.awt.event.ActionListener() {
+        refreshSalesButton.setText("Refresh Table");
+        refreshSalesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshStaffButtonActionPerformed(evt);
+                refreshSalesButtonActionPerformed(evt);
             }
         });
 
@@ -389,7 +409,7 @@ public class AdvisorMenu extends javax.swing.JFrame {
                                                                         .addGap(325, 325, 325)
                                                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                        .addComponent(refreshStaffButton)
+                                                                        .addComponent(refreshSalesButton)
                                                                         .addGap(14, 14, 14)))
                                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                                                 .addComponent(jLabel3)
@@ -423,7 +443,7 @@ public class AdvisorMenu extends javax.swing.JFrame {
                                                                 .addGap(38, 38, 38)
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                         .addComponent(jLabel1)
-                                                                        .addComponent(refreshStaffButton))
+                                                                        .addComponent(refreshSalesButton))
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -445,15 +465,22 @@ public class AdvisorMenu extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void searchBlankBoxActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+
     }
 
-    private void refreshStaffButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    private void searchBlankButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        sqlDisplay.ClearTable(blankStockTable);
+        sqlDisplay.searchBlank(blankStockTable, id, searchBlankBox.getText());
+    }
+
+    private void refreshSalesButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        sqlDisplay.ClearTable(salesTable);
+        sqlDisplay.DisplaySalesTable(salesTable, id);
     }
 
     private void refreshBlanksButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        sqlDisplay.ClearTable(blankStockTable);
+        sqlDisplay.DisplayAdvisorBlankTable(blankStockTable, id);
     }
 
     private void interlineButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -481,6 +508,27 @@ public class AdvisorMenu extends javax.swing.JFrame {
     private void addLogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
         new WelcomePage().setVisible(true);
+    }
+
+    private void searchSaleButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        sqlDisplay.ClearTable(salesTable);
+        sqlDisplay.searchSalesTable(salesTable, id, searchSaleBox.getText());
+    }
+
+    private void refundButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to refund this ticket? this change can't be undone.",
+                "Refund Ticket", JOptionPane.YES_NO_OPTION);
+        if (d == JOptionPane.YES_OPTION) {
+            sqlDisplay.refundTicket(salesTable, id, searchSaleBox.getText());
+        }
+    }
+
+    private void voidBlankButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to void this blank? this change can't be undone.",
+                "Refund Ticket", JOptionPane.YES_NO_OPTION);
+        if (d == JOptionPane.YES_OPTION) {
+            sqlDisplay.voidBlank(blankStockTable, id, searchBlankBox.getText());
+        }
     }
 
     /**
@@ -545,12 +593,12 @@ public class AdvisorMenu extends javax.swing.JFrame {
     private javax.swing.JLabel nameLabel1;
     private javax.swing.JButton recordSaleButton;
     private javax.swing.JButton refreshBlanksButton;
-    private javax.swing.JButton refreshStaffButton;
+    private javax.swing.JButton refreshSalesButton;
     private javax.swing.JButton refundButton;
     private javax.swing.JTable salesTable;
     private javax.swing.JScrollPane scrollpane5;
     private javax.swing.JTextField searchBlankBox;
-    private javax.swing.JTextField searchBlankBox1;
+    private javax.swing.JTextField searchSaleBox;
     private javax.swing.JButton searchBlankButton;
     private javax.swing.JButton searchTicketButton;
     private javax.swing.JButton voidBlankButton;

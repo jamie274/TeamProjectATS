@@ -49,7 +49,7 @@ public class SQLCustomerHelper {
                 String custLastName = result.getString("LastName");
                 String custEmail = result.getString("Email");
                 String custType = result.getString("Type");
-                String DiscountPlan = Float.toString(result.getFloat("DiscountPlan"));
+                String DiscountPlan = result.getString("DiscountPlan");
                 String Percentage = Float.toString(result.getFloat("Percentage"));
 
                 String[] row = {custID, custFirstName, custLastName, custEmail, custType, DiscountPlan, Percentage};
@@ -99,7 +99,7 @@ public class SQLCustomerHelper {
                 String custLastName = result.getString("LastName");
                 String custEmail = result.getString("Email");
                 String custType = result.getString("Type");
-                String DiscountPlan = Float.toString(result.getFloat("DiscountPlan"));
+                String DiscountPlan = result.getString("DiscountPlan");
                 String Percentage = Float.toString(result.getFloat("Percentage"));
 
                 String[] row = {custID, custFirstName, custLastName, custEmail, custType, DiscountPlan, Percentage};
@@ -215,6 +215,28 @@ public class SQLCustomerHelper {
             con.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void setDiscount(JTable table, String id, String disPlan, String perc) {
+
+        try {
+            // connecting to the database server
+            Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
+                    "in2018g08_a", "R8pV1HmN");
+
+            Statement stm = con.createStatement();
+            stm.executeUpdate("UPDATE Customer SET DiscountPlan = " + "'" + disPlan + "', " + " Percentage = " + "'" + perc + "' WHERE ID = " + id);
+
+            // message box, showing that the customer's details have been successfully updated
+            JOptionPane.showMessageDialog(null, "Discount plan has been successfully added");
+            ClearTable(table); // clears the table
+            DisplayCustomers(table); // refreshes the table by re-displaying the data
+
+            //closes the connection to db
+            con.close();
+        }catch (SQLException s) {
+            s.printStackTrace();
         }
     }
 
