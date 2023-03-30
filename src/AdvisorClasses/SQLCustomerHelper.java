@@ -204,7 +204,7 @@ public class SQLCustomerHelper {
 
             // data to be inserted into the database
             String insertStm = ("'" + idText + "'") + ", " + ("'" + firstNameText + "'") + ", " + ("'" + lastNameText + "'") + ", "
-                    + ("'" + emailText + "'") + ", " + ("'" + typeText + "' ,") + " NULL";
+                    + ("'" + emailText + "'") + ", " + ("'" + typeText + "' ,") + " NULL, NULL, NULL";
 
             // insert statement is run
             stm.executeUpdate("INSERT INTO Customer VALUES ( " + insertStm + ")");
