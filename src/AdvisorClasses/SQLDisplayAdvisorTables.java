@@ -67,9 +67,12 @@ public class SQLDisplayAdvisorTables {
 
             Statement stm = con.createStatement();
 
-            ResultSet result = stm.executeQuery("SELECT ID, BlankStockID, CustomerID, CommissionRateTicketType, PaymentType, SaleType, " +
-                    "AmountPaid, TotalAmount, Date, Status FROM Sales Where AdvisorID =" + staffID);
+            String com = "CommisionRate";
+            String ex = "ExchangeRate";
+            String loc = "LocalCurrency";
 
+            ResultSet result = stm.executeQuery("SELECT ID, BlankStockID, CustomerID, " + com + ", PaymentType, SaleType" +
+                    ", " + ex + ", " + loc + ", Date, Status FROM Sales Where AdvisorID =" + staffID);
 
             //this stores all the meta-data received from the query result
             ResultSetMetaData rsmd = result.getMetaData();
@@ -94,15 +97,15 @@ public class SQLDisplayAdvisorTables {
                 String ID = Integer.toString(result.getInt("ID"));
                 String BlankID = Integer.toString(result.getInt("BlankStockID"));
                 String CustomerID = Integer.toString(result.getInt("CustomerID"));
-                String Commission = Integer.toString(result.getInt("CommissionRateTicketType"));
+                String Commission = Float.toString(result.getFloat("CommisionRate")) + "%";
                 String Payment = result.getString("PaymentType");
                 String SaleType = result.getString("SaleType");
-                String Total =  Integer.toString(result.getInt("TotalAmount"));
-                String Paid = Integer.toString(result.getInt("AmountPaid"));
+                String exchangeRate =  Float.toString(result.getFloat("ExchangeRate"));
+                String localCurrency = Float.toString(result.getFloat("LocalCurrency"));
                 String Date = String.valueOf(result.getDate("Date"));
                 String Status = result.getString("Status");
 
-                String[] row = {ID, BlankID, CustomerID, Commission, Payment, SaleType, Paid, Total, Date, Status};
+                String[] row = {ID, BlankID, CustomerID, Commission, Payment, SaleType, exchangeRate,localCurrency, Date, Status};
                 //add the rows to the table
                 model.addRow(row);
             }
@@ -122,8 +125,12 @@ public class SQLDisplayAdvisorTables {
 
             Statement stm = con.createStatement();
 
-            ResultSet result = stm.executeQuery("SELECT ID, BlankStockID, CustomerID, CommissionRateTicketType, PaymentType, SaleType, " +
-                    "AmountPaid, TotalAmount, Date, Status FROM Sales Where AdvisorID =" + staffID + " AND ID = " + saleID);
+            String com = "CommisionRate";
+            String ex = "ExchangeRate";
+            String loc = "LocalCurrency";
+
+            ResultSet result = stm.executeQuery("SELECT ID, BlankStockID, CustomerID, " + com + ", PaymentType, SaleType" +
+                    ", " + ex + ", " + loc + ", Date, Status FROM Sales Where AdvisorID =" + staffID + " AND ID = " + saleID);
 
             //this stores all the meta-data received from the query result
             ResultSetMetaData rsmd = result.getMetaData();
@@ -148,15 +155,15 @@ public class SQLDisplayAdvisorTables {
                 String ID = Integer.toString(result.getInt("ID"));
                 String BlankID = Integer.toString(result.getInt("BlankStockID"));
                 String CustomerID = Integer.toString(result.getInt("CustomerID"));
-                String Commission = Integer.toString(result.getInt("CommissionRateTicketType"));
+                String Commission = Float.toString(result.getFloat("CommisionRate")) + "%";
                 String Payment = result.getString("PaymentType");
                 String SaleType = result.getString("SaleType");
-                String Total =  Integer.toString(result.getInt("TotalAmount"));
-                String Paid = Integer.toString(result.getInt("AmountPaid"));
+                String exchangeRate =  Float.toString(result.getFloat("ExchangeRate"));
+                String localCurrency = Float.toString(result.getFloat("LocalCurrency"));
                 String Date = String.valueOf(result.getDate("Date"));
                 String Status = result.getString("Status");
 
-                String[] row = {ID, BlankID, CustomerID, Commission, Payment, SaleType, Paid, Total, Date, Status};
+                String[] row = {ID, BlankID, CustomerID, Commission, Payment, SaleType, exchangeRate,localCurrency, Date, Status};
                 //add the rows to the table
                 model.addRow(row);
             } else { // user has not been found

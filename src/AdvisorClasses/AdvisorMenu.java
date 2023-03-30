@@ -496,7 +496,7 @@ public class AdvisorMenu extends javax.swing.JFrame {
     }
 
     private void recordSaleButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new RecordTicketSale().setVisible(true);
+        new RecordTicketSale(id).setVisible(true);
     }
 
     // navigates to previous page when 'BACK' is pressed
