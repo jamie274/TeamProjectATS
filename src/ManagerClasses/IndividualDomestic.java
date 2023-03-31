@@ -5,16 +5,22 @@ package ManagerClasses;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import javax.swing.*;
+
 /**
  *
  * @author gordo
  */
 public class IndividualDomestic extends javax.swing.JFrame {
 
+    private String id;
+    SQLReports r = new SQLReports();
+
     /**
      * Creates new form IndividualInterline
      */
-    public IndividualDomestic() {
+    public IndividualDomestic(String advisorID) {
+        id = advisorID;
         initComponents();
     }
 
@@ -50,17 +56,9 @@ public class IndividualDomestic extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Individual Domestic Report");
 
-        reportTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null}
-                },
-                new String [] {
-                        "Ticket ID", "Customer ID", "Amount Paid", "USD", "Payment Type", "Commission"
-                }
-        ));
+        reportTable.setModel(new javax.swing.table.DefaultTableModel());
+        r.DisplayIndividualDomestic(reportTable, id);
+
         jScrollPane3.setViewportView(reportTable);
 
         jScrollPane2.setViewportView(jScrollPane3);
@@ -68,6 +66,11 @@ public class IndividualDomestic extends javax.swing.JFrame {
         jLabel2.setText("Enter Ticket ID");
 
         searchButton.setText("SEARCH");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         refreshBlanksButton.setText("Refresh Table");
         refreshBlanksButton.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +80,11 @@ public class IndividualDomestic extends javax.swing.JFrame {
         });
 
         printButton.setText("PRINT REPORT");
+        printButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,7 +149,17 @@ public class IndividualDomestic extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void refreshBlanksButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        r.ClearTable(reportTable);
+        r.DisplayIndividualDomestic(reportTable, id);
+    }
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        r.ClearTable(reportTable);
+        r.searchIndividualDomestic(reportTable, id, idBox.getText());
+    }
+
+    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        JOptionPane.showMessageDialog(null, "Report has been sent to the printer");
     }
 
     /**
@@ -175,7 +193,7 @@ public class IndividualDomestic extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IndividualDomestic().setVisible(true);
+                //new IndividualDomestic().setVisible(true);
             }
         });
     }

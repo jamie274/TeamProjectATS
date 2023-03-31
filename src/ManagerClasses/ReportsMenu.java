@@ -140,19 +140,21 @@ public class ReportsMenu extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void individualInterlineButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new IndividualInterline().setVisible(true);
+        new EnterInterline().setVisible(true);
+        dispose();
     }
     private void individualDomesticButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new IndividualDomestic().setVisible(true);
+        new EnterDomestic().setVisible(true);
+        dispose();
     }
     private void globalInterlineButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new GlobalInterline().setVisible(true);
+        new GlobalInterline(this).setVisible(true);
     }
     private void globalDomesticButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new GlobalDomestic().setVisible(true);
+        new GlobalDomestic(this).setVisible(true);
     }
     private void ticketTurnoverButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new TurnoverReport().setVisible(true);
+        new TurnoverReport(this).setVisible(true);
     }
 
     /**

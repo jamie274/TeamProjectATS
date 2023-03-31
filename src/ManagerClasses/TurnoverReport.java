@@ -5,16 +5,25 @@ package ManagerClasses;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import AdminClasses.DisplayTablesHelper;
+
+import javax.swing.*;
+
 /**
  *
  * @author gordo
  */
 public class TurnoverReport extends javax.swing.JFrame {
 
+    DisplayTablesHelper d = new DisplayTablesHelper();
+    JFrame frame;
+
     /**
      * Creates new form IndividualInterline
      */
-    public TurnoverReport() {
+    public TurnoverReport(JFrame f) {
+        frame = f;
+        frame.dispose();
         initComponents();
     }
 
@@ -50,17 +59,9 @@ public class TurnoverReport extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Ticket Stock Turnover Report");
 
-        reportTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null}
-                },
-                new String [] {
-                        "Advisor ID", "Ticket ID", "Blank Type", "Blank Status", "Amount"
-                }
-        ));
+        reportTable.setModel(new javax.swing.table.DefaultTableModel());
+        d.DisplayBlankTable(reportTable);
+
         jScrollPane3.setViewportView(reportTable);
 
         jScrollPane2.setViewportView(jScrollPane3);
@@ -68,6 +69,11 @@ public class TurnoverReport extends javax.swing.JFrame {
         jLabel2.setText("Enter Ticket ID");
 
         searchButton.setText("SEARCH");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBlanksButtonActionPerformed(evt);
+            }
+        });
 
         refreshBlanksButton.setText("Refresh Table");
         refreshBlanksButton.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +83,11 @@ public class TurnoverReport extends javax.swing.JFrame {
         });
 
         printButton.setText("PRINT REPORT");
+        printButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,7 +152,17 @@ public class TurnoverReport extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void refreshBlanksButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        d.ClearTable(reportTable);
+        d.DisplayBlankTable(reportTable);
+    }
+
+    private void searchBlanksButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        d.ClearTable(reportTable);
+        d.searchBlank(reportTable, idBox.getText());
+    }
+
+    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        JOptionPane.showMessageDialog(null, "Report has been sent to the printer");
     }
 
     /**
@@ -189,7 +210,7 @@ public class TurnoverReport extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TurnoverReport().setVisible(true);
+                //new TurnoverReport().setVisible(true);
             }
         });
     }

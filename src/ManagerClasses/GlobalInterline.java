@@ -5,16 +5,23 @@ package ManagerClasses;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import javax.swing.*;
+
 /**
  *
  * @author gordo
  */
 public class GlobalInterline extends javax.swing.JFrame {
 
+    SQLReports r = new SQLReports();
+    JFrame frame;
+
     /**
      * Creates new form IndividualInterline
      */
-    public GlobalInterline() {
+    public GlobalInterline(JFrame f) {
+        frame = f;
+        frame.dispose();
         initComponents();
     }
 
@@ -50,17 +57,9 @@ public class GlobalInterline extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Global Interline Report");
 
-        reportTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null}
-                },
-                new String [] {
-                        "Advisor ID", "Ticket ID", "Customer ID", "Amount Paid", "USD", "Payment Type", "Commission"
-                }
-        ));
+        reportTable.setModel(new javax.swing.table.DefaultTableModel());
+        r.DisplayGlobalInterline(reportTable);
+
         jScrollPane3.setViewportView(reportTable);
 
         jScrollPane2.setViewportView(jScrollPane3);
@@ -68,6 +67,11 @@ public class GlobalInterline extends javax.swing.JFrame {
         jLabel2.setText("Enter Ticket ID");
 
         searchButton.setText("SEARCH");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         refreshBlanksButton.setText("Refresh Table");
         refreshBlanksButton.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +81,11 @@ public class GlobalInterline extends javax.swing.JFrame {
         });
 
         printButton.setText("PRINT REPORT");
+        printButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,7 +150,17 @@ public class GlobalInterline extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void refreshBlanksButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        r.ClearTable(reportTable);
+        r.DisplayGlobalInterline(reportTable);
+    }
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        r.ClearTable(reportTable);
+        r.searchGlobalInterline(reportTable, idBox.getText());
+    }
+
+    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        JOptionPane.showMessageDialog(null, "Report has been sent to the printer");
     }
 
     /**
@@ -177,7 +196,7 @@ public class GlobalInterline extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GlobalInterline().setVisible(true);
+                //new GlobalInterline().setVisible(true);
             }
         });
     }

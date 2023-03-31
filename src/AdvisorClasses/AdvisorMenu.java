@@ -484,11 +484,11 @@ public class AdvisorMenu extends javax.swing.JFrame {
     }
 
     private void interlineButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new IndividualInterline().setVisible(true);
+        new IndividualInterline(id).setVisible(true);
     }
 
     private void domesticButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new IndividualDomestic().setVisible(true);
+        new IndividualDomestic(id).setVisible(true);
     }
 
     private void customerMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {
