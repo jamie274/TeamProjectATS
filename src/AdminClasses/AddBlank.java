@@ -5,6 +5,8 @@ package AdminClasses;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import javax.swing.*;
+
 /**
  *
  * @author gordo
@@ -35,7 +37,7 @@ public class AddBlank extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         blankTypeLabel = new javax.swing.JTextField();
-        blankStatusLabel = new javax.swing.JTextField();
+        blankDateLabel = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Add blank");
@@ -47,6 +49,11 @@ public class AddBlank extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
 
         addBlankButton.setText("Add Blank");
+        addBlankButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBlankButtonActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Enter Blank Type");
@@ -82,7 +89,7 @@ public class AddBlank extends javax.swing.JFrame {
                                                                 .addComponent(jLabel7))
                                                         .addGap(41, 41, 41)
                                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                .addComponent(blankStatusLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                .addComponent(blankDateLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                                                                 .addComponent(blankTypeLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(80, 80, 80)
@@ -104,7 +111,7 @@ public class AddBlank extends javax.swing.JFrame {
                                         .addComponent(jLabel5))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(blankStatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(blankDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel7))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(addBlankButton)
@@ -124,6 +131,15 @@ public class AddBlank extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>
+
+    private void addBlankButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to add this blank?","Add Blank", JOptionPane.YES_NO_OPTION);
+        if (d == JOptionPane.YES_OPTION) {
+            SQLRegisterHelper r = new SQLRegisterHelper();
+            r.addBlank(blankIDLabel.getText(), blankTypeLabel.getText(), blankDateLabel.getText());
+            dispose();
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -163,7 +179,7 @@ public class AddBlank extends javax.swing.JFrame {
     // Variables declaration - do not modify
     private javax.swing.JButton addBlankButton;
     private javax.swing.JTextField blankIDLabel;
-    private javax.swing.JTextField blankStatusLabel;
+    private javax.swing.JTextField blankDateLabel;
     private javax.swing.JTextField blankTypeLabel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;

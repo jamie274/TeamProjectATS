@@ -40,9 +40,29 @@ public class SQLRegisterHelper {
         }
     }
 
-    // -- to be completed (Sahi)
-    public void addBlank(String idText, String typeText, String statusText) {
+    public void addBlank(String idText, String typeText, String dateText) {
+        try {
+            // connecting to the database server
+            Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
+                    "in2018g08_a", "R8pV1HmN");
 
+            Statement stm = con.createStatement();
+
+            // data to be inserted into the database
+            String insertStm = ("'" + idText + "'") + ", " + ("'" + typeText + "'") + ", " + ("'Recieved'") + ", " + ("NULL") + ", "
+                    + ("NULL") + ", " + ("NULL") + ", " + ("NULL") + ", " + ("'" + dateText + "'");
+
+            // insert statement is run
+            stm.executeUpdate("INSERT INTO BlankStock VALUES ( " + insertStm + ")");
+
+            // message box, showing that the user has been successfully added to the database
+            JOptionPane.showMessageDialog(null, "Blank has been successfully added to the stock");
+
+            // close the connection to db
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
