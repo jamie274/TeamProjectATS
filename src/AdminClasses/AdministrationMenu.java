@@ -6,7 +6,7 @@ import javax.swing.*;
 
 /**
  *
- * @author gordo
+ * @author Jamie-Lee
  */
 public class AdministrationMenu extends javax.swing.JFrame {
 
@@ -446,24 +446,39 @@ public class AdministrationMenu extends javax.swing.JFrame {
 
     }
 
+    /**
+     * This method will refresh the staff table by clearing it and re-displaying the data
+     */
     private void refreshStaffButtonActionPerformed(java.awt.event.ActionEvent evt) {
         displayTablesHelper.ClearTable(staffTable); // clears the table
         displayTablesHelper.DisplayUserTableAdmin(staffTable); // refreshes the table by re-displaying the data
     }
 
+    /**
+     * This method will refresh the blanks table by clearing it and re-displaying the data
+     */
     private void refreshBlanksButtonActionPerformed(java.awt.event.ActionEvent evt) {
         displayTablesHelper.ClearTable(blankStockTable); // clears the table
         displayTablesHelper.DisplayBlankTable(blankStockTable); // refreshes the table by re-displaying the data
     }
 
+    /**
+     * This method will open the add blank form
+     */
     private void addBlankButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new AddBlank().setVisible(true);
     }
 
+    /**
+     * This method will open the register staff form
+     */
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new RegisterStaff().setVisible(true);
     }
 
+    /**
+     * This method will open the update staff details form and will pass through the staff id from the text field
+     */
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new UpdateStaff(searchStaffBox.getText(), staffTable).setVisible(true);
     }
@@ -479,18 +494,28 @@ public class AdministrationMenu extends javax.swing.JFrame {
         new WelcomePage().setVisible(true);
     }
 
+    /**
+     * This method will allow the admin to search for a particular staff member when the search button is pressed
+     */
     private void searchStaffButtonAction(java.awt.event.ActionEvent evt) {
         displayTablesHelper.ClearTable(staffTable);
         // displays the record of the staff that is being searched for
         displayTablesHelper.searchStaff(staffTable, searchStaffBox.getText());
     }
 
+    /**
+     * This method will allow the admin to search for a particular blank when the search button is pressed
+     */
     private void searchBlankButtonAction(java.awt.event.ActionEvent evt) {
         displayTablesHelper.ClearTable(blankStockTable);
         // displays the record of the blank that is being searched for
         displayTablesHelper.searchBlank(blankStockTable, searchBlankBox.getText());
     }
 
+    /**
+     * This method will display a message box asking the admin if they are sure they want to delete the user, and if they press yes,
+     * the user is then deleted from the AirVia system
+     */
     private void deleteUserButtonAction(java.awt.event.ActionEvent evt) {
         int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this user?","Delete user", JOptionPane.YES_NO_OPTION);
         if (d == JOptionPane.YES_OPTION) {
@@ -498,6 +523,10 @@ public class AdministrationMenu extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * This method will display a message box asking the admin if they are sure they want to delete the blank, and if they press yes,
+     * the blank is then deleted from the AirVia system
+     */
     private void deleteBlankButtonActionPerformed(java.awt.event.ActionEvent evt) {
         int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this blank?","Delete blank", JOptionPane.YES_NO_OPTION);
         if (d == JOptionPane.YES_OPTION) {

@@ -14,7 +14,16 @@ import javax.swing.table.TableColumn;
 
 /**
  *
- * @author gordo
+ * @author Jamie-Lee
+ *
+ * This class is used to display the advisor's dashboard
+ *      - Restore/Backup Database
+ *      - Add new blank
+ *      - Blank Table
+ *      - Staff Table
+ *      - Register Staff
+ *      - Delete Staff account
+ *      - Update Staff Details
  */
 public class AdvisorMenu extends javax.swing.JFrame {
 
@@ -468,33 +477,54 @@ public class AdvisorMenu extends javax.swing.JFrame {
 
     }
 
+    /**
+     * This method will search for a blank when the search button is pressed
+     */
     private void searchBlankButtonActionPerformed(java.awt.event.ActionEvent evt) {
         sqlDisplay.ClearTable(blankStockTable);
         sqlDisplay.searchBlank(blankStockTable, id, searchBlankBox.getText());
     }
 
+    /**
+     * This method will refresh the sales table by clearing the table and re-displaying it
+     */
     private void refreshSalesButtonActionPerformed(java.awt.event.ActionEvent evt) {
         sqlDisplay.ClearTable(salesTable);
         sqlDisplay.DisplaySalesTable(salesTable, id);
     }
 
+    /**
+     * This method will refresh the blanks table by clearing the table and re-displaying it
+     */
     private void refreshBlanksButtonActionPerformed(java.awt.event.ActionEvent evt) {
         sqlDisplay.ClearTable(blankStockTable);
         sqlDisplay.DisplayAdvisorBlankTable(blankStockTable, id);
     }
 
+    /**
+     * This method will generate the individual interline sales report using the advisor's ID as a parameter
+     */
     private void interlineButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new IndividualInterline(id).setVisible(true);
     }
 
+    /**
+     * This method will generate the individual domestic sales report using the advisor's ID as a parameter
+     */
     private void domesticButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new IndividualDomestic(id).setVisible(true);
     }
 
+    /**
+     * This method will display the customer menu
+     */
     private void customerMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new CustomerMenu().setVisible(true);
     }
 
+    /**
+     * This method will open a form, allowing the advisor to record a ticket sale
+     */
     private void recordSaleButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new RecordTicketSale(id).setVisible(true);
     }
@@ -510,11 +540,18 @@ public class AdvisorMenu extends javax.swing.JFrame {
         new WelcomePage().setVisible(true);
     }
 
+    /**
+     * This method will allow the advisor to search for a particular sale
+     */
     private void searchSaleButtonActionPerformed(java.awt.event.ActionEvent evt) {
         sqlDisplay.ClearTable(salesTable);
         sqlDisplay.searchSalesTable(salesTable, id, searchSaleBox.getText());
     }
 
+    /**
+     * This method will display a message box asking the user if they are sure they want to refund the ticket, and
+     * the ticket is refunded if the advisor presses 'yes'
+     */
     private void refundButtonActionPerformed(java.awt.event.ActionEvent evt) {
         int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to refund this ticket? this change can't be undone.",
                 "Refund Ticket", JOptionPane.YES_NO_OPTION);
@@ -523,9 +560,13 @@ public class AdvisorMenu extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * This method will display a message box asking the user if they are sure they want to void the blank, and
+     * the blank is made void if the advisor presses 'yes'
+     */
     private void voidBlankButtonActionPerformed(java.awt.event.ActionEvent evt) {
         int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to void this blank? this change can't be undone.",
-                "Refund Ticket", JOptionPane.YES_NO_OPTION);
+                "Void Blank", JOptionPane.YES_NO_OPTION);
         if (d == JOptionPane.YES_OPTION) {
             sqlDisplay.voidBlank(blankStockTable, id, searchBlankBox.getText());
         }

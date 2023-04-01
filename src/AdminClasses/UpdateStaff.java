@@ -11,7 +11,7 @@ import javax.swing.*;
 
 /**
  *
- * @author gordo
+ * @author Jamie-Lee
  */
 public class UpdateStaff extends javax.swing.JFrame {
 
@@ -190,10 +190,10 @@ public class UpdateStaff extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    /**
+     * This method will update the staff details when the update button is pressed
+     */
     private void updateStaffButtonActionPerformed(java.awt.event.ActionEvent evt) {
-
-        //System.out.println(String.valueOf(passwordLabel.getPassword()));
-
         // message box asking the user to confirm that they want to register the user
         int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to update this customer's details?",
                 "Update customer", JOptionPane.YES_NO_OPTION);

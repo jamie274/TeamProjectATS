@@ -9,7 +9,9 @@ import javax.swing.*;
 
 /**
  *
- * @author gordo
+ * @author Jamie-Lee
+ * AddBlank class is used to display a form, allowing the system administrator to enter data to add a new blank to
+ * the system stock, which can then be assigned to advisors by the office manager
  */
 public class AddBlank extends javax.swing.JFrame {
 
@@ -132,6 +134,10 @@ public class AddBlank extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    /**
+     * addBlankButtonActionPerformed will display a message box asking the system administrator if they are sure they want to add the new blank
+     * when yes is pressed, the blank is added and the form is disposed
+     */
     private void addBlankButtonActionPerformed(java.awt.event.ActionEvent evt) {
         int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to add this blank?","Add Blank", JOptionPane.YES_NO_OPTION);
         if (d == JOptionPane.YES_OPTION) {

@@ -10,6 +10,9 @@ import javax.swing.*;
 /**
  *
  * @author Sahi
+ * @author Jamie-Lee
+ *
+ * This method is used to register new staff in the AirVia system
  */
 public class RegisterStaff extends javax.swing.JFrame {
 
@@ -179,6 +182,9 @@ public class RegisterStaff extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    /**
+     * This method will register a new user when the register button is pressed
+     */
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // message box asking the user to confirm that they want to register the user
         int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to register this user?",

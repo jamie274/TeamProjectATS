@@ -1,21 +1,28 @@
 package AdminClasses;
 
+import LoginPages.Encryptor;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 
 /**
  *
- * @author Abdul Rehman
+ * @author Abdul
+ * @author Jamie-Lee
+ *
+ * This class is used to fetch the appropriate data from the database and display it in their repsective tables
  */
 // Class used to read data from the database and display
 // it in tables on the User Dashboards
 public class DisplayTablesHelper {
 
-
     public DisplayTablesHelper() {}
 
-
+    /**
+     * This method will display the blank table
+     */
     public void DisplayBlankTable(JTable blankTable){
 
         try {
@@ -65,6 +72,9 @@ public class DisplayTablesHelper {
 
     }
 
+    /**
+     * This method will display the advisors table
+     */
     public void DisplayAdvisorTableManager(JTable staffTable){
         try {
             // connecting to the database server
@@ -109,7 +119,9 @@ public class DisplayTablesHelper {
         }
     }
 
-
+    /**
+     * This method will display the user table
+     */
     //This method takes in JTable to edit the staff table model then add rows of data retrieved from db
     public void DisplayUserTableAdmin(JTable staffTable){
         try {
@@ -155,6 +167,9 @@ public class DisplayTablesHelper {
         }
     }
 
+    /**
+     * This method will find the user that is being searched for and display them in the table
+     */
     public void searchStaff(JTable table, String user) {
 
         try {
@@ -203,6 +218,9 @@ public class DisplayTablesHelper {
         }
     }
 
+    /**
+     * This method will display the blank that is being searched for if it is found
+     */
     public void searchBlank(JTable table, String blank) {
 
         try {
@@ -255,6 +273,9 @@ public class DisplayTablesHelper {
         }
     }
 
+    /**
+     * This method will delete a staff member from the system
+     */
     public void deleteStaff(JTable table, String user) {
 
         try {
@@ -280,6 +301,9 @@ public class DisplayTablesHelper {
         }
     }
 
+    /**
+     * This method will delete a blank
+     */
     public void deleteBlank(JTable table, String blankId) {
 
         try {
@@ -305,6 +329,9 @@ public class DisplayTablesHelper {
         }
     }
 
+    /**
+     * This method will search for the advisor in the advisor table
+     */
     public void searchAdvisor(JTable table, String user) {
 
         try {
@@ -379,6 +406,9 @@ public class DisplayTablesHelper {
         }
     }
 
+    /**
+     * This method will display the commission table
+     */
     public void DisplayCommissionTable(JTable table){
         try {
             // connecting to the database server
@@ -420,6 +450,9 @@ public class DisplayTablesHelper {
         }
     }
 
+    /**
+     * This method will allow the manager to search the ticket type in the commission's table
+     */
     public void searchTicketType(JTable table, String type) {
         try {
             // connecting to the database server
@@ -465,6 +498,9 @@ public class DisplayTablesHelper {
         }
     }
 
+    /**
+     * This method will add a new commission to a ticket
+     */
     public void addCommission(JTable table, String type, String rate) {
 
         try {
@@ -523,6 +559,13 @@ public class DisplayTablesHelper {
                     "in2018g08_a", "R8pV1HmN");
 
             Statement stm = con.createStatement();
+
+            /**
+             * The new password will be encrypted using md5
+             */
+            Encryptor e = new Encryptor();
+            pass = e.encryptPassword(pass);
+
             stm.executeUpdate("UPDATE AirViaUser SET Role = " + ("'" + role + "',") + (" FirstName = '" + fName + "',") +
                     ("LastName = '" + lName + "',") + ("Email = '" + emailAd + "',") + ("Password = '" + pass + "' ") + "WHERE ID = " + id);
 
@@ -533,7 +576,7 @@ public class DisplayTablesHelper {
 
             //closes the connection to db
             con.close();
-        }catch (SQLException s) {
+        }catch (SQLException | NoSuchAlgorithmException s) {
             s.printStackTrace();
         }
     }

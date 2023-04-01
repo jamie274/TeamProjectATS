@@ -1,5 +1,6 @@
 package LoginPages;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 
 /**
@@ -24,6 +25,9 @@ public class SQLLoginHelper {
             Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
                     "in2018g08_a", "R8pV1HmN");
 
+            Encryptor e = new Encryptor();
+            pwd = e.encryptPassword(pwd);
+
             Statement stm = con.createStatement();
             // executing the sql query to find the user in the database with the user-entered id and password
             ResultSet result = stm.executeQuery("SELECT * FROM AirViaUser WHERE Role = " + "'" + role + "'" + "AND ID = "
@@ -37,7 +41,7 @@ public class SQLLoginHelper {
                 staffIDStr = Integer.toString(staffID);
             }
             con.close(); // close the connection
-        } catch (SQLException s) {
+        } catch (SQLException | NoSuchAlgorithmException s) {
             s.printStackTrace();
         }
 
