@@ -1,8 +1,16 @@
 Team 8 UniJet Team Project Source Code
 
 Authors:
-Jamie-Lee Gordon (Dev), Abdul Rehman, Ali Ul-Haq, Mohammed Alam, Sahi Pathmalingam and Tharshika Sivananthan
-Abdul
-Jamieeeee
-Ali
-Sahi
+
+Jamie-Lee Gordon (Dev) (Analyst) (Designer)
+
+Abdul Rehman (Project Manager) (Dev) (Analyst)
+
+Ali Ul-Haq (SQL dev)
+
+Mohammed Alam (Designer)
+
+Sahi Pathmalingam (Deputy Project Manager)
+
+Tharshika Sivananthan (Tester)
+
