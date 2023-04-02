@@ -350,8 +350,19 @@ public class AdministrationMenu extends javax.swing.JFrame {
         });
 
         backUpButton.setText("BACKUP DATABASE");
+        backUpButton.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backUpButtonActionPerformed(evt);
+            }
+        });
 
         restoreButton.setText("RESTORE DATABASE");
+
+        restoreButton.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restoreButtonActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Database Maintainence");
 
@@ -534,6 +545,13 @@ public class AdministrationMenu extends javax.swing.JFrame {
         }
     }
 
+    private void backUpButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        SQLBackupRestoreHelper.Backupdbtosql();
+    }
+    private void restoreButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        SQLBackupRestoreHelper.Restoredbfromsql();
+    }
+
 
 
     /**
@@ -609,5 +627,7 @@ public class AdministrationMenu extends javax.swing.JFrame {
     private javax.swing.JButton searchStaffButton;
     private javax.swing.JTable staffTable;
     private javax.swing.JButton updateButton;
+
+
     // End of variables declaration
 }

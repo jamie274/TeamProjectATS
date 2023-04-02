@@ -1,5 +1,6 @@
 package LoginPages;
 
+import javax.swing.*;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 
@@ -13,10 +14,13 @@ public class SQLLoginHelper {
     private String name;
     private String staffIDStr;
 
+    private String email;
+
     public SQLLoginHelper() {}
 
     // attemptLogin method will pass through the entered username and password of the user and compare with data in the database
     public boolean attemptLogin(String role, int id, String pwd) {
+
 
         boolean b = false; // this will change to true if the login is successful
 
@@ -39,6 +43,7 @@ public class SQLLoginHelper {
                 name = result.getString("FirstName") + " " + result.getString("LastName");
                 int staffID = result.getInt("ID");
                 staffIDStr = Integer.toString(staffID);
+                email = result.getString("Email");
             }
             con.close(); // close the connection
         } catch (SQLException | NoSuchAlgorithmException s) {
@@ -55,4 +60,7 @@ public class SQLLoginHelper {
         return staffIDStr;
     }
 
+    public String getEmail() {
+        return email;
+    }
 }
