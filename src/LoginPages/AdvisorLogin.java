@@ -1,8 +1,10 @@
 package LoginPages;
+import AdminClasses.AdministrationMenu;
 import AdvisorClasses.AdvisorMenu;
 
 import javax.swing.*;
 import java.sql.SQLException;
+import java.util.Random;
 
 
 /**
@@ -14,6 +16,10 @@ public class AdvisorLogin extends javax.swing.JFrame {
     /**
      * Creates new form AdvisorLogin
      */
+
+    Random random;
+    int secretCode;
+    TwoFactorAuthentication twoFactorAuthentication;
     public AdvisorLogin() {
         initComponents();
     }
@@ -30,15 +36,16 @@ public class AdvisorLogin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
+        sendCode = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        codeLabel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         usernameBox = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         passwordBox = new javax.swing.JPasswordField();
-        sixDigitBox = new javax.swing.JPasswordField();
-        sixDigitBox.setVisible(false);
+        sixDigitBox = new javax.swing.JTextField();
+        sixDigitBox.setVisible(true);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Travel Advisor Login");
@@ -52,6 +59,17 @@ public class AdvisorLogin extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(153, 204, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(1200, 600));
+
+        sendCode.setText("Send Code");
+        sendCode.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt){
+                try {
+                    sendCodeButtonactionPerformed(evt);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         loginButton.setText("LOGIN");
 
@@ -68,9 +86,9 @@ public class AdvisorLogin extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Username (ID)");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("6 digit code");
-        jLabel3.setVisible(false);
+        codeLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        codeLabel.setText("6 digit code");
+        codeLabel.setVisible(true);
 
         jLabel6.setIcon(new javax.swing.ImageIcon("data/AirViaLogo.png")); // NOI18N
         jLabel6.setText("jLabel6");
@@ -110,12 +128,13 @@ public class AdvisorLogin extends javax.swing.JFrame {
                                                                         .addComponent(jLabel5))
                                                                 .addGap(18, 18, 18))
                                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addComponent(jLabel3)
+                                                                .addComponent(codeLabel)
                                                                 .addGap(9, 9, 9)))
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                                 .addComponent(passwordBox)
                                                                 .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(sendCode, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(sixDigitBox, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(jPanel2Layout.createSequentialGroup()
@@ -144,8 +163,9 @@ public class AdvisorLogin extends javax.swing.JFrame {
                                                 .addGap(17, 17, 17)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(sixDigitBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel3))
+                                                        .addComponent(codeLabel))
                                                 .addGap(21, 21, 21)
+                                                .addComponent(sendCode)
                                                 .addComponent(loginButton)))
                                 .addContainerGap(220, Short.MAX_VALUE))
         );
@@ -186,21 +206,64 @@ public class AdvisorLogin extends javax.swing.JFrame {
     private void sixDigitBoxActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
+    private void generateRandomNumber(){
+        random = new Random();
+        secretCode = random.nextInt(900000) + 100000;
+    }
+    private void sendCodeButtonactionPerformed(java.awt.event.ActionEvent evt) throws SQLException{
 
+        //Checking if the username and the password is filled in.
+        if(usernameBox.getText().length() == 0 || passwordBox.getPassword().length == 0){
+            int option = JOptionPane.showOptionDialog(null, "Please Enter Credentials", "Login", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new String[]{"OK"}, "OK");
+
+        }
+        else {
+            // Storing the data entered by the user from the username and password boxes
+
+            String idStr = usernameBox.getText();
+            int id = Integer.valueOf(idStr);
+            String pwd = String.valueOf(passwordBox.getPassword());
+
+            SQLLoginHelper l = new SQLLoginHelper(); // new SQLHelper instance
+
+            if (l.attemptLogin("Travel Advisor", id, pwd)) {
+                generateRandomNumber();
+                twoFactorAuthentication.Send2FAEmail(l.getEmail(), Integer.toString(secretCode));
+                //new AdministrationMenu(l.getStaffID(),l.getName()).setVisible(true); // if the login is successful, the admin dashboard successfully opens#
+
+            } else {
+                // if details are incorrect, an info box will pop up and show that the user may try again
+                JOptionPane.showMessageDialog(null, "Incorrect username or password, please try again");
+            }
+        }
+    }
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {
-        // Storing the data entered by the user from the username and password boxes
-        String idStr = usernameBox.getText();
-        int id = Integer.valueOf(idStr);
-        String pwd = String.valueOf(passwordBox.getPassword());
 
-        SQLLoginHelper l = new SQLLoginHelper(); // new SQLHelper instance
+        //Checking if the username and the password is filled in.
+        if(usernameBox.getText().length() == 0 || passwordBox.getPassword().length == 0 ||sixDigitBox.getText().length() == 0 ){
+            int option = JOptionPane.showOptionDialog(null, "Please Enter Credentials", "Login", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new String[]{"OK"}, "OK");
 
-        if (l.attemptLogin("Travel Advisor", id, pwd)) {
-            new AdvisorMenu(l.getStaffID(),l.getName()).setVisible(true); // if the login is successful, the advisor dashboard successfully opens
-            dispose();
-        } else {
-            // if details are incorrect, an info box will pop up and show that the user may try again
-            JOptionPane.showMessageDialog(null, "Incorrect username or password, please try again");
+        }
+        else {
+
+            // Storing the data entered by the user from the username and password boxes
+
+            String idStr = usernameBox.getText();
+            int id = Integer.valueOf(idStr);
+            String pwd = String.valueOf(passwordBox.getPassword());
+
+
+            SQLLoginHelper l = new SQLLoginHelper(); // new SQLHelper instance
+            l.attemptLogin("Travel Advisor", id, pwd);
+            System.out.println(sixDigitBox.getText());
+            System.out.println(Integer.toString(secretCode));
+            if ( sixDigitBox.getText().compareTo(Integer.toString(secretCode)) == 0) {
+                new AdvisorMenu(l.getStaffID(), l.getName()).setVisible(true); // if the login is successful, the admin dashboard successfully opens
+                dispose();
+            } else {
+                // if details are incorrect, an info box will pop up and show that the user may try again
+                JOptionPane.showMessageDialog(null, "Incorrect Pin");
+            }
         }
     }
 
@@ -242,14 +305,16 @@ public class AdvisorLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel codeLabel;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton loginButton;
+
+    private javax.swing.JButton sendCode;
     private javax.swing.JPasswordField passwordBox;
-    private javax.swing.JPasswordField sixDigitBox;
+    private javax.swing.JTextField sixDigitBox;
     private javax.swing.JTextField usernameBox;
     // End of variables declaration
 }

@@ -1,8 +1,10 @@
 package LoginPages;
 import AdminClasses.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.swing.*;
 import java.sql.SQLException;
+import java.util.Random;
 
 /**
  *
@@ -13,6 +15,9 @@ public class AdminLogin extends javax.swing.JFrame {
     /**
      * Creates new form AdminLogin
      */
+    Random random;
+    int secretCode;
+    TwoFactorAuthentication twoFactorAuthentication;
     public AdminLogin() {
         initComponents();
     }
@@ -32,11 +37,11 @@ public class AdminLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         usernameBox = new javax.swing.JTextField();
         passwordBox = new javax.swing.JPasswordField();
-        sixDigitBox = new javax.swing.JPasswordField();
-        sixDigitBox.setVisible(false);
+        sixDigitBox = new javax.swing.JTextField();
+        sendCode = new javax.swing.JButton();
         loginButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        codeLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -70,6 +75,18 @@ public class AdminLogin extends javax.swing.JFrame {
             }
         });
 
+        sendCode.setText("Send Code");
+        sendCode.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt){
+                try {
+                    sendCodeButtonactionPerformed(evt);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
         loginButton.setText("LOGIN");
 
         loginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -85,9 +102,9 @@ public class AdminLogin extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Username (ID)");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("6 digit code");
-        jLabel3.setVisible(true);
+        codeLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        codeLabel.setText("6 digit code");
+        codeLabel.setVisible(true);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Password");
@@ -110,12 +127,13 @@ public class AdminLogin extends javax.swing.JFrame {
                                                                         .addComponent(jLabel5))
                                                                 .addGap(18, 18, 18))
                                                         .addGroup(myPanelLayout.createSequentialGroup()
-                                                                .addComponent(jLabel3)
+                                                                .addComponent(codeLabel)
                                                                 .addGap(9, 9, 9)))
                                                 .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                                 .addComponent(passwordBox)
                                                                 .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(sendCode,javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(sixDigitBox, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addContainerGap(453, Short.MAX_VALUE))
@@ -141,8 +159,9 @@ public class AdminLogin extends javax.swing.JFrame {
                                                 .addGap(17, 17, 17)
                                                 .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(sixDigitBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel3))
+                                                        .addComponent(codeLabel))
                                                 .addGap(21, 21, 21)
+                                                .addComponent(sendCode)
                                                 .addComponent(loginButton)))
                                 .addContainerGap(220, Short.MAX_VALUE))
         );
@@ -169,20 +188,64 @@ public class AdminLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
+    private void generateRandomNumber(){
+        random = new Random();
+        secretCode = random.nextInt(900000) + 100000;
+    }
+    private void sendCodeButtonactionPerformed(java.awt.event.ActionEvent evt) throws SQLException{
+
+        //Checking if the username and the password is filled in.
+        if(usernameBox.getText().length() == 0 || passwordBox.getPassword().length == 0){
+            int option = JOptionPane.showOptionDialog(null, "Please Enter Credentials", "Login", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new String[]{"OK"}, "OK");
+
+        }
+        else {
+            // Storing the data entered by the user from the username and password boxes
+
+            String idStr = usernameBox.getText();
+            int id = Integer.valueOf(idStr);
+            String pwd = String.valueOf(passwordBox.getPassword());
+
+            SQLLoginHelper l = new SQLLoginHelper(); // new SQLHelper instance
+
+            if (l.attemptLogin("System Administrator", id, pwd)) {
+                generateRandomNumber();
+                twoFactorAuthentication.Send2FAEmail(l.getEmail(), Integer.toString(secretCode));
+                //new AdministrationMenu(l.getStaffID(),l.getName()).setVisible(true); // if the login is successful, the admin dashboard successfully opens#
+
+            } else {
+                // if details are incorrect, an info box will pop up and show that the user may try again
+                JOptionPane.showMessageDialog(null, "Incorrect username or password, please try again");
+            }
+        }
+    }
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {
-        // Storing the data entered by the user from the username and password boxes
-        String idStr = usernameBox.getText();
-        int id = Integer.valueOf(idStr);
-        String pwd = String.valueOf(passwordBox.getPassword());
 
-        SQLLoginHelper l = new SQLLoginHelper(); // new SQLHelper instance
+        //Checking if the username and the password is filled in.
+        if(usernameBox.getText().length() == 0 || passwordBox.getPassword().length == 0 ||sixDigitBox.getText().length() == 0 ){
+            int option = JOptionPane.showOptionDialog(null, "Please Enter Credentials", "Login", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new String[]{"OK"}, "OK");
 
-        if (l.attemptLogin("System Administrator", id, pwd)) {
-            new AdministrationMenu(l.getStaffID(),l.getName()).setVisible(true); // if the login is successful, the admin dashboard successfully opens
-            dispose();
-        } else {
-            // if details are incorrect, an info box will pop up and show that the user may try again
-            JOptionPane.showMessageDialog(null, "Incorrect username or password, please try again");
+        }
+        else {
+
+            // Storing the data entered by the user from the username and password boxes
+
+            String idStr = usernameBox.getText();
+            int id = Integer.valueOf(idStr);
+            String pwd = String.valueOf(passwordBox.getPassword());
+
+
+            SQLLoginHelper l = new SQLLoginHelper(); // new SQLHelper instance
+            l.attemptLogin("System Administrator", id, pwd);
+            System.out.println(sixDigitBox.getText());
+            System.out.println(Integer.toString(secretCode));
+            if ( sixDigitBox.getText().compareTo(Integer.toString(secretCode)) == 0) {
+                new AdministrationMenu(l.getStaffID(), l.getName()).setVisible(true); // if the login is successful, the admin dashboard successfully opens
+                dispose();
+            } else {
+                // if details are incorrect, an info box will pop up and show that the user may try again
+                JOptionPane.showMessageDialog(null, "Incorrect Pin");
+            }
         }
     }
 
@@ -224,14 +287,16 @@ public class AdminLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel codeLabel;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JButton loginButton;
+
+    private javax.swing.JButton sendCode;
     private javax.swing.JPanel myPanel;
     private javax.swing.JPasswordField passwordBox;
-    private javax.swing.JPasswordField sixDigitBox;
+    private javax.swing.JTextField sixDigitBox;
     private javax.swing.JTextField usernameBox;
     // End of variables declaration
 }

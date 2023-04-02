@@ -1,4 +1,4 @@
-package TFA;
+package LoginPages;
 
 import java.util.Properties;
 import javax.mail.Message;
@@ -9,13 +9,13 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 public class TwoFactorAuthentication {
-    public static void Send2FAEmail(String email, int code){
+    public static void Send2FAEmail(String email, String code){
         // Set mail properties
         String host = "smtp.gmail.com";
         String port = "587";
-        String username = "Unijet.TP.ATS@gmail.com";
-        String password = "cuojlymtstvlgjjq";
-        String fromAddress = "Unijet.TP.ATS@gmail.com";
+        String username = "don000935@gmail.com";
+        String password = "vutevuyqdgbgmrdd";
+        String fromAddress = "don000935@gmail.com";
         String toAddress = email;
 
         // Set mail properties

@@ -546,10 +546,10 @@ public class AdministrationMenu extends javax.swing.JFrame {
     }
 
     private void backUpButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        backupRestoreHelper.Backupdbtosql();
+        SQLBackupRestoreHelper.Backupdbtosql();
     }
     private void restoreButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        backupRestoreHelper.Restoredbfromsql();
+        SQLBackupRestoreHelper.Restoredbfromsql();
     }
 
 
@@ -627,5 +627,7 @@ public class AdministrationMenu extends javax.swing.JFrame {
     private javax.swing.JButton searchStaffButton;
     private javax.swing.JTable staffTable;
     private javax.swing.JButton updateButton;
+
+
     // End of variables declaration
 }

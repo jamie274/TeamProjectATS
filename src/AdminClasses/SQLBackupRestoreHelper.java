@@ -1,15 +1,10 @@
 package AdminClasses;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.io.*;
-import java.net.URISyntaxException;
-import java.security.CodeSource;
-import java.sql.*;
-import java.text.SimpleDateFormat;
 
-public class backupRestoreHelper {
+public class SQLBackupRestoreHelper {
     public static void Backupdbtosql() {
         String dbPassword = "R8pV1HmN";
         try {
