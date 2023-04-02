@@ -350,8 +350,19 @@ public class AdministrationMenu extends javax.swing.JFrame {
         });
 
         backUpButton.setText("BACKUP DATABASE");
+        backUpButton.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backUpButtonActionPerformed(evt);
+            }
+        });
 
         restoreButton.setText("RESTORE DATABASE");
+
+        restoreButton.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restoreButtonActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Database Maintainence");
 
@@ -532,6 +543,13 @@ public class AdministrationMenu extends javax.swing.JFrame {
         if (d == JOptionPane.YES_OPTION) {
             displayTablesHelper.deleteBlank(blankStockTable, searchBlankBox.getText());
         }
+    }
+
+    private void backUpButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        backupRestoreHelper.Backupdbtosql();
+    }
+    private void restoreButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        backupRestoreHelper.Restoredbfromsql();
     }
 
 
