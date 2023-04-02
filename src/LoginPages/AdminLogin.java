@@ -87,7 +87,7 @@ public class AdminLogin extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("6 digit code");
-        jLabel3.setVisible(false);
+        jLabel3.setVisible(true);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Password");
