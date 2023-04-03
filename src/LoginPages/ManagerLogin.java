@@ -1,7 +1,9 @@
 package LoginPages;
 import ManagerClasses.OfficeManagerMenu;
 
+import javax.mail.MessagingException;
 import javax.swing.*;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Random;
 
@@ -208,7 +210,13 @@ public class ManagerLogin extends javax.swing.JFrame {
 
             if (l.attemptLogin("Office Manager", id, pwd)) {
                 generateRandomNumber();
-                twoFactorAuthentication.Send2FAEmail(l.getEmail(), Integer.toString(secretCode));
+                try {
+                    twoFactorAuthentication.Send2FAEmail(l.getEmail(), Integer.toString(secretCode));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (MessagingException e) {
+                    throw new RuntimeException(e);
+                }
                 //new AdministrationMenu(l.getStaffID(),l.getName()).setVisible(true); // if the login is successful, the admin dashboard successfully opens#
 
             } else {

@@ -1,55 +1,56 @@
 package LoginPages;
 
+
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Properties;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.*;
+
 public class TwoFactorAuthentication {
-    public static void Send2FAEmail(String email, String code){
-        // Set mail properties
-        String host = "smtp.gmail.com";
-        String port = "587";
-        String username = "don000935@gmail.com";
-        String password = "vutevuyqdgbgmrdd";
-        String fromAddress = "don000935@gmail.com";
-        String toAddress = email;
-
-        // Set mail properties
+    public static void Send2FAEmail(String email, String code) throws IOException, MessagingException {
+        // Load mail properties from config file
         Properties props = new Properties();
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", host);
-        props.put("mail.smtp.port", port);
+        FileInputStream fis = new FileInputStream("config.properties");
+        props.load(fis);
 
-        // Create a session with mail properties
-        Session session = Session.getInstance(props);
+        // Get mail credentials from config file
+        String username = props.getProperty("mail.username");
+        String password = props.getProperty("mail.password");
+        String fromAddress = props.getProperty("mail.fromAddress");
 
-        try {
-            // Create a message object
-            Message message = new MimeMessage(session);
+        // create the SMTP client
+        Properties p = new Properties();
+        p.put("mail.smtp.host", "smtp.gmail.com");
+        p.put("mail.smtp.port", "587");
+        p.put("mail.smtp.auth", "true");
+        p.put("mail.smtp.starttls.enable", "true");
 
-            // Set the message details
-            message.setFrom(new InternetAddress(fromAddress));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toAddress));
-            message.setSubject("Your 2FA Code");
-            message.setText("Your 2FA code is: " + code); // replace with your actual 2FA code
+        Session session = Session.getInstance(p, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
 
-            // Send the message
-            Transport transport = session.getTransport("smtp");
-            transport.connect(host, username, password);
-            transport.sendMessage(message, message.getAllRecipients());
-            transport.close();
+        // create the message
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(fromAddress));
+        message.setRecipients(
+                Message.RecipientType.TO,
+                InternetAddress.parse(email)
+        );
+        message.setSubject("2 Factor Authentication");
+        message.setText("""
+            Hi,
+            Your 2 Factor Authentication Code is: 
+            """ + code);
 
-            System.out.println("2FA code sent successfully!");
+        // send the message
+        Transport.send(message);
 
-        } catch (AddressException e) {
-            e.printStackTrace();
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
+        JOptionPane.showMessageDialog(null, "Code Sent!");
     }
+
 }
