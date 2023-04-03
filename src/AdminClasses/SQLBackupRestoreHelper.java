@@ -6,7 +6,7 @@ import java.io.*;
 
 public class SQLBackupRestoreHelper {
     public static void Backupdbtosql() {
-        String dbPassword = "R8pV1HmN";
+        final String dbPassword = "R8pV1HmN";
         try {
             /*NOTE: Used to create a cmd command*/
             String executeCmd = "\"mysql-8.0.32-winx64\\bin\\mysqldump.exe\" --skip-column-statistics -h smcse-stuproj00.city.ac.uk -u in2018g08_a -p"+ dbPassword + " in2018g08 > backup_db.sql";

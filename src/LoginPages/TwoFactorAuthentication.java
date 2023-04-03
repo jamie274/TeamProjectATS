@@ -17,9 +17,9 @@ public class TwoFactorAuthentication {
         props.load(fis);
 
         // Get mail credentials from config file
-        String username = props.getProperty("mail.username");
-        String password = props.getProperty("mail.password");
-        String fromAddress = props.getProperty("mail.fromAddress");
+        final String username = props.getProperty("mail.username");
+        final String password = props.getProperty("mail.password");
+        final String fromAddress = props.getProperty("mail.fromAddress");
 
         // create the SMTP client
         Properties p = new Properties();
@@ -27,8 +27,8 @@ public class TwoFactorAuthentication {
         p.put("mail.smtp.port", "587");
         p.put("mail.smtp.auth", "true");
         p.put("mail.smtp.starttls.enable", "true");
-
-        Session session = Session.getInstance(p, new Authenticator() {
+        p.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        Session session = Session.getInstance(p, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
             }

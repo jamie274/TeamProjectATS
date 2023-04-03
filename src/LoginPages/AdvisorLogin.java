@@ -1,6 +1,7 @@
 package LoginPages;
 import AdminClasses.AdministrationMenu;
 import AdvisorClasses.AdvisorMenu;
+import AdvisorClasses.LatePayment;
 
 import javax.mail.MessagingException;
 import javax.swing.*;
@@ -267,6 +268,9 @@ public class AdvisorLogin extends javax.swing.JFrame {
             System.out.println(Integer.toString(secretCode));
             if ( sixDigitBox.getText().compareTo(Integer.toString(secretCode)) == 0) {
                 new AdvisorMenu(l.getStaffID(), l.getName()).setVisible(true); // if the login is successful, the admin dashboard successfully opens
+                LatePayment late = new LatePayment();
+                late.latePaymentAlert(id);
+                JOptionPane.showMessageDialog(null, "LATE PAYMENT ALERT The following customers can pay within 30 days: " + late.getCustomers());
                 dispose();
             } else {
                 // if details are incorrect, an info box will pop up and show that the user may try again
