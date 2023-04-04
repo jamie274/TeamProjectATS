@@ -1,8 +1,10 @@
 package LoginPages;
 import AdminClasses.*;
 
+import javax.mail.MessagingException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.swing.*;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Random;
 
@@ -82,6 +84,10 @@ public class AdminLogin extends javax.swing.JFrame {
                     sendCodeButtonactionPerformed(evt);
                 } catch (SQLException e) {
                     e.printStackTrace();
+                } catch (MessagingException e) {
+                    throw new RuntimeException(e);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });
@@ -192,7 +198,7 @@ public class AdminLogin extends javax.swing.JFrame {
         random = new Random();
         secretCode = random.nextInt(900000) + 100000;
     }
-    private void sendCodeButtonactionPerformed(java.awt.event.ActionEvent evt) throws SQLException{
+    private void sendCodeButtonactionPerformed(java.awt.event.ActionEvent evt) throws SQLException, MessagingException, IOException {
 
         //Checking if the username and the password is filled in.
         if(usernameBox.getText().length() == 0 || passwordBox.getPassword().length == 0){

@@ -1,8 +1,11 @@
 package LoginPages;
 import AdminClasses.AdministrationMenu;
 import AdvisorClasses.AdvisorMenu;
+import AdvisorClasses.LatePayment;
 
+import javax.mail.MessagingException;
 import javax.swing.*;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Random;
 
@@ -228,7 +231,13 @@ public class AdvisorLogin extends javax.swing.JFrame {
 
             if (l.attemptLogin("Travel Advisor", id, pwd)) {
                 generateRandomNumber();
-                twoFactorAuthentication.Send2FAEmail(l.getEmail(), Integer.toString(secretCode));
+                try {
+                    twoFactorAuthentication.Send2FAEmail(l.getEmail(), Integer.toString(secretCode));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (MessagingException e) {
+                    throw new RuntimeException(e);
+                }
                 //new AdministrationMenu(l.getStaffID(),l.getName()).setVisible(true); // if the login is successful, the admin dashboard successfully opens#
 
             } else {
@@ -259,6 +268,9 @@ public class AdvisorLogin extends javax.swing.JFrame {
             System.out.println(Integer.toString(secretCode));
             if ( sixDigitBox.getText().compareTo(Integer.toString(secretCode)) == 0) {
                 new AdvisorMenu(l.getStaffID(), l.getName()).setVisible(true); // if the login is successful, the admin dashboard successfully opens
+                LatePayment late = new LatePayment();
+                late.latePaymentAlert(id);
+                JOptionPane.showMessageDialog(null, "LATE PAYMENT ALERT The following customers can pay within 30 days: " + late.getCustomers());
                 dispose();
             } else {
                 // if details are incorrect, an info box will pop up and show that the user may try again

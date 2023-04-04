@@ -3,6 +3,9 @@ package AdminClasses;
 import LoginPages.WelcomePage;
 
 import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  *
@@ -18,12 +21,39 @@ public class AdministrationMenu extends javax.swing.JFrame {
     private String id;
     private String name;
 
+    private String mysqlPath;
+    private String mysqldumpPath;
+
     DisplayTablesHelper displayTablesHelper = new DisplayTablesHelper();
 
     public AdministrationMenu(String i, String n) {
         id = i;
         name = n;
+        new Thread(() -> {
+            try {
+                Process process = Runtime.getRuntime().exec("where mysql");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                mysqlPath = reader.readLine();
+                System.out.println(mysqlPath);
+                process.waitFor();
+                reader.close();
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                Process process = Runtime.getRuntime().exec("where mysqldump");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                mysqldumpPath = reader.readLine();
+                System.out.println(mysqldumpPath);
+                process.waitFor();
+                reader.close();
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
         initComponents();
+
     }
 
     /**
@@ -546,10 +576,10 @@ public class AdministrationMenu extends javax.swing.JFrame {
     }
 
     private void backUpButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        SQLBackupRestoreHelper.Backupdbtosql();
+        SQLBackupRestoreHelper.Backupdbtosql(mysqldumpPath);
     }
     private void restoreButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        SQLBackupRestoreHelper.Restoredbfromsql();
+        SQLBackupRestoreHelper.Restoredbfromsql(mysqlPath);
     }
 
 
