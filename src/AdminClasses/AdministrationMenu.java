@@ -31,7 +31,6 @@ public class AdministrationMenu extends javax.swing.JFrame {
         name = n;
         new Thread(() -> {
             try {
-                String mysqlPathScript = "searchmysql.ps1";
                 Process process = Runtime.getRuntime().exec("where mysql");
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 mysqlPath = reader.readLine();
@@ -43,7 +42,6 @@ public class AdministrationMenu extends javax.swing.JFrame {
             }
 
             try {
-                String mysqlPathScript = "searchmysql.ps1";
                 Process process = Runtime.getRuntime().exec("where mysqldump");
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 mysqldumpPath = reader.readLine();

@@ -9,23 +9,25 @@ import java.util.Date;
 import java.util.List;
 
 public class SQLBackupRestoreHelper {
+    final private static String dbPassword = "R8pV1HmN";
+    final private static String dbUsername = "in2018g08_a";
+    final private static String dbName = "in2018g08";
 
+    final private static String dbHost = "smcse-stuproj00.city.ac.uk";
     public static void Restoredbfromsql(String mysqlPath) {
         try {
-            String dbPassword = "R8pV1HmN";
-
-            if (mysqlPath != null && !mysqlPath.isEmpty()) {
+                if (mysqlPath != null && !mysqlPath.isEmpty()) {
                 mysqlPath = mysqlPath.trim();
                 System.out.println(mysqlPath);
                 String backupFileName = "backup_db.sql"; // Replace with actual backup file name
                 List<String> command = new ArrayList<>();
-                command.add(mysqlPath );
+                command.add(mysqlPath);
                 command.add("-h");
-                command.add("smcse-stuproj00.city.ac.uk");
+                command.add(dbHost);
                 command.add("-u");
-                command.add("in2018g08_a");
+                command.add(dbUsername);
                 command.add("-p" + dbPassword);
-                command.add("in2018g08");
+                command.add(dbName);
                 command.add("-e");
                 command.add("source " + backupFileName);
                 ProcessBuilder pb = new ProcessBuilder(command);
@@ -51,23 +53,20 @@ public class SQLBackupRestoreHelper {
 
     }
 
-    public static void Backupdbtosql(String mysqlPath) {
+    public static void Backupdbtosql(String mysqldumpPath) {
         try {
-            String dbPassword = "R8pV1HmN";
-
-
-            if (mysqlPath != null && !mysqlPath.isEmpty()) {
-                mysqlPath = mysqlPath.trim();
-                String savePath = "backup_db.sql"; //_" + new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date()) + "
+            if (mysqldumpPath != null && !mysqldumpPath.isEmpty()) {
+                mysqldumpPath = mysqldumpPath.trim();
+                String savePath = "backup_db.sql";
                 List<String> command = new ArrayList<>();
-                command.add(mysqlPath );
+                command.add(mysqldumpPath );
                 command.add("--skip-column-statistics");
                 command.add("-h");
-                command.add("smcse-stuproj00.city.ac.uk");
+                command.add(dbHost);
                 command.add("-u");
-                command.add("in2018g08_a");
+                command.add(dbUsername);
                 command.add("-p" + dbPassword);
-                command.add("in2018g08");
+                command.add(dbName);
                 ProcessBuilder pb = new ProcessBuilder(command);
                 pb.redirectOutput(new File(savePath));
                 Process process2 = pb.start();
