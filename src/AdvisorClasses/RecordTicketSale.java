@@ -11,7 +11,10 @@ import javax.swing.*;
 
 /**
  *
- * @author gordo
+ * @author Jamie-Lee
+ *
+ * This class is a form used to allow the Travel Advisor’s to enter data relating
+ * to a new ticket sale, such as the exchange rates, commission rates and taxes etc.
  */
 public class RecordTicketSale extends javax.swing.JFrame {
 
@@ -278,10 +281,17 @@ public class RecordTicketSale extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
+    /**
+     * This method will dispose the Record Ticket Sale form and go BACK to the advisor's dashboard.
+     */
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
         dispose();
     }
 
+    /**
+     * This method will ask the advisor if they are sure they want to record the sale and if yes is pressed,
+     * the data inserted into the text fields will be inserted into the database in their appropriate columns.
+     */
     private void recordSaleButtonActionPerformed(java.awt.event.ActionEvent evt) {
         int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to record this ticket sale? ",
                 "Record Ticket Sale", JOptionPane.YES_NO_OPTION);

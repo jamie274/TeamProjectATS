@@ -9,7 +9,14 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.*;
 
+/**
+ *
+ * @author Abdul
+ *
+ * This class is used to email the user a code which needs to be used to log in to the system via two-factor authentication for an extra level of security.
+ */
 public class TwoFactorAuthentication {
+
     public static void Send2FAEmail(String email, String code) throws IOException, MessagingException {
         // Load mail properties from config file
         Properties props = new Properties();
@@ -28,6 +35,7 @@ public class TwoFactorAuthentication {
         p.put("mail.smtp.auth", "true");
         p.put("mail.smtp.starttls.enable", "true");
         p.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+
         Session session = Session.getInstance(p, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
@@ -52,5 +60,4 @@ public class TwoFactorAuthentication {
 
         JOptionPane.showMessageDialog(null, "Code Sent!");
     }
-
 }

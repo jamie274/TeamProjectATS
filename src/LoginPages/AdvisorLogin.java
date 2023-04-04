@@ -12,7 +12,11 @@ import java.util.Random;
 
 /**
  *
- * @author gordo
+ * @author Jamie-lee
+ * @author Abdul
+ *
+ * This class is a form used to allow Travel Advisors to login to the system using their user ID,
+ * password and a 6-digit code sent by email.
  */
 public class AdvisorLogin extends javax.swing.JFrame {
 
@@ -209,10 +213,18 @@ public class AdvisorLogin extends javax.swing.JFrame {
     private void sixDigitBoxActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
+
+    /**
+     * Generates a random number which will be emailed to the Travel Advisor for two-factor authentication
+     */
     private void generateRandomNumber(){
         random = new Random();
         secretCode = random.nextInt(900000) + 100000;
     }
+
+    /**
+     * Sends the generated code to the Travel Advisor's email when the sendCode button is pressed
+     */
     private void sendCodeButtonactionPerformed(java.awt.event.ActionEvent evt) throws SQLException{
 
         //Checking if the username and the password is filled in.
@@ -246,6 +258,10 @@ public class AdvisorLogin extends javax.swing.JFrame {
             }
         }
     }
+
+    /**
+     * Allows login into the system when the Advisor presses the login button and makes sure credentials match
+     */
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {
 
         //Checking if the username and the password is filled in.

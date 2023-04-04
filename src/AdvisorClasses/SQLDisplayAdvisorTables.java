@@ -6,10 +6,20 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 
+/**
+ * @author Jamie-Lee
+ *
+ * This class is used to read the data from the MySQL database regarding the advisor
+ * such as their own blank stock and sales and will display the fetched data inside the tables
+ * within the Travel Advisor dashboard.
+ */
 public class SQLDisplayAdvisorTables {
 
     public SQLDisplayAdvisorTables() {}
 
+    /**
+     * method used to fetch the data and display the blanks of the advisor in the appropriate table.
+     */
     public void DisplayAdvisorBlankTable(JTable blankTable, String staffID){
 
         try {
@@ -58,6 +68,9 @@ public class SQLDisplayAdvisorTables {
         }
     }
 
+    /**
+     * method used to fetch the data and display the sales of the advisor in the appropriate table.
+     */
     public void DisplaySalesTable(JTable table, String staffID){
 
         try {
@@ -116,6 +129,9 @@ public class SQLDisplayAdvisorTables {
         }
     }
 
+    /**
+     * method used to search for a particular sale in the sales table.
+     */
     public void searchSalesTable(JTable table, String staffID, String saleID){
 
         try {
@@ -178,6 +194,9 @@ public class SQLDisplayAdvisorTables {
         }
     }
 
+    /**
+     * method used to set the status of a ticket to 'Refunded'.
+     */
     public void refundTicket(JTable table, String staffId, String saleID) {
 
         try {
@@ -202,6 +221,9 @@ public class SQLDisplayAdvisorTables {
         }
     }
 
+    /**
+     * method used to fetch the data of a particular blank.
+     */
     public void searchBlank(JTable table, String staffID, String blank) {
 
         try {
@@ -255,6 +277,9 @@ public class SQLDisplayAdvisorTables {
         }
     }
 
+    /**
+     * method used to make a blank 'void'.
+     */
     public void voidBlank(JTable table, String staffId, String blankID) {
 
         try {

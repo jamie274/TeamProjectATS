@@ -9,7 +9,10 @@ import javax.swing.*;
 
 /**
  *
- * @author gordo
+ * @author Jamie-Lee
+ *
+ * This class is a form used to display the data of all the customers registered in the AirVia system.
+ * It allows other functionality such as registering, deleting, and updating customers
  */
 public class CustomerMenu extends javax.swing.JFrame {
 
@@ -247,6 +250,9 @@ public class CustomerMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    /**
+     * Refreshes the customer table by re-fetching the data from the database when REFRESH TABLE button is pressed
+     */
     private void refreshTableButtonActionPerformed(java.awt.event.ActionEvent evt) {
         custHelper.ClearTable(customerTable);
         custHelper.DisplayCustomers(customerTable);
@@ -260,6 +266,9 @@ public class CustomerMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
+    /**
+     * This method will allow a customer's type (Regular/Valued) to be changed when CHANGE TYPE is pressed
+     */
     private void changeButtonActionPerformed(java.awt.event.ActionEvent evt) {
         int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to change this customer's type?",
                 "Change type", JOptionPane.YES_NO_OPTION);
@@ -268,20 +277,32 @@ public class CustomerMenu extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * This method will open a new form that allows the Travel Advisor to register a new customer to the system.
+     */
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new RegisterCustomer().setVisible(true);
     }
 
+    /**
+     * This method will open a new form that allows the Travel Advisor to update an existing customer's details.
+     */
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new UpdateCustomer(searchCustomerBox.getText(), customerTable).setVisible(true);
     }
 
+    /**
+     * This method will search for a particular customer in the database and display their record in the table.
+     */
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {
         custHelper.ClearTable(customerTable);
         // displays the record of the customer that is being searched for
         custHelper.searchCustomer(customerTable, searchCustomerBox.getText());
     }
 
+    /**
+     * This method will delete a selected customer's account from the system.
+     */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {
         int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this customer?",
                 "Delete customer", JOptionPane.YES_NO_OPTION);

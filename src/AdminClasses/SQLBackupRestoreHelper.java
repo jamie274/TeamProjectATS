@@ -8,7 +8,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ *
+ * @author Abdul
+ *
+ * This class is used to back up the current state of the database and to restore it.
+ */
 public class SQLBackupRestoreHelper {
+
     final private static String dbPassword = "R8pV1HmN";
     final private static String dbUsername = "in2018g08_a";
     final private static String dbName = "in2018g08";

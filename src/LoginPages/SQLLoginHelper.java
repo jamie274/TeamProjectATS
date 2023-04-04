@@ -6,7 +6,10 @@ import java.sql.*;
 
 /**
  *
- * @author Jamie-Lee Gordon
+ * @author Jamie-Lee
+ *
+ * This class is used to authorize logins by fetching the data from the MySQL database and
+ * comparing it to the values entered by the users by comparing their user ID and password, ensuring that they match.
  */
 // Class used to read data from the database to confirm a login
 public class SQLLoginHelper {
@@ -18,9 +21,10 @@ public class SQLLoginHelper {
 
     public SQLLoginHelper() {}
 
-    // attemptLogin method will pass through the entered username and password of the user and compare with data in the database
+    /**
+     * attemptLogin method will pass through the entered username and password of the user and compare with data in the database.
+     */
     public boolean attemptLogin(String role, int id, String pwd) {
-
 
         boolean b = false; // this will change to true if the login is successful
 

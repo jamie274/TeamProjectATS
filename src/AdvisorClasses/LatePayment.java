@@ -2,18 +2,23 @@ package AdvisorClasses;
 
 import java.sql.*;
 
-/*
-        *
-        * @author Jamie-Lee
-        *
-        * This class is used to read the sales table and determine which customers are eligible for late payments
-        */
+/**
+ * @author Jamie-Lee
+ *
+ * This class is used to create instances of late payment alerts for the Travel Advisor to see what customers are required
+ * to pay within 30 days of the sale recording.
+ * It will fetch the customer IDs of all customers with a sale status of ‘can pay later’ and used to print out a message box.
+ */
 public class LatePayment {
 
     String customers = "";
 
     public LatePayment() {}
 
+    /**
+     * Fetches the IDs of all customers with a late late payment and will append to a string 'customers'
+     * which will be used to display a message box to the Travel Advisor
+     */
     public void latePaymentAlert(int staffID){
 
         try {
@@ -44,9 +49,9 @@ public class LatePayment {
         }
     }
 
-    /*
-            * This method will return the customers String and will remove the trailing ", "
-            */
+    /**
+     * This method will remove the trailing ", " and return it back.
+     */
     public String getCustomers() {
         String c = "";
         for (int i = 0; i < customers.length() - 2; ++i) {

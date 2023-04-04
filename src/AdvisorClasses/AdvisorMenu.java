@@ -529,12 +529,16 @@ public class AdvisorMenu extends javax.swing.JFrame {
         new RecordTicketSale(id).setVisible(true);
     }
 
-    // navigates to previous page when 'BACK' is pressed
+    /**
+     * This method will go BACK to the previous page by disposing the menu/dashboard
+     */
     private void addBackButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
     }
 
-    // navigates to welcome page when 'LOG OUT' is pressed
+    /**
+     * Navigates to the welcome page when the LOG OUT button is pressed
+     */
     private void addLogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
         new WelcomePage().setVisible(true);

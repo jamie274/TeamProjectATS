@@ -9,7 +9,10 @@ import javax.swing.*;
 
 /**
  *
- * @author gordo
+ * @author Jamie-Lee
+ *
+ * This class is a form used to display individual interline sales reports,
+ * where managers and advisors may decide to search for a particular sale or print the report.
  */
 public class IndividualInterline extends javax.swing.JFrame {
 
@@ -148,11 +151,17 @@ public class IndividualInterline extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    /**
+     * refreshes the report table when REFRESH TABLE is pressed.
+     */
     private void refreshBlanksButtonActionPerformed(java.awt.event.ActionEvent evt) {
         r.ClearTable(reportTable);
         r.DisplayIndividualInterline(reportTable, id);
     }
 
+    /**
+     * searches for a displays a particular sale record.
+     */
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {
         r.ClearTable(reportTable);
         r.searchIndividualInterline(reportTable, id, idBox.getText());

@@ -11,7 +11,10 @@ import javax.swing.*;
 
 /**
  *
- * @author gordo
+ * @author Jamie-Lee
+ *
+ * This class is a form used to allow the Travel Advisor’s to enter details and data
+ * regarding registering a new customer such as their names, ID and email address etc.
  */
 public class RegisterCustomer extends javax.swing.JFrame {
 
@@ -161,6 +164,10 @@ public class RegisterCustomer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    /**
+     * This method will ask the advisor if they are sure they want to register the new user, and if yes is selected,
+     * the data inserted into the text fields will be inserted into the database in their appropriate columns.
+     */
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // message box asking the user to confirm that they want to register the user
         int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to register this customer?",

@@ -9,7 +9,11 @@ import java.util.Random;
 
 /**
  *
- * @author gordo
+ * @author Jamie-Lee
+ * @author Abdul
+ *
+ * This class is a form used to allow Office Managers to login to the system using their user ID,
+ * password and a 6-digit code sent by email.
  */
 public class ManagerLogin extends javax.swing.JFrame {
 
@@ -187,11 +191,18 @@ public class ManagerLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
+    /**
+     * method used to generate a random number which will be sent to the office manager via email
+     * to log in using two-factor authentication.
+     */
     private void generateRandomNumber(){
         random = new Random();
         secretCode = random.nextInt(900000) + 100000;
     }
 
+    /**
+     * method used to send the randomized code to the specified email when SEND CODE is pressed.
+     */
     private void sendCodeButtonactionPerformed(java.awt.event.ActionEvent evt) throws SQLException{
 
         //Checking if the username and the password is filled in.
@@ -225,6 +236,10 @@ public class ManagerLogin extends javax.swing.JFrame {
             }
         }
     }
+
+    /**
+     * method used to log in to the system by comparing matching data from the database.
+     */
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {
 
         //Checking if the username and the password is filled in.

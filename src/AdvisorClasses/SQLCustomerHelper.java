@@ -7,6 +7,9 @@ import java.sql.*;
 /**
  *
  * @author Jamie-Lee
+ *
+ * This class is used to manipulate data for the customer table in the MySQL database such as
+ * registering a new customer, deleting them, and updating their details.
  */
 public class SQLCustomerHelper {
 
@@ -143,7 +146,11 @@ public class SQLCustomerHelper {
         }
     }
 
-    // method used to update the customer's details
+    /**
+     * updateCustomer() will allow the user to update customer details.
+     * The parameters are the text that is passed through from the text boxes and will be inserted
+     * into the database in their appropriate columns, replacing the old details of the customer.
+     */
     public void updateCustomer(JTable table, String id, String fName, String lName, String emailAd, String type) {
 
         try {
@@ -167,7 +174,11 @@ public class SQLCustomerHelper {
         }
     }
 
-    // Method used to delete a customer
+    /**
+     * deleteCustomer() will be used to delete a particular existing customer.
+     * The customer ID is passed through as a parameter to find the customer in
+     * the database and delete their record.
+     */
     public void deleteCustomer(JTable table, String id) {
 
         try {
@@ -192,7 +203,11 @@ public class SQLCustomerHelper {
         }
     }
 
-    // the text from the text boxes are passed through as a parameter and then used to insert the new data into the database
+    /**
+     * registerCustomer() will allow the user to register a customer alongside their details.
+     * The parameters are the text that is passed through from the text boxes and will be inserted
+     * into the database in their appropriate columns.
+     */
     public void registerCustomer(String idText, String firstNameText, String lastNameText,
                               String emailText, String typeText) {
         try {
@@ -218,6 +233,12 @@ public class SQLCustomerHelper {
         }
     }
 
+    /**
+     * setDiscount() will be used to set the discounts of customers
+     * param - id is being used to search for the customer in the database and find their matching record.
+     * param - disPlan is being used to set the type of discount plan (fixed/flexible).
+     * param - perc is being used to set the percentage of the discount plan.
+     */
     public void setDiscount(JTable table, String id, String disPlan, String perc) {
 
         try {

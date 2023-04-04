@@ -7,7 +7,10 @@ package ManagerClasses;
 
 /**
  *
- * @author gordo
+ * @author Jamie-Lee
+ *
+ * This class is a form which allows office managers to select what type of report that
+ * they wish to generate through selecting a type of report using the listed buttons on the frame.
  */
 public class ReportsMenu extends javax.swing.JFrame {
 
@@ -139,20 +142,41 @@ public class ReportsMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    /**
+     * Opens the form asking the office manager to enter what advisor's sales they wish to generate in the
+     * individual interline sales report.
+     */
     private void individualInterlineButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new EnterInterline().setVisible(true);
         dispose();
     }
+
+    /**
+     * Opens the form asking the office manager to enter what advisor's sales they wish to generate in the
+     * individual domestic sales report.
+     */
     private void individualDomesticButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new EnterDomestic().setVisible(true);
         dispose();
     }
+
+    /**
+     * Generates the global interline sales report.
+     */
     private void globalInterlineButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new GlobalInterline(this).setVisible(true);
     }
+
+    /**
+     * Generates the global domestic sales report.
+     */
     private void globalDomesticButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new GlobalDomestic(this).setVisible(true);
     }
+
+    /**
+     * Generates the ticket stock turnover report.
+     */
     private void ticketTurnoverButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new TurnoverReport(this).setVisible(true);
     }

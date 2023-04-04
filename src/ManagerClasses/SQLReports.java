@@ -4,11 +4,19 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 
+/**
+ *
+ * @author Jamie-Lee
+ *
+ * This class is used to fetch data from the MySQL regarding sales and display them in the necessary reports forms and tables.
+ */
 public class SQLReports {
 
     public SQLReports() {}
 
-    // the text from the text boxes are passed through as a parameter and then used to insert the new data into the database
+    /**
+     * The text from the text boxes are passed through as a parameter and then used to insert the new data into the database.
+     */
     public void recordSale(String saleID, String blankID, String customerID,
                                  String advisorID, String paymentDetails, String saleType,
                            String country, String localTax, String otherTax, String status, String exchangeRate,
@@ -41,6 +49,9 @@ public class SQLReports {
         }
     }
 
+    /**
+     * Searches for a particular advisor interline report to be generated.
+     */
     public void searchAdvisorInterline(String user, JFrame frame) {
 
         try {
@@ -65,6 +76,9 @@ public class SQLReports {
         }
     }
 
+    /**
+     * Searches for a particular advisor domestic report to be generated.
+     */
     public void searchAdvisorDomestic(String user, JFrame frame) {
 
         try {
@@ -89,6 +103,9 @@ public class SQLReports {
         }
     }
 
+    /**
+     * Displays the individual interline report in a table.
+     */
     public void DisplayIndividualInterline(JTable table, String staffID){
 
         try {
@@ -151,6 +168,9 @@ public class SQLReports {
         }
     }
 
+    /**
+     * Displays the individual domestic report in a table.
+     */
     public void DisplayIndividualDomestic(JTable table, String staffID){
 
         try {
@@ -213,6 +233,9 @@ public class SQLReports {
         }
     }
 
+    /**
+     * Displays the global domestic report in a table.
+     */
     public void DisplayGlobalDomestic(JTable table){
 
         try {
@@ -275,6 +298,9 @@ public class SQLReports {
         }
     }
 
+    /**
+     * Displays the global interline report in a table.
+     */
     public void DisplayGlobalInterline(JTable table){
 
         try {
@@ -337,6 +363,9 @@ public class SQLReports {
         }
     }
 
+    /**
+     * Searches for and displays a particular sale in the individual interline report.
+     */
     public void searchIndividualInterline(JTable table, String staffID, String saleID){
 
         try {
@@ -403,6 +432,9 @@ public class SQLReports {
         }
     }
 
+    /**
+     * Searches for and displays a particular sale in the individual domestic report.
+     */
     public void searchIndividualDomestic(JTable table, String staffID, String saleID){
 
         try {
@@ -469,6 +501,9 @@ public class SQLReports {
         }
     }
 
+    /**
+     * Searches for and displays a particular sale in the global domestic report.
+     */
     public void searchGlobalDomestic(JTable table, String saleID){
 
         try {
@@ -535,6 +570,9 @@ public class SQLReports {
         }
     }
 
+    /**
+     * Searches for and displays a particular sale in the global interline report.
+     */
     public void searchGlobalInterline(JTable table, String saleID){
 
         try {

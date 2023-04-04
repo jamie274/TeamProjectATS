@@ -11,7 +11,9 @@ import javax.swing.*;
 
 /**
  *
- * @author gordo
+ * @author Jamie-Lee
+ *
+ * This class is a form used to display all data related to the ticket stock turnover report.
  */
 public class TurnoverReport extends javax.swing.JFrame {
 
@@ -151,11 +153,17 @@ public class TurnoverReport extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    /**
+     * Refreshes the report's table.
+     */
     private void refreshBlanksButtonActionPerformed(java.awt.event.ActionEvent evt) {
         d.ClearTable(reportTable);
         d.DisplayBlankTable(reportTable);
     }
 
+    /**
+     * Searches and displays a particular sale in the ticket turnover report.
+     */
     private void searchBlanksButtonActionPerformed(java.awt.event.ActionEvent evt) {
         d.ClearTable(reportTable);
         d.searchBlank(reportTable, idBox.getText());

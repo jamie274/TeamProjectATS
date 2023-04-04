@@ -3,7 +3,9 @@ package LoginPages;
 
 /**
  *
- * @author gordo
+ * @author Jamie-Lee
+ *
+ * This class is a form used to allow users to select their role and lead them to the appropriate login pages (this is the start page)
  */
 public class WelcomePage extends javax.swing.JFrame {
 
@@ -184,23 +186,28 @@ public class WelcomePage extends javax.swing.JFrame {
         return (int) ((Math.random() * (999999)));
     }
 
+    /**
+     * method used to navigate to the admin log in page.
+     */
     private void adminLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new AdminLogin().setVisible(true);
         dispose();
-        //code = generateSixDigit(); // new 6-digit code is generated
-        //System.out.println(code); // new code is printed to the console
     }
+
+    /**
+     * method used to navigate to the manager log in page.
+     */
     private void managerLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new ManagerLogin().setVisible(true);
         dispose();
-        //code = generateSixDigit();
-        //System.out.println(code);
     }
+
+    /**
+     * method used to navigate to the advisor log in page.
+     */
     private void advisorLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new AdvisorLogin().setVisible(true);
         dispose();
-        //code = generateSixDigit();
-        //System.out.println(code);
     }
 
     /**

@@ -9,7 +9,10 @@ import javax.swing.*;
 
 /**
  *
- * @author gordo
+ * @author Jamie-Lee
+ *
+ * This class is a form used to allow the Travel Advisor’s to enter details to update customer data,
+ * such as changing a customer’s email address or last name etc.
  */
 public class UpdateCustomer extends javax.swing.JFrame {
 
@@ -165,6 +168,10 @@ public class UpdateCustomer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    /**
+     * method used to ask the user if they are sure that they want to update the customer's details and if yes is selected,
+     * then the customer's details will be successfully updated.
+     */
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // message box asking the user to confirm that they want to register the user
         int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to update this customer's details?",

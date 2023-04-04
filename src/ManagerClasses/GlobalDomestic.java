@@ -9,7 +9,10 @@ import javax.swing.*;
 
 /**
  *
- * @author gordo
+ * @author Jamie-Lee
+ *
+ * This class is a form used to display global domestic sales reports,
+ * where managers and advisors may decide to search for a particular sale or print the report.
  */
 public class GlobalDomestic extends javax.swing.JFrame {
 
@@ -149,11 +152,17 @@ public class GlobalDomestic extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    /**
+     * refreshes the report table when REFRESH TABLE is pressed.
+     */
     private void refreshBlanksButtonActionPerformed(java.awt.event.ActionEvent evt) {
         r.ClearTable(reportTable);
         r.DisplayGlobalDomestic(reportTable);
     }
 
+    /**
+     * searches for a displays a particular sale record.
+     */
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {
         r.ClearTable(reportTable);
         r.searchGlobalDomestic(reportTable, idBox.getText());

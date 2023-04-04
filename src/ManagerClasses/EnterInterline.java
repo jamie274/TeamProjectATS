@@ -7,7 +7,9 @@ package ManagerClasses;
 
 /**
  *
- * @author gordo
+ * @author Jamie-Lee
+ *
+ * This is a form used to allow office managers to enter an advisor’s ID to generate their individual interline sales reports.
  */
 public class EnterInterline extends javax.swing.JFrame {
 
@@ -108,10 +110,17 @@ public class EnterInterline extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+
+    /**
+     * Disposes window when BACK is pressed
+     */
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
         dispose();
     }
 
+    /**
+     * generates the individual report when GENERATE is pressed and the id is passed through as a parameter.
+     */
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {
         SQLReports r = new SQLReports();
         r.searchAdvisorInterline(advisorIDBox.getText(), this);

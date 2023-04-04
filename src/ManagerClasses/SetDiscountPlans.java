@@ -11,7 +11,10 @@ import javax.swing.*;
 
 /**
  *
- * @author gordo
+ * @author Jamie-Lee
+ *
+ * This class is a form used to allow office managers to set discount plans to customers by setting them
+ * to either a fixed or flexible discount and setting the percentage of the discount
  */
 public class SetDiscountPlans extends javax.swing.JFrame {
 
@@ -224,6 +227,9 @@ public class SetDiscountPlans extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    /**
+     * Refreshes the customer table when REFRESH TABLE is pressed.
+     */
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {
         custHelper.ClearTable(customerTable);
         custHelper.DisplayCustomers(customerTable);
@@ -233,13 +239,19 @@ public class SetDiscountPlans extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
+    /**
+     * Searches for a particular customer in the database and displays their record in the customer table.
+     */
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {
         custHelper.ClearTable(customerTable);
         // displays the record of the customer that is being searched for
         custHelper.searchCustomer(customerTable, searchCustomerBox.getText());
     }
 
-
+    /**
+     * Displays a message asking teh advisor if they wish to add the discount plan to the customer, and if yes is selected,
+     * the discount is added to the customer's record.
+     */
     private void setDiscountButtonBoxActionPerformed(java.awt.event.ActionEvent evt) {
         int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to add this discount plan to the customer? ",
                 "Set Discount", JOptionPane.YES_NO_OPTION);

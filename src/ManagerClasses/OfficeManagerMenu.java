@@ -12,7 +12,9 @@ import javax.swing.*;
 
 /**
  *
- * @author gordo
+ * @author Jamie-Lee
+ *
+ * This class is a form used as the office manager dashboard where the managers may access all their functionality and features.
  */
 public class OfficeManagerMenu extends javax.swing.JFrame {
 
@@ -500,11 +502,17 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    /**
+     * Refreshes the blank stock table.
+     */
     private void refreshBlanksButtonActionPerformed(java.awt.event.ActionEvent evt) {
         displayTablesHelper.ClearTable(blankStockTable); // clears the table
         displayTablesHelper.DisplayBlankTable(blankStockTable); // refreshes the table by re-displaying the data
     }
 
+    /**
+     * Refreshes the staff accounts table.
+     */
     private void refreshStaffButtonActionPerformed(java.awt.event.ActionEvent evt) {
         displayTablesHelper.ClearTable(staffTable); // clears the table
         displayTablesHelper.DisplayAdvisorTableManager(staffTable); // refreshes the table by re-displaying the data
@@ -522,41 +530,65 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
+    /**
+     * Opens the report menu where the office manager may select what type of repprt that
+     * they wish to generate.
+     */
     private void reportsButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new ReportsMenu().setVisible(true);
     }
 
+    /**
+     * Opens the Commission rate menu form.
+     */
     private void modifyCommissionButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new ModifyCommission().setVisible(true);
     }
 
+    /**
+     * Opens the discount plan menu form.
+     */
     private void setDiscountPlansButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new SetDiscountPlans().setVisible(true);
     }
 
-    // navigates to previous page when 'BACK' is pressed
+    /**
+     * Navigates to previous page when 'BACK' is pressed.
+     */
     private void addBackButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
     }
 
-    // navigates to welcome page when 'LOG OUT' is pressed
+    /**
+     * Navigates to welcome page when 'LOG OUT' is pressed.
+     */
     private void addLogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
         new WelcomePage().setVisible(true);
     }
 
+    /**
+     * Searches and displays the blank of a particular blank.
+     */
     private void searchBlankButtonActionPerformed(java.awt.event.ActionEvent evt) {
         displayTablesHelper.ClearTable(blankStockTable);
         // displays the record of the blank that is being searched for
         displayTablesHelper.searchBlank(blankStockTable, searchBlankBox.getText());
     }
 
+    /**
+     * Searches and displays the blank of a particular staff member.
+     */
     private void searchStaffButtonActionPerformed(java.awt.event.ActionEvent evt) {
         displayTablesHelper.ClearTable(staffTable);
         // displays the record of the staff that is being searched for
         displayTablesHelper.searchAdvisor(staffTable, searchStaffBox.getText());
     }
 
+    /**
+     * Asks the user via a message box if they wish to delete the blank, and if yes is selected,
+     * the blank is successfully deleted from the database and blank stock table.
+     */
     private void deleteBlankButtonActionPerformed(java.awt.event.ActionEvent evt) {
         int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this blank?","Delete blank", JOptionPane.YES_NO_OPTION);
         if (d == JOptionPane.YES_OPTION) {
@@ -568,6 +600,10 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Asks the user via a message box if they wish to assign the blank, and if yes is selected,
+     * the blank is successfully assigned to the advisor and the date is recorded.
+     */
     private void assignButtonActionPerformed(java.awt.event.ActionEvent evt) {
         int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to assign this blank?"
                 ,"Assign blank", JOptionPane.YES_NO_OPTION);

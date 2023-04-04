@@ -12,7 +12,10 @@ import javax.swing.*;
 
 /**
  *
- * @author gordo
+ * @author Jamie-Lee
+ *
+ * This class is a form used to display all the commission rates within the system and allow office managers to modify,
+ * delete and add new commission rates.
  */
 public class ModifyCommission extends javax.swing.JFrame {
 
@@ -239,17 +242,27 @@ public class ModifyCommission extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
+    /**
+     * refreshes the commission table when REFRESH TABLE is pressed.
+     */
     private void refreshTableButtonActionPerformed(java.awt.event.ActionEvent evt) {
         display.ClearTable(commissionTable);
         display.DisplayCommissionTable(commissionTable);
     }
 
+    /**
+     * searches and displays the record of a particular ticket type
+     */
     private void searchTypeButtonBoxActionPerformed(java.awt.event.ActionEvent evt) {
         display.ClearTable(commissionTable);
         // displays the record of the ticket type that is being searched for
         display.searchTicketType(commissionTable, searchCommissionBox.getText());
     }
 
+    /**
+     * Asks the manager if they are sure they want to add the commission, and if yes is selected,
+     * the commission rate will be added to the database.
+     */
     private void addButtonBoxActionPerformed(java.awt.event.ActionEvent evt) {
         int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to add this commission ?"
                 ,"Add commission", JOptionPane.YES_NO_OPTION);
@@ -258,6 +271,10 @@ public class ModifyCommission extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Asks the manager if they are sure they want to change the commission, and if yes is selected,
+     * the commission rate will be changed in the database.
+     */
     private void changeButtonBoxActionPerformed(java.awt.event.ActionEvent evt) {
         int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to change this commission ?"
                 ,"Change commission", JOptionPane.YES_NO_OPTION);
@@ -266,6 +283,10 @@ public class ModifyCommission extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Asks the manager if they are sure they want to delete the commission, and if yes is selected,
+     * the commission rate will be deleted from the database.
+     */
     private void deleteButtonBoxActionPerformed(java.awt.event.ActionEvent evt) {
         int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this commission ?"
                 ,"Change commission", JOptionPane.YES_NO_OPTION);
