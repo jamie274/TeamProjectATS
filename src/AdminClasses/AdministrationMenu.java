@@ -22,6 +22,7 @@ public class AdministrationMenu extends javax.swing.JFrame {
     private String name;
 
     private String mysqlPath;
+    private String mysqldumpPath;
 
     DisplayTablesHelper displayTablesHelper = new DisplayTablesHelper();
 
@@ -31,10 +32,22 @@ public class AdministrationMenu extends javax.swing.JFrame {
         new Thread(() -> {
             try {
                 String mysqlPathScript = "searchmysql.ps1";
-                Process process = Runtime.getRuntime().exec("powershell.exe -ExecutionPolicy Bypass -File " + mysqlPathScript);
+                Process process = Runtime.getRuntime().exec("where mysql");
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 mysqlPath = reader.readLine();
                 System.out.println(mysqlPath);
+                process.waitFor();
+                reader.close();
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                String mysqlPathScript = "searchmysql.ps1";
+                Process process = Runtime.getRuntime().exec("where mysqldump");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                mysqldumpPath = reader.readLine();
+                System.out.println(mysqldumpPath);
                 process.waitFor();
                 reader.close();
             } catch (IOException | InterruptedException e) {
@@ -565,7 +578,7 @@ public class AdministrationMenu extends javax.swing.JFrame {
     }
 
     private void backUpButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        SQLBackupRestoreHelper.Backupdbtosql(mysqlPath);
+        SQLBackupRestoreHelper.Backupdbtosql(mysqldumpPath);
     }
     private void restoreButtonActionPerformed(java.awt.event.ActionEvent evt) {
         SQLBackupRestoreHelper.Restoredbfromsql(mysqlPath);

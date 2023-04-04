@@ -19,7 +19,7 @@ public class SQLBackupRestoreHelper {
                 System.out.println(mysqlPath);
                 String backupFileName = "backup_db.sql"; // Replace with actual backup file name
                 List<String> command = new ArrayList<>();
-                command.add(mysqlPath + "\\mysql.exe");
+                command.add(mysqlPath );
                 command.add("-h");
                 command.add("smcse-stuproj00.city.ac.uk");
                 command.add("-u");
@@ -60,7 +60,7 @@ public class SQLBackupRestoreHelper {
                 mysqlPath = mysqlPath.trim();
                 String savePath = "backup_db.sql"; //_" + new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date()) + "
                 List<String> command = new ArrayList<>();
-                command.add(mysqlPath + "\\mysqldump.exe");
+                command.add(mysqlPath );
                 command.add("--skip-column-statistics");
                 command.add("-h");
                 command.add("smcse-stuproj00.city.ac.uk");
