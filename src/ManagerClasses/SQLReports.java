@@ -639,6 +639,401 @@ public class SQLReports {
         }
     }
 
+    /**
+     * Filters the table by a particular date.
+     */
+    public void filterIndividInterlineByDate(JTable table, String staffID, String startDate, String endDate){
+
+        try {
+            // connecting to the database server
+            Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
+                    "in2018g08_d", "CQYeV2J6");
+
+            Statement stm = con.createStatement();
+
+            String com = "CommisionRate";
+            String ex = "ExchangeRate";
+            String loc = "LocalCurrency";
+            String loTax = "LocalTax";
+            String oTax = "OtherTax";
+
+            // SELECT * FROM `Sales` WHERE date BETWEEN '2023-01-01' AND '2023-12-31';
+            ResultSet result = stm.executeQuery("SELECT ID, BlankStockID, CustomerID, " + com + ", PaymentType, SaleType" +
+                    ", " + ex + ", " + loc + "," + loTax + "," + oTax + ", Date, Status FROM Sales Where AdvisorID =" + staffID + " AND SaleType = 'Interline' AND Date BETWEEN " +
+                    "'" + startDate + "'" + "AND" + "'" + endDate + "'");
+
+            //this stores all the meta-data received from the query result
+            ResultSetMetaData rsmd = result.getMetaData();
+
+            //this creates a default model of the table
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+            //checks the number of columns and creates a string object of column names
+            int cols = rsmd.getColumnCount();
+            String[] colName = new String[cols];
+
+            //inserts column names to the table
+            for(int i = 0; i < cols; i++){
+                colName[i] = rsmd.getColumnName(i+1);
+            }
+            model.setColumnIdentifiers(colName);
+
+            //inserts all the data in the respective columns
+            while(result.next()){
+                //ID, BlankStockID, CustomerID, CommissionRateTicketType, AdvisorID, DiscountPlanType, PaymentType, SaleType,
+                // ExchangeRateCurrency, TotalAmount, AmountPaid, Status, Date
+                String ID = Integer.toString(result.getInt("ID"));
+                String BlankID = Integer.toString(result.getInt("BlankStockID"));
+                String CustomerID = Integer.toString(result.getInt("CustomerID"));
+                String Commission = Float.toString(result.getFloat("CommisionRate")) + "%";
+                String Payment = result.getString("PaymentType");
+                String SaleType = result.getString("SaleType");
+                String exchangeRate =  Float.toString(result.getFloat("ExchangeRate"));
+                String localCurrency = Float.toString(result.getFloat("LocalCurrency"));
+                String localTax = Float.toString(result.getFloat("LocalTax"));
+                String otherTax = Float.toString(result.getFloat("OtherTax"));
+                String Date = String.valueOf(result.getDate("Date"));
+                String Status = result.getString("Status");
+
+                String[] row = {ID, BlankID, CustomerID, Commission, Payment, SaleType, exchangeRate,localCurrency, localTax, otherTax, Date, Status};
+                //add the rows to the table
+                model.addRow(row);
+            }
+            //closes the connection to db
+            con.close();
+        }catch (SQLException s) {
+            s.printStackTrace();
+        }
+    }
+
+    /**
+     * Searches table for specific ID and updates the exchange rate.
+     */
+    public void searchSaleIndivInterline(String id, String newRate, JTable table) {
+
+        try {
+            // connecting to the database server
+            Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
+                    "in2018g08_d", "CQYeV2J6");
+
+            Statement stm = con.createStatement();
+            ResultSet result = stm.executeQuery("SELECT * FROM Sales WHERE ID = " + id + " AND SaleType = 'Interline'");
+
+            if(result.next()){
+                changeExchangeRate(id, newRate, table);
+            } else { // user has not been found
+                JOptionPane.showMessageDialog(null, "Sale does not exist, please try again");
+            }
+            //closes the connection to db
+            con.close();
+        }catch (SQLException s) {
+            s.printStackTrace();
+        }
+    }
+
+    /**
+     * Searches table for specific ID and updates the exchange rate.
+     */
+    public void changeExchangeRate(String id, String newRate, JTable table) {
+        try {
+            // connecting to the database server
+            Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
+                    "in2018g08_a", "R8pV1HmN");
+
+            String ex = "ExchangeRate";
+
+            Statement stm = con.createStatement();
+            // user is deleted, as their id is passed through
+            stm.executeUpdate("UPDATE Sales SET " + ex + " = " + newRate + " WHERE ID = " + id);
+
+            // message box, showing that the user has been successfully deleted
+            JOptionPane.showMessageDialog(null, "Exchange rate has been updated to " + newRate);
+            ClearTable(table); // clears the table
+            DisplayIndividualInterline(table, id); // refreshes the table by re-displaying the data
+
+            //closes the connection to db
+            con.close();
+        }catch (SQLException s) {
+            s.printStackTrace();
+        }
+    }
+
+    /**
+     * Filters the table by a particular date.
+     */
+    public void filterIndividDomesticByDate(JTable table, String staffID, String startDate, String endDate){
+
+        try {
+            // connecting to the database server
+            Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
+                    "in2018g08_d", "CQYeV2J6");
+
+            Statement stm = con.createStatement();
+
+            String com = "CommisionRate";
+            String ex = "ExchangeRate";
+            String loc = "LocalCurrency";
+            String loTax = "LocalTax";
+            String oTax = "OtherTax";
+
+            // SELECT * FROM `Sales` WHERE date BETWEEN '2023-01-01' AND '2023-12-31';
+            ResultSet result = stm.executeQuery("SELECT ID, BlankStockID, CustomerID, " + com + ", PaymentType, SaleType" +
+                    ", " + ex + ", " + loc + "," + loTax + "," + oTax + ", Date, Status FROM Sales Where AdvisorID =" + staffID + " AND SaleType = 'Domestic' AND Date BETWEEN " +
+                    "'" + startDate + "'" + "AND" + "'" + endDate + "'");
+
+            //this stores all the meta-data received from the query result
+            ResultSetMetaData rsmd = result.getMetaData();
+
+            //this creates a default model of the table
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+            //checks the number of columns and creates a string object of column names
+            int cols = rsmd.getColumnCount();
+            String[] colName = new String[cols];
+
+            //inserts column names to the table
+            for(int i = 0; i < cols; i++){
+                colName[i] = rsmd.getColumnName(i+1);
+            }
+            model.setColumnIdentifiers(colName);
+
+            //inserts all the data in the respective columns
+            while(result.next()){
+                //ID, BlankStockID, CustomerID, CommissionRateTicketType, AdvisorID, DiscountPlanType, PaymentType, SaleType,
+                // ExchangeRateCurrency, TotalAmount, AmountPaid, Status, Date
+                String ID = Integer.toString(result.getInt("ID"));
+                String BlankID = Integer.toString(result.getInt("BlankStockID"));
+                String CustomerID = Integer.toString(result.getInt("CustomerID"));
+                String Commission = Float.toString(result.getFloat("CommisionRate")) + "%";
+                String Payment = result.getString("PaymentType");
+                String SaleType = result.getString("SaleType");
+                String exchangeRate =  Float.toString(result.getFloat("ExchangeRate"));
+                String localCurrency = Float.toString(result.getFloat("LocalCurrency"));
+                String localTax = Float.toString(result.getFloat("LocalTax"));
+                String otherTax = Float.toString(result.getFloat("OtherTax"));
+                String Date = String.valueOf(result.getDate("Date"));
+                String Status = result.getString("Status");
+
+                String[] row = {ID, BlankID, CustomerID, Commission, Payment, SaleType, exchangeRate,localCurrency, localTax, otherTax, Date, Status};
+                //add the rows to the table
+                model.addRow(row);
+            }
+            //closes the connection to db
+            con.close();
+        }catch (SQLException s) {
+            s.printStackTrace();
+        }
+    }
+
+    /**
+     * Searches table for specific ID and updates the exchange rate.
+     */
+    public void searchSaleIndivDomestic(String id, String newRate, JTable table) {
+
+        try {
+            // connecting to the database server
+            Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
+                    "in2018g08_d", "CQYeV2J6");
+
+            Statement stm = con.createStatement();
+            ResultSet result = stm.executeQuery("SELECT * FROM Sales WHERE ID = " + id + " AND SaleType = 'Domestic'");
+
+            if(result.next()){
+                changeExchangeRate(id, newRate, table);
+            } else { // user has not been found
+                JOptionPane.showMessageDialog(null, "Sale does not exist, please try again");
+            }
+            //closes the connection to db
+            con.close();
+        }catch (SQLException s) {
+            s.printStackTrace();
+        }
+    }
+
+    /**
+     * Filters the table by a particular date.
+     */
+    public void filterGlobalDomesticByDate(JTable table, String startDate, String endDate){
+
+        try {
+            // connecting to the database server
+            Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
+                    "in2018g08_d", "CQYeV2J6");
+
+            Statement stm = con.createStatement();
+
+            String com = "CommisionRate";
+            String ex = "ExchangeRate";
+            String loc = "LocalCurrency";
+            String loTax = "LocalTax";
+            String oTax = "OtherTax";
+
+            // SELECT * FROM `Sales` WHERE date BETWEEN '2023-01-01' AND '2023-12-31';
+            ResultSet result = stm.executeQuery("SELECT ID, BlankStockID, CustomerID, " + com + ", PaymentType, SaleType" +
+                    ", " + ex + ", " + loc + "," + loTax + "," + oTax + ", Date, Status FROM Sales Where SaleType = 'Domestic' AND Date BETWEEN " +
+                    "'" + startDate + "'" + "AND" + "'" + endDate + "'");
+
+            //this stores all the meta-data received from the query result
+            ResultSetMetaData rsmd = result.getMetaData();
+
+            //this creates a default model of the table
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+            //checks the number of columns and creates a string object of column names
+            int cols = rsmd.getColumnCount();
+            String[] colName = new String[cols];
+
+            //inserts column names to the table
+            for(int i = 0; i < cols; i++){
+                colName[i] = rsmd.getColumnName(i+1);
+            }
+            model.setColumnIdentifiers(colName);
+
+            //inserts all the data in the respective columns
+            while(result.next()){
+                //ID, BlankStockID, CustomerID, CommissionRateTicketType, AdvisorID, DiscountPlanType, PaymentType, SaleType,
+                // ExchangeRateCurrency, TotalAmount, AmountPaid, Status, Date
+                String ID = Integer.toString(result.getInt("ID"));
+                String BlankID = Integer.toString(result.getInt("BlankStockID"));
+                String CustomerID = Integer.toString(result.getInt("CustomerID"));
+                String Commission = Float.toString(result.getFloat("CommisionRate")) + "%";
+                String Payment = result.getString("PaymentType");
+                String SaleType = result.getString("SaleType");
+                String exchangeRate =  Float.toString(result.getFloat("ExchangeRate"));
+                String localCurrency = Float.toString(result.getFloat("LocalCurrency"));
+                String localTax = Float.toString(result.getFloat("LocalTax"));
+                String otherTax = Float.toString(result.getFloat("OtherTax"));
+                String Date = String.valueOf(result.getDate("Date"));
+                String Status = result.getString("Status");
+
+                String[] row = {ID, BlankID, CustomerID, Commission, Payment, SaleType, exchangeRate,localCurrency, localTax, otherTax, Date, Status};
+                //add the rows to the table
+                model.addRow(row);
+            }
+            //closes the connection to db
+            con.close();
+        }catch (SQLException s) {
+            s.printStackTrace();
+        }
+    }
+
+    /**
+     * Searches table for specific ID and updates the exchange rate.
+     */
+    public void searchSaleGlobalDomestic(String id, String newRate, JTable table) {
+
+        try {
+            // connecting to the database server
+            Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
+                    "in2018g08_d", "CQYeV2J6");
+
+            Statement stm = con.createStatement();
+            ResultSet result = stm.executeQuery("SELECT * FROM Sales WHERE SaleType = 'Domestic' AND ID = " + id);
+
+            if(result.next()){
+                changeExchangeRate(id, newRate, table);
+            } else { // user has not been found
+                JOptionPane.showMessageDialog(null, "Sale does not exist, please try again");
+            }
+            //closes the connection to db
+            con.close();
+        }catch (SQLException s) {
+            s.printStackTrace();
+        }
+    }
+
+    /**
+     * Filters the table by a particular date.
+     */
+    public void filterGlobalInterlineByDate(JTable table, String startDate, String endDate){
+
+        try {
+            // connecting to the database server
+            Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
+                    "in2018g08_d", "CQYeV2J6");
+
+            Statement stm = con.createStatement();
+
+            String com = "CommisionRate";
+            String ex = "ExchangeRate";
+            String loc = "LocalCurrency";
+            String loTax = "LocalTax";
+            String oTax = "OtherTax";
+
+            // SELECT * FROM `Sales` WHERE date BETWEEN '2023-01-01' AND '2023-12-31';
+            ResultSet result = stm.executeQuery("SELECT ID, BlankStockID, CustomerID, " + com + ", PaymentType, SaleType" +
+                    ", " + ex + ", " + loc + "," + loTax + "," + oTax + ", Date, Status FROM Sales Where SaleType = 'Interline' AND Date BETWEEN " +
+                    "'" + startDate + "'" + "AND" + "'" + endDate + "'");
+
+            //this stores all the meta-data received from the query result
+            ResultSetMetaData rsmd = result.getMetaData();
+
+            //this creates a default model of the table
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+            //checks the number of columns and creates a string object of column names
+            int cols = rsmd.getColumnCount();
+            String[] colName = new String[cols];
+
+            //inserts column names to the table
+            for(int i = 0; i < cols; i++){
+                colName[i] = rsmd.getColumnName(i+1);
+            }
+            model.setColumnIdentifiers(colName);
+
+            //inserts all the data in the respective columns
+            while(result.next()){
+                //ID, BlankStockID, CustomerID, CommissionRateTicketType, AdvisorID, DiscountPlanType, PaymentType, SaleType,
+                // ExchangeRateCurrency, TotalAmount, AmountPaid, Status, Date
+                String ID = Integer.toString(result.getInt("ID"));
+                String BlankID = Integer.toString(result.getInt("BlankStockID"));
+                String CustomerID = Integer.toString(result.getInt("CustomerID"));
+                String Commission = Float.toString(result.getFloat("CommisionRate")) + "%";
+                String Payment = result.getString("PaymentType");
+                String SaleType = result.getString("SaleType");
+                String exchangeRate =  Float.toString(result.getFloat("ExchangeRate"));
+                String localCurrency = Float.toString(result.getFloat("LocalCurrency"));
+                String localTax = Float.toString(result.getFloat("LocalTax"));
+                String otherTax = Float.toString(result.getFloat("OtherTax"));
+                String Date = String.valueOf(result.getDate("Date"));
+                String Status = result.getString("Status");
+
+                String[] row = {ID, BlankID, CustomerID, Commission, Payment, SaleType, exchangeRate,localCurrency, localTax, otherTax, Date, Status};
+                //add the rows to the table
+                model.addRow(row);
+            }
+            //closes the connection to db
+            con.close();
+        }catch (SQLException s) {
+            s.printStackTrace();
+        }
+    }
+
+    /**
+     * Searches table for specific ID and updates the exchange rate.
+     */
+    public void searchSaleGlobalInterline(String id, String newRate, JTable table) {
+
+        try {
+            // connecting to the database server
+            Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
+                    "in2018g08_d", "CQYeV2J6");
+
+            Statement stm = con.createStatement();
+            ResultSet result = stm.executeQuery("SELECT * FROM Sales WHERE SaleType = 'Interline' AND ID = " + id);
+
+            if(result.next()){
+                changeExchangeRate(id, newRate, table);
+            } else { // user has not been found
+                JOptionPane.showMessageDialog(null, "Sale does not exist, please try again");
+            }
+            //closes the connection to db
+            con.close();
+        }catch (SQLException s) {
+            s.printStackTrace();
+        }
+    }
+
     // Clears the table of data
     public void ClearTable(JTable table){
         DefaultTableModel model = (DefaultTableModel) table.getModel();

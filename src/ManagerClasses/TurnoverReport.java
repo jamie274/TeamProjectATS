@@ -47,7 +47,7 @@ public class TurnoverReport extends javax.swing.JFrame {
         idBox = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
         refreshBlanksButton = new javax.swing.JButton();
-        printButton = new javax.swing.JButton();
+        exportButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ticket Stock Turnover Report");
@@ -84,10 +84,10 @@ public class TurnoverReport extends javax.swing.JFrame {
             }
         });
 
-        printButton.setText("PRINT REPORT");
-        printButton.addActionListener(new java.awt.event.ActionListener() {
+        exportButton.setText("EXPORT REPORT AS PDF");
+        exportButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                printButtonActionPerformed(evt);
+                exportButtonActionPerformed(evt);
             }
         });
 
@@ -115,7 +115,7 @@ public class TurnoverReport extends javax.swing.JFrame {
                                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1288, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(57, 57, 57))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(printButton)
+                                                .addComponent(exportButton)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(refreshBlanksButton)
                                                 .addGap(71, 71, 71))))
@@ -133,7 +133,7 @@ public class TurnoverReport extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(refreshBlanksButton)
-                                        .addComponent(printButton))
+                                        .addComponent(exportButton))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(63, Short.MAX_VALUE))
@@ -169,8 +169,8 @@ public class TurnoverReport extends javax.swing.JFrame {
         d.searchBlank(reportTable, idBox.getText());
     }
 
-    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        JOptionPane.showMessageDialog(null, "Report has been sent to the printer");
+    private void exportButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        //JOptionPane.showMessageDialog(null, "Report has been sent to the printer");
     }
 
     /**
@@ -230,7 +230,7 @@ public class TurnoverReport extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JButton printButton;
+    private javax.swing.JButton exportButton;
     private javax.swing.JButton refreshBlanksButton;
     private javax.swing.JTable reportTable;
     private javax.swing.JButton searchButton;

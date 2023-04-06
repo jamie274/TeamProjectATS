@@ -5,8 +5,6 @@ package ManagerClasses;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-import javax.swing.*;
-
 /**
  *
  * @author Jamie-Lee
@@ -45,7 +43,7 @@ public class IndividualInterline extends javax.swing.JFrame {
         idBox = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
         refreshBlanksButton = new javax.swing.JButton();
-        printButton = new javax.swing.JButton();
+        optionsButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Individual Interline Report");
@@ -82,10 +80,10 @@ public class IndividualInterline extends javax.swing.JFrame {
             }
         });
 
-        printButton.setText("OPTIONS");
-        printButton.addActionListener(new java.awt.event.ActionListener() {
+        optionsButton.setText("OPTIONS");
+        optionsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                printButtonActionPerformed(evt);
+                optionsButtonActionPerformed(evt);
             }
         });
 
@@ -113,7 +111,7 @@ public class IndividualInterline extends javax.swing.JFrame {
                                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1288, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(57, 57, 57))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(printButton)
+                                                .addComponent(optionsButton)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(refreshBlanksButton)
                                                 .addGap(71, 71, 71))))
@@ -131,7 +129,7 @@ public class IndividualInterline extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(refreshBlanksButton)
-                                        .addComponent(printButton))
+                                        .addComponent(optionsButton))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(63, Short.MAX_VALUE))
@@ -167,10 +165,11 @@ public class IndividualInterline extends javax.swing.JFrame {
         r.searchIndividualInterline(reportTable, id, idBox.getText());
     }
 
-    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        //JOptionPane.showMessageDialog(null, "Report has been sent to the printer");
-
-        new IndInterlineOptions().setVisible(true);
+    /**
+     * Opens the options menu.
+     */
+    private void optionsButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        new IndInterlineOptions(reportTable, id).setVisible(true);
     }
 
     /**
@@ -215,7 +214,7 @@ public class IndividualInterline extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JButton printButton;
+    private javax.swing.JButton optionsButton;
     private javax.swing.JButton refreshBlanksButton;
     private javax.swing.JTable reportTable;
     private javax.swing.JButton searchButton;

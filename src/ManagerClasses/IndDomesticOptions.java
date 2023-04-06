@@ -11,7 +11,7 @@ import javax.swing.*;
  *
  * @author gordo
  */
-public class IndInterlineOptions extends javax.swing.JFrame {
+public class IndDomesticOptions extends javax.swing.JFrame {
 
     private JTable table;
     private String id;
@@ -20,7 +20,7 @@ public class IndInterlineOptions extends javax.swing.JFrame {
     /**
      * Creates new form IndInterlineOptions
      */
-    public IndInterlineOptions(JTable t, String i) {
+    public IndDomesticOptions(JTable t, String i) {
         table = t;
         id = i;
         initComponents();
@@ -49,7 +49,7 @@ public class IndInterlineOptions extends javax.swing.JFrame {
         startDateBox = new javax.swing.JTextField();
         applyFilterButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        exportOptions = new javax.swing.JButton();
+        exportButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Options");
@@ -93,7 +93,7 @@ public class IndInterlineOptions extends javax.swing.JFrame {
             }
         });
 
-        exportOptions.setText("EXPORT REPORT AS PDF");
+        exportButton.setText("EXPORT REPORT AS PDF");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -138,7 +138,7 @@ public class IndInterlineOptions extends javax.swing.JFrame {
                                                 .addGap(22, 22, 22))))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(59, 59, 59)
-                                .addComponent(exportOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(exportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -178,7 +178,7 @@ public class IndInterlineOptions extends javax.swing.JFrame {
                                                 .addGap(34, 34, 34)
                                                 .addComponent(endDateBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(30, 30, 30)
-                                .addComponent(exportOptions)
+                                .addComponent(exportButton)
                                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -200,9 +200,9 @@ public class IndInterlineOptions extends javax.swing.JFrame {
      * Updates the exchange rate of a sale.
      */
     private void updateRateButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        r.searchSaleIndivInterline(saleIdBox.getText(), exchangeRateBox.getText(), table);
+        r.searchSaleIndivDomestic(saleIdBox.getText(), exchangeRateBox.getText(), table);
         r.ClearTable(table);
-        r.DisplayIndividualInterline(table, id);
+        r.DisplayIndividualDomestic(table, id);
     }
 
     /**
@@ -217,7 +217,7 @@ public class IndInterlineOptions extends javax.swing.JFrame {
      */
     private void applyFilterButtonActionPerformed(java.awt.event.ActionEvent evt) {
         r.ClearTable(table);
-        r.filterIndividInterlineByDate(table, id, startDateBox.getText(), endDateBox.getText());
+        r.filterIndividDomesticByDate(table, id, startDateBox.getText(), endDateBox.getText());
     }
 
     /**
@@ -237,20 +237,21 @@ public class IndInterlineOptions extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IndInterlineOptions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IndDomesticOptions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IndInterlineOptions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IndDomesticOptions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IndInterlineOptions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IndDomesticOptions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IndInterlineOptions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IndDomesticOptions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new IndInterlineOptions().setVisible(true);
+                //new IndDomesticOptions().setVisible(true);
             }
         });
     }
@@ -260,7 +261,7 @@ public class IndInterlineOptions extends javax.swing.JFrame {
     private javax.swing.JTextField endDateBox;
     private javax.swing.JTextField exchangeRateBox;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton exportOptions;
+    private javax.swing.JButton exportButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
