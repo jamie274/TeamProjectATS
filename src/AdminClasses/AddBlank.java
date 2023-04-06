@@ -6,6 +6,7 @@ package AdminClasses;
  */
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -33,6 +34,7 @@ public class AddBlank extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         addBlankButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         blankIDLabel = new javax.swing.JTextField();
@@ -54,6 +56,15 @@ public class AddBlank extends javax.swing.JFrame {
         addBlankButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBlankButtonActionPerformed(evt);
+            }
+        });
+
+        backButton.setText("Back");
+
+        backButton.addActionListener(new java.awt.event.ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                backButtonActionPerformed(e);
             }
         });
 
@@ -79,7 +90,10 @@ public class AddBlank extends javax.swing.JFrame {
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(addBlankButton)
-                                                .addGap(25, 25, 25))
+                                                .addGap(25,25,25))
+                                        .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                                                .addGap(300)
+                                                .addComponent(backButton))
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                                         .addComponent(jLabel6)
@@ -117,6 +131,11 @@ public class AddBlank extends javax.swing.JFrame {
                                         .addComponent(jLabel7))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(addBlankButton)
+                                .addGap(25,25,25)
+
+                                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addGap(400)
+                                        .addComponent(backButton))
                                 .addContainerGap(194, Short.MAX_VALUE))
         );
 
@@ -130,6 +149,8 @@ public class AddBlank extends javax.swing.JFrame {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+
 
         pack();
     }// </editor-fold>
@@ -145,6 +166,10 @@ public class AddBlank extends javax.swing.JFrame {
             r.addBlank(blankIDLabel.getText(), blankTypeLabel.getText(), blankDateLabel.getText());
             dispose();
         }
+    }
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt){
+        dispose();
     }
 
     /**
@@ -184,6 +209,8 @@ public class AddBlank extends javax.swing.JFrame {
 
     // Variables declaration - do not modify
     private javax.swing.JButton addBlankButton;
+
+    private javax.swing.JButton backButton;
     private javax.swing.JTextField blankIDLabel;
     private javax.swing.JTextField blankDateLabel;
     private javax.swing.JTextField blankTypeLabel;
