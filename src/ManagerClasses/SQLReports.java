@@ -57,7 +57,7 @@ public class SQLReports {
         try {
             // connecting to the database server
             Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
-                    "in2018g08_a", "R8pV1HmN");
+                    "in2018g08_d", "CQYeV2J6");
 
             Statement stm = con.createStatement();
             ResultSet result = stm.executeQuery("SELECT ID, FirstName, LastName FROM AirViaUser WHERE Role = 'Travel Advisor' AND ID = " + user);
@@ -84,7 +84,7 @@ public class SQLReports {
         try {
             // connecting to the database server
             Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
-                    "in2018g08_a", "R8pV1HmN");
+                    "in2018g08_d", "CQYeV2J6");
 
             Statement stm = con.createStatement();
             ResultSet result = stm.executeQuery("SELECT ID, FirstName, LastName FROM AirViaUser WHERE Role = 'Travel Advisor' AND ID = " + user);
@@ -111,7 +111,7 @@ public class SQLReports {
         try {
             // connecting to the database server
             Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
-                    "in2018g08_a", "R8pV1HmN");
+                    "in2018g08_d", "CQYeV2J6");
 
             Statement stm = con.createStatement();
 
@@ -176,7 +176,7 @@ public class SQLReports {
         try {
             // connecting to the database server
             Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
-                    "in2018g08_a", "R8pV1HmN");
+                    "in2018g08_d", "CQYeV2J6");
 
             Statement stm = con.createStatement();
 
@@ -241,7 +241,7 @@ public class SQLReports {
         try {
             // connecting to the database server
             Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
-                    "in2018g08_a", "R8pV1HmN");
+                    "in2018g08_d", "CQYeV2J6");
 
             Statement stm = con.createStatement();
 
@@ -306,7 +306,7 @@ public class SQLReports {
         try {
             // connecting to the database server
             Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
-                    "in2018g08_a", "R8pV1HmN");
+                    "in2018g08_d", "CQYeV2J6");
 
             Statement stm = con.createStatement();
 
@@ -371,7 +371,7 @@ public class SQLReports {
         try {
             // connecting to the database server
             Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
-                    "in2018g08_a", "R8pV1HmN");
+                    "in2018g08_d", "CQYeV2J6");
 
             Statement stm = con.createStatement();
 
@@ -440,7 +440,7 @@ public class SQLReports {
         try {
             // connecting to the database server
             Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
-                    "in2018g08_a", "R8pV1HmN");
+                    "in2018g08_d", "CQYeV2J6");
 
             Statement stm = con.createStatement();
 
@@ -509,7 +509,7 @@ public class SQLReports {
         try {
             // connecting to the database server
             Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
-                    "in2018g08_a", "R8pV1HmN");
+                    "in2018g08_d", "CQYeV2J6");
 
             Statement stm = con.createStatement();
 
@@ -578,7 +578,7 @@ public class SQLReports {
         try {
             // connecting to the database server
             Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
-                    "in2018g08_a", "R8pV1HmN");
+                    "in2018g08_d", "CQYeV2J6");
 
             Statement stm = con.createStatement();
 
