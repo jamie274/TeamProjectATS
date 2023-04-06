@@ -1,9 +1,4 @@
-import AdminClasses.AddBlank;
-import AdminClasses.AdministrationMenu;
 import LoginPages.*;
-
-import java.awt.*;
-import java.io.File;
 
 /**
  *
@@ -16,16 +11,7 @@ import java.io.File;
 public class Start {
     public static void main(String[] args) {
         // Starts the program at the welcome page
-        new WelcomePage().setVisible(true);
+        new StartPage().setVisible(true);
     }
-
-    public static void openManual() throws Exception {
-        try {
-            Desktop.getDesktop().open(new File("data/UserManual.pdf"));
-        } catch (Exception e){
-            System.out.println(e);
-        }
-    }
-
 }
 
