@@ -82,7 +82,7 @@ public class IndividualInterline extends javax.swing.JFrame {
             }
         });
 
-        printButton.setText("PRINT REPORT");
+        printButton.setText("OPTIONS");
         printButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 printButtonActionPerformed(evt);
@@ -168,7 +168,9 @@ public class IndividualInterline extends javax.swing.JFrame {
     }
 
     private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        JOptionPane.showMessageDialog(null, "Report has been sent to the printer");
+        //JOptionPane.showMessageDialog(null, "Report has been sent to the printer");
+
+        new IndInterlineOptions().setVisible(true);
     }
 
     /**

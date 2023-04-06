@@ -1,6 +1,10 @@
 package LoginPages;
 
 
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+
 /**
  *
  * @author Jamie-Lee
@@ -35,6 +39,7 @@ public class WelcomePage extends javax.swing.JFrame {
         adminLoginButton = new javax.swing.JButton();
         managerLoginButton = new javax.swing.JButton();
         advisorLoginButton = new javax.swing.JButton();
+        userManualButton = new javax.swing.JButton();
         adminText = new javax.swing.JLabel();
         managerText = new javax.swing.JLabel();
         advisorText = new javax.swing.JLabel();
@@ -96,6 +101,18 @@ public class WelcomePage extends javax.swing.JFrame {
         advisorText.setText("Travel Advisor");
 
         uniJetLogo.setIcon(new javax.swing.ImageIcon("data/uniJetLogo.png")); // NOI18N
+
+        userManualButton.setText("Open User Manual");
+
+        userManualButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    userManualButtonActionPerformed(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -165,6 +182,7 @@ public class WelcomePage extends javax.swing.JFrame {
                                                         .addComponent(managerIcon)
                                                         .addComponent(adminIcon))
                                                 .addGap(111, 111, 111))))
+
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -177,6 +195,8 @@ public class WelcomePage extends javax.swing.JFrame {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        userManualButton.setBounds(100,100,100,100);
 
         pack();
     }// </editor-fold>
@@ -208,6 +228,14 @@ public class WelcomePage extends javax.swing.JFrame {
     private void advisorLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {
         new AdvisorLogin().setVisible(true);
         dispose();
+    }
+
+    private void userManualButtonActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
+        try {
+            Desktop.getDesktop().open(new File("data/UserManual.pdf"));
+        } catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     /**
@@ -247,6 +275,7 @@ public class WelcomePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
+    private javax.swing.JButton userManualButton;
     private javax.swing.JLabel adminIcon;
     private javax.swing.JButton adminLoginButton;
     private javax.swing.JLabel adminText;
