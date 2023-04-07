@@ -18,12 +18,19 @@ import javax.swing.*;
 public class TurnoverReport extends javax.swing.JFrame {
 
     DisplayTablesHelper d = new DisplayTablesHelper();
+
+    ProduceReportsOnDocx produceDocx = new ProduceReportsOnDocx();
     JFrame frame;
+
+    private String id;
+    private String name;
 
     /**
      * Creates new form IndividualInterline
      */
-    public TurnoverReport(JFrame f) {
+    public TurnoverReport(JFrame f, String i, String n) {
+        id = i;
+        name = n;
         frame = f;
         frame.dispose();
         initComponents();
@@ -170,7 +177,9 @@ public class TurnoverReport extends javax.swing.JFrame {
     }
 
     private void exportButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        //JOptionPane.showMessageDialog(null, "Report has been sent to the printer");
+        produceDocx.ProduceReports(name, id, "Ticket TurnOver Report", "TicketTurnOverReport", d.turnoverresultset());
+        produceDocx.ConvertTOPDF("TicketTurnOverReport");
+        produceDocx.OpenReport("TicketTurnOverReport");
     }
 
     /**

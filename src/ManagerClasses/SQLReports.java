@@ -233,6 +233,31 @@ public class SQLReports {
         }
     }
 
+    public ResultSet ResultSetForGDR(){
+        ResultSet result = null;
+        try {
+            // connecting to the database server
+            Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
+                    "in2018g08_d", "CQYeV2J6");
+
+            Statement stm = con.createStatement();
+
+            String com = "CommisionRate";
+            String ex = "ExchangeRate";
+            String loc = "LocalCurrency";
+            String loTax = "LocalTax";
+            String oTax = "OtherTax";
+
+            result = stm.executeQuery("SELECT ID, BlankStockID, CustomerID, " + com + ", PaymentType, SaleType" +
+                    ", " + ex + ", " + loc + "," + loTax + "," + oTax + ", Date, Status FROM Sales WHERE SaleType = 'Domestic'");
+
+            return result;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return result;
+
+    }
     /**
      * Displays the global domestic report in a table.
      */

@@ -1,12 +1,15 @@
 package ManagerClasses;
 
 import org.apache.poi.xwpf.usermodel.*;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTSectPr;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
+
 
 import java.awt.*;
 import java.io.*;
+import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.Types;
 
 /**
  * Author: Abdul Rehman
@@ -14,14 +17,18 @@ import java.sql.ResultSetMetaData;
 
 public class ProduceReportsOnDocx {
 
-    public static void ProduceReports(String UserName, String UserID, String Title, String FileName, ResultSet ResultSet) {
+    public void ProduceReports(String UserName, String UserID, String Title, String FileName, ResultSet ResultSet) {
 
         try {
             XWPFDocument doc = new XWPFDocument();
 
-
-            // Set the page orientation to landscape
-            CTSectPr sectPr = doc.getDocument().getBody().addNewSectPr();
+            // Set the page layout to landscape
+            CTDocument1 ctDocument = doc.getDocument();
+            CTBody ctBody = ctDocument.getBody();
+            CTSectPr ctSectPr = ctBody.addNewSectPr();
+            CTPageSz ctPageSz = ctSectPr.addNewPgSz();
+            ctPageSz.setOrient(STPageOrientation.LANDSCAPE);
+            ctPageSz.setW(BigInteger.valueOf(842 * 20)); // Set the width to A4 landscape
 
             // create paragraph for the title
             XWPFParagraph para = doc.createParagraph();
@@ -42,18 +49,17 @@ public class ProduceReportsOnDocx {
             XWPFRun run2 = para2.createRun();
             run2.setText("Username: " + UserName + "     ID: " + UserID);
 
-            // create paragraph for the "Create Table using Result Set" section
-            XWPFParagraph para3 = doc.createParagraph();
-            // create run for the "Create Table using Result Set" section
-            XWPFRun run3 = para3.createRun();
-            run3.setText("Create Table using Result Set:");
-
-
             // create table
             if (ResultSet != null && ResultSet.getMetaData() != null) {
                 int numColumns = ResultSet.getMetaData().getColumnCount();
                 // create table with one row for header
                 XWPFTable table = doc.createTable();
+
+                // Set table alignment to center
+                CTTblPr tblPr = table.getCTTbl().addNewTblPr();
+                CTJc jc = tblPr.addNewJc();
+                jc.setVal(STJc.CENTER);
+
                 XWPFTableRow headerRow = table.getRow(0);
                 if (headerRow == null) {
                     headerRow = table.createRow();
@@ -66,6 +72,10 @@ public class ProduceReportsOnDocx {
                         headerCell = headerRow.createCell();
                     }
                     headerCell.setText(columnName);
+
+                    headerCell.setColor("0072c6");
+                    XWPFParagraph paragraph = headerCell.getParagraphs().get(0);
+                    paragraph.setAlignment(ParagraphAlignment.CENTER);
                 }
                 // create table rows
                 while (ResultSet.next()) {
@@ -80,9 +90,15 @@ public class ProduceReportsOnDocx {
                             cell = row.createCell();
                         }
                         cell.setText(value);
+
+                        cell.setColor("d9edf7");
+
+                        XWPFParagraph paragraph = cell.getParagraphs().get(0);
+                        paragraph.setAlignment(ParagraphAlignment.CENTER);
                     }
                 }
             }
+
 
 
             // write the document to file
@@ -90,13 +106,52 @@ public class ProduceReportsOnDocx {
             doc.write(out);
             out.close();
             System.out.println("Done");
-        }
-        catch(Exception e){
+        } catch(Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void ConvertTOPDF(String FileName){
+    private double getColumnWidth(int columnType, String value) {
+        double width = 0.0;
+
+        switch (columnType) {
+            case Types.INTEGER:
+            case Types.BIGINT:
+                width = 10.0;
+                break;
+
+            case Types.FLOAT:
+            case Types.DOUBLE:
+                width = 15.0;
+                break;
+
+            case Types.DATE:
+            case Types.TIME:
+            case Types.TIMESTAMP:
+                width = 20.0;
+                break;
+
+            default:
+                if (value.length() <= 20) {
+                    width = 20.0;
+                } else if (value.length() <= 50) {
+                    width = 30.0;
+                } else if (value.length() <= 100) {
+                    width = 40.0;
+                } else {
+                    width = 50.0;
+                }
+                break;
+        }
+
+        return width;
+    }
+
+
+
+
+
+    public void ConvertTOPDF(String FileName){
         try {
             com.aspose.words.Document doc = new com.aspose.words.Document("reports/" + FileName + ".docx");
             doc.save("reports/" + FileName + ".pdf");
@@ -109,7 +164,7 @@ public class ProduceReportsOnDocx {
         }
     }
 
-    public static void OpenReport(String FileName){
+    public void OpenReport(String FileName){
         try {
             Desktop.getDesktop().open(new File("reports/" + FileName + ".pdf"));
         }

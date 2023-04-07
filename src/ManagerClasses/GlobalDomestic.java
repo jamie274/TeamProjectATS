@@ -6,6 +6,7 @@ package ManagerClasses;
  */
 
 import javax.swing.*;
+import java.sql.ResultSet;
 
 /**
  *
@@ -18,11 +19,19 @@ public class GlobalDomestic extends javax.swing.JFrame {
 
     SQLReports r = new SQLReports();
     JFrame frame;
+    private ResultSet resultSet;
+    private String id;
+
+    private String name;
 
     /**
      * Creates new form IndividualInterline
      */
-    public GlobalDomestic(JFrame f) {
+    public GlobalDomestic(JFrame f, ResultSet rs, String i, String n) {
+
+        resultSet = rs;
+        id = i;
+        name = n;
         frame = f;
         frame.dispose();
         initComponents();
@@ -172,7 +181,7 @@ public class GlobalDomestic extends javax.swing.JFrame {
      * Opens the options menu.
      */
     private void optionsButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new GlobalDomesticOptions(reportTable).setVisible(true);
+        new GlobalDomesticOptions(reportTable, resultSet, id, name).setVisible(true);
     }
 
     /**

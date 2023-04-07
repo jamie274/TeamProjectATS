@@ -5,6 +5,8 @@ package ManagerClasses;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import java.sql.ResultSet;
+
 /**
  *
  * @author Jamie-Lee
@@ -14,12 +16,19 @@ package ManagerClasses;
  */
 public class ReportsMenu extends javax.swing.JFrame {
 
+    private String id;
+    private String name;
+
+    SQLReports r = new SQLReports();
     /**
      * Creates new form ReportsMenu
      */
-    public ReportsMenu() {
+    public ReportsMenu(String i, String n) {
+        id = i;
+        name = n;
         initComponents();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -171,14 +180,15 @@ public class ReportsMenu extends javax.swing.JFrame {
      * Generates the global domestic sales report.
      */
     private void globalDomesticButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new GlobalDomestic(this).setVisible(true);
+        ResultSet rs = r.ResultSetForGDR();
+        new GlobalDomestic(this, rs, id, name).setVisible(true);
     }
 
     /**
      * Generates the ticket stock turnover report.
      */
     private void ticketTurnoverButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new TurnoverReport(this).setVisible(true);
+        new TurnoverReport(this, id , name).setVisible(true);
     }
 
     /**
@@ -211,7 +221,7 @@ public class ReportsMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ReportsMenu().setVisible(true);
+                //new ReportsMenu().setVisible(true);
             }
         });
     }

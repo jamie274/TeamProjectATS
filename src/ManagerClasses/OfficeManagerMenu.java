@@ -537,7 +537,7 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
      * they wish to generate.
      */
     private void reportsButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new ReportsMenu().setVisible(true);
+        new ReportsMenu(id,name).setVisible(true);
     }
 
     /**

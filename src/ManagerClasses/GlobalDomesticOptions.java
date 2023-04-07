@@ -6,6 +6,7 @@ package ManagerClasses;
  */
 
 import javax.swing.*;
+import java.sql.ResultSet;
 
 /**
  *
@@ -13,13 +14,22 @@ import javax.swing.*;
  */
 public class GlobalDomesticOptions extends javax.swing.JFrame {
 
+    private ResultSet resultSet;
+    private String id;
+
+    private String name;
     private JTable table;
     private SQLReports r = new SQLReports();
+
+    ProduceReportsOnDocx pd = new ProduceReportsOnDocx();
 
     /**
      * Creates new form IndInterlineOptions
      */
-    public GlobalDomesticOptions(JTable t) {
+    public GlobalDomesticOptions(JTable t, ResultSet rs, String i, String n) {
+        resultSet = rs;
+        id = i;
+        name = n;
         table = t;
         initComponents();
     }
@@ -92,6 +102,11 @@ public class GlobalDomesticOptions extends javax.swing.JFrame {
         });
 
         exportButton.setText("EXPORT REPORT AS PDF");
+        exportButton.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -203,6 +218,11 @@ public class GlobalDomesticOptions extends javax.swing.JFrame {
         r.DisplayGlobalDomestic(table);
     }
 
+    private void exportButtonActionPerformed(java.awt.event.ActionEvent evt){
+        pd.ProduceReports(name, id, "Global Domestic Report", "GDR", resultSet);
+        pd.ConvertTOPDF("GDR");
+        pd.OpenReport("GDR");
+    }
     /**
      * goes back when BACK is pressed.
      */

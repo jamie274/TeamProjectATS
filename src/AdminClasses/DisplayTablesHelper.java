@@ -23,6 +23,25 @@ public class DisplayTablesHelper {
     /**
      * This method will display the blank table
      */
+
+    public ResultSet turnoverresultset(){
+        ResultSet result = null;
+        try {
+            // connecting to the database server
+            Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
+                    "in2018g08_d", "CQYeV2J6");
+
+            String d = "Date";
+
+            Statement stm = con.createStatement();
+            result = stm.executeQuery("SELECT AdvisorID, ID, BlankType, Status," + d + "  FROM BlankStock");
+            return result;
+        }
+        catch(SQLException s) {
+            s.printStackTrace();
+        }
+        return result;
+    }
     public void DisplayBlankTable(JTable blankTable){
 
         try {
