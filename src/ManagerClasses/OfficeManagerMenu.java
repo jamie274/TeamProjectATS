@@ -6,6 +6,8 @@ package ManagerClasses;
  */
 
 import AdminClasses.DisplayTablesHelper;
+import LoginPages.ManagerLogin;
+import LoginPages.StartPage;
 import LoginPages.WelcomePage;
 
 import javax.swing.*;
@@ -557,6 +559,7 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
      */
     private void addBackButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
+        new ManagerLogin().setVisible(true);
     }
 
     /**
@@ -564,7 +567,7 @@ public class OfficeManagerMenu extends javax.swing.JFrame {
      */
     private void addLogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-        new WelcomePage().setVisible(true);
+        new StartPage().setVisible(true);
     }
 
     /**

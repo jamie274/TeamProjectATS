@@ -1,5 +1,7 @@
 package AdminClasses;
 
+import LoginPages.AdminLogin;
+import LoginPages.StartPage;
 import LoginPages.WelcomePage;
 
 import javax.swing.*;
@@ -529,6 +531,7 @@ public class AdministrationMenu extends javax.swing.JFrame {
      */
     private void addBackButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
+        new AdminLogin().setVisible(true);
     }
 
     /**
@@ -536,7 +539,7 @@ public class AdministrationMenu extends javax.swing.JFrame {
      */
     private void addLogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-        new WelcomePage().setVisible(true);
+        new StartPage().setVisible(true);
     }
 
     /**

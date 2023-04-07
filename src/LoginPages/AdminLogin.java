@@ -8,6 +8,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Random;
 
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+
 /**
  *
  * @author Jamie-Lee
@@ -21,9 +26,11 @@ public class AdminLogin extends javax.swing.JFrame {
     /**
      * Creates new form AdminLogin
      */
-    Random random;
-    int secretCode;
-    TwoFactorAuthentication twoFactorAuthentication;
+
+    private Random random;
+    private int secretCode;
+    private TwoFactorAuthentication twoFactorAuthentication;
+
     public AdminLogin() {
         initComponents();
     }
@@ -43,25 +50,28 @@ public class AdminLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         usernameBox = new javax.swing.JTextField();
         passwordBox = new javax.swing.JPasswordField();
-        sixDigitBox = new javax.swing.JTextField();
-        sendCode = new javax.swing.JButton();
+        sixDigitBox = new javax.swing.JPasswordField();
         loginButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        codeLabel = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
+        sendCode = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Password");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("System Administrator login");
-        setPreferredSize(new java.awt.Dimension(1200, 600));
+        setPreferredSize(new java.awt.Dimension(900, 357));
         setResizable(false);
         pack();
         setLocationRelativeTo(null);
 
         myPanel.setBackground(new java.awt.Color(153, 204, 255));
-        myPanel.setPreferredSize(new java.awt.Dimension(1200, 600));
+        myPanel.setPreferredSize(new java.awt.Dimension(900, 357));
 
         jLabel6.setIcon(new javax.swing.ImageIcon("data/AirViaLogo.png")); // NOI18N
         jLabel6.setText("jLabel6");
@@ -81,24 +91,7 @@ public class AdminLogin extends javax.swing.JFrame {
             }
         });
 
-        sendCode.setText("Send Code");
-        sendCode.addActionListener(new java.awt.event.ActionListener(){
-            public void actionPerformed(java.awt.event.ActionEvent evt){
-                try {
-                    sendCodeButtonactionPerformed(evt);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                } catch (MessagingException e) {
-                    throw new RuntimeException(e);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-
-
         loginButton.setText("LOGIN");
-
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
@@ -110,70 +103,122 @@ public class AdminLogin extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Username (ID)");
+        jLabel2.setText("Staff ID");
 
-        codeLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        codeLabel.setText("6 digit code");
-        codeLabel.setVisible(true);
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setText("6 digit code");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Password");
+
+        jLabel7.setIcon(new javax.swing.ImageIcon("data/admin.png")); // NOI18N
+
+        backButton.setText("BACK");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
+        sendCode.setText("SEND CODE");
+        sendCode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    sendCodeActionPerformed(evt);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (MessagingException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        jLabel8.setIcon(new javax.swing.ImageIcon("data/uniJetLogo.png")); // NOI18N
 
         javax.swing.GroupLayout myPanelLayout = new javax.swing.GroupLayout(myPanel);
         myPanel.setLayout(myPanelLayout);
         myPanelLayout.setHorizontalGroup(
                 myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(myPanelLayout.createSequentialGroup()
-                                .addGap(21, 21, 21)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(backButton)
+                                .addGap(34, 34, 34))
+                        .addGroup(myPanelLayout.createSequentialGroup()
+                                .addGap(43, 43, 43)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(242, 242, 242)
                                 .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, myPanelLayout.createSequentialGroup()
+                                        .addGroup(myPanelLayout.createSequentialGroup()
+                                                .addGap(84, 84, 84)
+                                                .addComponent(jLabel1))
+                                        .addGroup(myPanelLayout.createSequentialGroup()
+                                                .addGap(75, 75, 75)
                                                 .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addGroup(myPanelLayout.createSequentialGroup()
-                                                                .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                        .addComponent(jLabel2)
-                                                                        .addComponent(jLabel5))
-                                                                .addGap(18, 18, 18))
-                                                        .addGroup(myPanelLayout.createSequentialGroup()
-                                                                .addComponent(codeLabel)
-                                                                .addGap(9, 9, 9)))
+                                                        .addComponent(jLabel3)
+                                                        .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addComponent(jLabel2)
+                                                                .addComponent(jLabel5)))
                                                 .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                .addComponent(passwordBox)
-                                                                .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addComponent(sendCode,javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(sixDigitBox, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addContainerGap(453, Short.MAX_VALUE))
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, myPanelLayout.createSequentialGroup()
+                                                                .addGap(18, 18, 18)
+                                                                .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                                                .addComponent(passwordBox)
+                                                                                .addGroup(myPanelLayout.createSequentialGroup()
+                                                                                        .addComponent(sixDigitBox, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                        .addComponent(sendCode)))))
+                                                        .addGroup(myPanelLayout.createSequentialGroup()
+                                                                .addGap(28, 28, 28)
+                                                                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(myPanelLayout.createSequentialGroup()
+                                                .addGap(86, 86, 86)
+                                                .addComponent(jLabel7)
+                                                .addContainerGap(53, Short.MAX_VALUE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, myPanelLayout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel8)
+                                                .addGap(64, 64, 64))))
         );
         myPanelLayout.setVerticalGroup(
                 myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(myPanelLayout.createSequentialGroup()
-                                .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(myPanelLayout.createSequentialGroup()
-                                                .addGap(17, 17, 17)
-                                                .addComponent(jLabel6))
-                                        .addGroup(myPanelLayout.createSequentialGroup()
-                                                .addGap(172, 172, 172)
-                                                .addComponent(jLabel1)
-                                                .addGap(26, 26, 26)
-                                                .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel2))
+                                .addGap(18, 18, 18)
+                                .addComponent(backButton)
+                                .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, myPanelLayout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(passwordBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel5))
-                                                .addGap(17, 17, 17)
-                                                .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(sixDigitBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(codeLabel))
-                                                .addGap(21, 21, 21)
-                                                .addComponent(sendCode)
-                                                .addComponent(loginButton)))
-                                .addContainerGap(220, Short.MAX_VALUE))
+                                                .addComponent(jLabel6)
+                                                .addContainerGap())
+                                        .addGroup(myPanelLayout.createSequentialGroup()
+                                                .addGap(19, 19, 19)
+                                                .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addGroup(myPanelLayout.createSequentialGroup()
+                                                                .addComponent(jLabel7)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(jLabel8)
+                                                                .addGap(70, 70, 70))
+                                                        .addGroup(myPanelLayout.createSequentialGroup()
+                                                                .addComponent(jLabel1)
+                                                                .addGap(18, 18, 18)
+                                                                .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                        .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(jLabel2))
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                        .addComponent(passwordBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(jLabel5))
+                                                                .addGap(9, 9, 9)
+                                                                .addGroup(myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                        .addComponent(sixDigitBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(jLabel3)
+                                                                        .addComponent(sendCode))
+                                                                .addGap(20, 20, 20)
+                                                                .addComponent(loginButton)
+                                                                .addGap(104, 104, 104))))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -184,7 +229,7 @@ public class AdminLogin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(myPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(myPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -210,11 +255,11 @@ public class AdminLogin extends javax.swing.JFrame {
     /**
      * method used to send the randomized code to the specified email when SEND CODE is pressed.
      */
-    private void sendCodeButtonactionPerformed(java.awt.event.ActionEvent evt) throws SQLException, MessagingException, IOException {
-
+    private void sendCodeActionPerformed(java.awt.event.ActionEvent evt) throws SQLException, MessagingException, IOException {
         //Checking if the username and the password is filled in.
         if(usernameBox.getText().length() == 0 || passwordBox.getPassword().length == 0){
-            int option = JOptionPane.showOptionDialog(null, "Please Enter Credentials", "Login", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new String[]{"OK"}, "OK");
+            int option = JOptionPane.showOptionDialog(null, "Please Enter Credentials", "Login",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new String[]{"OK"}, "OK");
 
         }
         else {
@@ -271,6 +316,11 @@ public class AdminLogin extends javax.swing.JFrame {
         }
     }
 
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        dispose();
+        new StartPage().setVisible(true);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -307,18 +357,20 @@ public class AdminLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
+    private javax.swing.JButton backButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel codeLabel;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JButton loginButton;
-
-    private javax.swing.JButton sendCode;
     private javax.swing.JPanel myPanel;
     private javax.swing.JPasswordField passwordBox;
-    private javax.swing.JTextField sixDigitBox;
+    private javax.swing.JButton sendCode;
+    private javax.swing.JPasswordField sixDigitBox;
     private javax.swing.JTextField usernameBox;
     // End of variables declaration
 }

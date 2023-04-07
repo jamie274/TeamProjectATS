@@ -5,6 +5,8 @@ package AdvisorClasses;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import LoginPages.AdvisorLogin;
+import LoginPages.StartPage;
 import LoginPages.WelcomePage;
 import ManagerClasses.IndividualDomestic;
 import ManagerClasses.IndividualInterline;
@@ -534,6 +536,7 @@ public class AdvisorMenu extends javax.swing.JFrame {
      */
     private void addBackButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
+        new AdvisorLogin().setVisible(true);
     }
 
     /**
@@ -541,7 +544,7 @@ public class AdvisorMenu extends javax.swing.JFrame {
      */
     private void addLogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-        new WelcomePage().setVisible(true);
+        new StartPage().setVisible(true);
     }
 
     /**
