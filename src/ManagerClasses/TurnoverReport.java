@@ -178,8 +178,6 @@ public class TurnoverReport extends javax.swing.JFrame {
 
     private void exportButtonActionPerformed(java.awt.event.ActionEvent evt) {
         produceDocx.ProduceReports(name, id, "Ticket TurnOver Report", "TicketTurnOverReport", d.turnoverresultset());
-        produceDocx.ConvertTOPDF("TicketTurnOverReport");
-        produceDocx.OpenReport("TicketTurnOverReport");
     }
 
     /**

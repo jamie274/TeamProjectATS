@@ -232,7 +232,8 @@ public class StartPage extends javax.swing.JFrame {
     }
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        dispose();
+        System.exit(0);
+
     }
 
     private void userManualButtonActionPerformed(java.awt.event.ActionEvent evt) throws Exception{

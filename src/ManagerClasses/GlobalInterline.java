@@ -6,6 +6,7 @@ package ManagerClasses;
  */
 
 import javax.swing.*;
+import java.sql.ResultSet;
 
 /**
  *
@@ -19,10 +20,17 @@ public class GlobalInterline extends javax.swing.JFrame {
     SQLReports r = new SQLReports();
     JFrame frame;
 
+    private ResultSet resultSet;
+    private String id;
+    private String name;
+
     /**
      * Creates new form IndividualInterline
      */
-    public GlobalInterline(JFrame f) {
+    public GlobalInterline(JFrame f, ResultSet r, String i, String n) {
+        resultSet = r;
+        id = i;
+        name = n;
         frame = f;
         frame.dispose();
         initComponents();
@@ -172,7 +180,7 @@ public class GlobalInterline extends javax.swing.JFrame {
      * Opens the options menu.
      */
     private void optionsButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new GlobalInterlineOptions(reportTable).setVisible(true);
+        new GlobalInterlineOptions(reportTable, resultSet, id, name).setVisible(true);
     }
 
     /**

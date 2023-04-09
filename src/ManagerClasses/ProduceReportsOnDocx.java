@@ -106,6 +106,9 @@ public class ProduceReportsOnDocx {
             doc.write(out);
             out.close();
             System.out.println("Done");
+
+            ConvertTOPDF(FileName);
+            OpenReport(FileName);
         } catch(Exception e) {
             e.printStackTrace();
         }

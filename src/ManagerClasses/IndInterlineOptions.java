@@ -6,6 +6,7 @@ package ManagerClasses;
  */
 
 import javax.swing.*;
+import java.sql.ResultSet;
 
 /**
  *
@@ -17,6 +18,7 @@ public class IndInterlineOptions extends javax.swing.JFrame {
     private String id;
     private SQLReports r = new SQLReports();
 
+    private ProduceReportsOnDocx pd = new ProduceReportsOnDocx();
     /**
      * Creates new form IndInterlineOptions
      */
@@ -94,6 +96,11 @@ public class IndInterlineOptions extends javax.swing.JFrame {
         });
 
         exportOptions.setText("EXPORT REPORT AS PDF");
+        exportOptions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportOptionsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -199,6 +206,12 @@ public class IndInterlineOptions extends javax.swing.JFrame {
     /**
      * Updates the exchange rate of a sale.
      */
+
+    private void exportOptionsActionPerformed(java.awt.event.ActionEvent evt) {
+        ResultSet rs = r.ResultSetForIIR(r.getIndividualInterlineAdvisor());
+        //pd.ProduceReports();
+
+    }
     private void updateRateButtonActionPerformed(java.awt.event.ActionEvent evt) {
         r.searchSaleIndivInterline(saleIdBox.getText(), exchangeRateBox.getText(), table);
         r.ClearTable(table);

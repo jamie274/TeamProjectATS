@@ -6,6 +6,7 @@ package ManagerClasses;
  */
 
 import javax.swing.*;
+import java.sql.ResultSet;
 
 /**
  *
@@ -16,6 +17,8 @@ public class IndDomesticOptions extends javax.swing.JFrame {
     private JTable table;
     private String id;
     private SQLReports r = new SQLReports();
+
+    private ProduceReportsOnDocx pd = new ProduceReportsOnDocx();
 
     /**
      * Creates new form IndInterlineOptions
@@ -94,6 +97,11 @@ public class IndDomesticOptions extends javax.swing.JFrame {
         });
 
         exportButton.setText("EXPORT REPORT AS PDF");
+        exportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -203,6 +211,10 @@ public class IndDomesticOptions extends javax.swing.JFrame {
         r.searchSaleIndivDomestic(saleIdBox.getText(), exchangeRateBox.getText(), table);
         r.ClearTable(table);
         r.DisplayIndividualDomestic(table, id);
+    }
+
+    private void exportButtonActionPerformed(java.awt.event.ActionEvent evt){
+        ResultSet rs = r.ResultSetForIDR(r.getIndividualDomesticAdvisor());
     }
 
     /**

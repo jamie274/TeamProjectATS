@@ -220,8 +220,7 @@ public class GlobalDomesticOptions extends javax.swing.JFrame {
 
     private void exportButtonActionPerformed(java.awt.event.ActionEvent evt){
         pd.ProduceReports(name, id, "Global Domestic Report", "GDR", resultSet);
-        pd.ConvertTOPDF("GDR");
-        pd.OpenReport("GDR");
+
     }
     /**
      * goes back when BACK is pressed.

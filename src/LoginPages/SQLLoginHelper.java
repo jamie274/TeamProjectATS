@@ -31,7 +31,7 @@ public class SQLLoginHelper {
         try {
             // connecting to the database server
             Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
-                    "in2018g08_d", "CQYeV2J6");
+                    "in2018g08_a", "R8pV1HmN");
 
             Encryptor e = new Encryptor();
             pwd = e.encryptPassword(pwd);

@@ -173,7 +173,8 @@ public class ReportsMenu extends javax.swing.JFrame {
      * Generates the global interline sales report.
      */
     private void globalInterlineButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        new GlobalInterline(this).setVisible(true);
+        ResultSet rs = r.ResultSetForGIR();
+        new GlobalInterline(this,rs, id, name).setVisible(true);
     }
 
     /**
@@ -236,5 +237,15 @@ public class ReportsMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration
+
+
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
 }
 

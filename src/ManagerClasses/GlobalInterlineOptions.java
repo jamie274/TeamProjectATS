@@ -6,6 +6,7 @@ package ManagerClasses;
  */
 
 import javax.swing.*;
+import java.sql.ResultSet;
 
 /**
  *
@@ -16,10 +17,18 @@ public class GlobalInterlineOptions extends javax.swing.JFrame {
     private JTable table;
     private SQLReports r = new SQLReports();
 
+    private ProduceReportsOnDocx pd = new ProduceReportsOnDocx();
+    private ResultSet resultSet;
+    private String id;
+    private String name;
+
     /**
      * Creates new form IndInterlineOptions
      */
-    public GlobalInterlineOptions(JTable t) {
+    public GlobalInterlineOptions(JTable t, ResultSet r, String i, String n) {
+        resultSet = r;
+        id = i;
+        name = n;
         table = t;
         initComponents();
     }
@@ -92,6 +101,11 @@ public class GlobalInterlineOptions extends javax.swing.JFrame {
         });
 
         exportButton.setText("EXPORT REPORT AS PDF");
+        exportButton.addActionListener (new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -216,6 +230,10 @@ public class GlobalInterlineOptions extends javax.swing.JFrame {
     private void applyFilterButtonActionPerformed(java.awt.event.ActionEvent evt) {
         r.ClearTable(table);
         r.filterGlobalInterlineByDate(table, startDateBox.getText(), endDateBox.getText());
+    }
+
+    private void exportButtonActionPerformed(java.awt.event.ActionEvent evt){
+        pd.ProduceReports(name,id,"Global Interline Report", "GIR", resultSet);
     }
 
     /**
