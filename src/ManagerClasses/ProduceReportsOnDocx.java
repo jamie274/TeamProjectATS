@@ -10,6 +10,8 @@ import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Types;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Author: Abdul Rehman
@@ -40,14 +42,25 @@ public class ProduceReportsOnDocx {
             run.setFontSize(44);
             run.setText(Title);
 
-            // create paragraph for the user name and ID
+            // create paragraph for the user name, ID, and date
             XWPFParagraph para2 = doc.createParagraph();
             para2.setAlignment(ParagraphAlignment.CENTER);
             para2.setVerticalAlignment(TextAlignment.CENTER);
             para2.setSpacingAfter(200);
+
             // create run for the user name and ID
             XWPFRun run2 = para2.createRun();
             run2.setText("Username: " + UserName + "     ID: " + UserID);
+
+            // create run for the current date
+            XWPFRun run3 = para2.createRun();
+            run3.setText("     Date: ");
+            
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String currentDate = dateFormat.format(new Date());
+            XWPFRun run4 = para2.createRun();
+            run4.setText(currentDate);
 
             // create table
             if (ResultSet != null && ResultSet.getMetaData() != null) {
