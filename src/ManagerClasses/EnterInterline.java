@@ -5,6 +5,12 @@ package ManagerClasses;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Properties;
+
 /**
  *
  * @author Jamie-Lee
@@ -122,6 +128,29 @@ public class EnterInterline extends javax.swing.JFrame {
      * generates the individual report when GENERATE is pressed and the id is passed through as a parameter.
      */
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        /**
+         * store the id in the properties files to be used at the export report stage
+        */
+        try {
+            Properties prop = new Properties();
+
+            // Load the existing properties from the file, if any
+            InputStream input = new FileInputStream("advisorC.properties");
+            prop.load(input);
+            input.close();
+
+            // Set the new values for the properties
+            prop.setProperty("advisor.id", advisorIDBox.getText());
+
+
+            // Save the properties to the file
+            OutputStream output = new FileOutputStream("advisorC.properties");
+            prop.store(output, null);
+            output.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
         SQLReports r = new SQLReports();
         r.searchAdvisorInterline(advisorIDBox.getText(), this);
     }

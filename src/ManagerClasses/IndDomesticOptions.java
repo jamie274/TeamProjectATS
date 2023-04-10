@@ -6,7 +6,9 @@ package ManagerClasses;
  */
 
 import javax.swing.*;
+import java.io.FileInputStream;
 import java.sql.ResultSet;
+import java.util.Properties;
 
 /**
  *
@@ -214,7 +216,37 @@ public class IndDomesticOptions extends javax.swing.JFrame {
     }
 
     private void exportButtonActionPerformed(java.awt.event.ActionEvent evt){
-        ResultSet rs = r.ResultSetForIDR(r.getIndividualDomesticAdvisor());
+        String name = null;
+        String ID = null;
+        String advisorID = null;
+        try{
+            // Load mail properties from config file
+            Properties props = new Properties();
+            FileInputStream fis = new FileInputStream("userC.properties");
+            props.load(fis);
+
+            // Get mail credentials from config file
+            ID = props.getProperty("user.id");
+            name = props.getProperty("user.name");
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        try{
+            // Load mail properties from config file
+            Properties props = new Properties();
+            FileInputStream fis = new FileInputStream("advisorC.properties");
+            props.load(fis);
+
+            // Get mail credentials from config file
+            advisorID = props.getProperty("advisor.id");
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        ResultSet rs = r.ResultSetForIDR(advisorID);
+        pd.ProduceReports(name,ID,"Individual Domestic Report", "IDR", rs);
     }
 
     /**
