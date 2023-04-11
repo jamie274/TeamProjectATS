@@ -51,7 +51,7 @@ public class RegisterStaff extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         roleLabel = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Register Staff ");
         setPreferredSize(new java.awt.Dimension(500, 500));
         setResizable(false);

@@ -45,7 +45,7 @@ public class ManagerLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         usernameBox = new javax.swing.JTextField();
         passwordBox = new javax.swing.JPasswordField();
-        sixDigitBox = new javax.swing.JPasswordField();
+        sixDigitBox = new javax.swing.JTextField();
         loginButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -370,7 +370,7 @@ public class ManagerLogin extends javax.swing.JFrame {
     private javax.swing.JPanel myPanel;
     private javax.swing.JPasswordField passwordBox;
     private javax.swing.JButton sendCode;
-    private javax.swing.JPasswordField sixDigitBox;
+    private javax.swing.JTextField sixDigitBox;
     private javax.swing.JTextField usernameBox;
     // End of variables declaration
 }

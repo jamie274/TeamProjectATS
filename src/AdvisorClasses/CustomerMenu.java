@@ -52,7 +52,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         deleteButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Customer Menu");
         setPreferredSize(new java.awt.Dimension(900, 600));
         setResizable(false);

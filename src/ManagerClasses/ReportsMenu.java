@@ -48,7 +48,7 @@ public class ReportsMenu extends javax.swing.JFrame {
         individualInterlineButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Reports Menu");
         setPreferredSize(new java.awt.Dimension(500, 500));
         setResizable(false);

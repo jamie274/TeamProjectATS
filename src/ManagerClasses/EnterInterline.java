@@ -41,7 +41,7 @@ public class EnterInterline extends javax.swing.JFrame {
         advisorIDBox = new javax.swing.JTextField();
         generateButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Generate Individual Interline Report");
         setPreferredSize(new java.awt.Dimension(400, 300));
         setResizable(false);

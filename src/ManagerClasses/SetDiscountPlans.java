@@ -54,7 +54,7 @@ public class SetDiscountPlans extends javax.swing.JFrame {
         percentageBox = new javax.swing.JTextField();
         setDiscountButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Manage Discount Plans");
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);

@@ -73,7 +73,7 @@ public class RecordTicketSale extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel16.setText("Enter Date (year-month-day)");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Record Ticket Sale");
         setPreferredSize(new java.awt.Dimension(500, 500));
         setResizable(false);

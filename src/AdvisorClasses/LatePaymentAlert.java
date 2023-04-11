@@ -31,7 +31,7 @@ public class LatePaymentAlert extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Late Payment Alert");
         setPreferredSize(new java.awt.Dimension(300, 200));
         setResizable(false);

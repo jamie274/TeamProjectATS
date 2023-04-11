@@ -50,7 +50,7 @@ public class RegisterCustomer extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         idBox = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Register Customer");
         setPreferredSize(new java.awt.Dimension(500, 500));
         setResizable(false);

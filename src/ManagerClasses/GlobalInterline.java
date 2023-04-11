@@ -56,7 +56,7 @@ public class GlobalInterline extends javax.swing.JFrame {
         refreshBlanksButton = new javax.swing.JButton();
         optionsButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Global Interline Report");
         setPreferredSize(new java.awt.Dimension(1400, 600));
         setResizable(false);

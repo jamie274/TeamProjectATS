@@ -55,7 +55,7 @@ public class IndInterlineOptions extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         exportOptions = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Options");
         setPreferredSize(new java.awt.Dimension(400, 320));
         setResizable(false);

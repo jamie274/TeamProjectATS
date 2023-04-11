@@ -56,7 +56,7 @@ public class ModifyCommission extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         commissionTable = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Modify Commission");
         setPreferredSize(new java.awt.Dimension(900, 600));
         setResizable(false);
