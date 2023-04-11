@@ -41,6 +41,7 @@ public class SQLLoginHelper {
             ResultSet result = stm.executeQuery("SELECT * FROM AirViaUser WHERE Role = " + "'" + role + "'" + "AND ID = "
                     + id + " AND Password = " + "'" + pwd + "'");
 
+
             if (result.next()) {
                 b = true; // if the id AND password match, then the login is successful
                 // fetching the name and ID of the found staff member so that it can be displayed in their dashboard
