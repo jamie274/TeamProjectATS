@@ -13,6 +13,11 @@ import ManagerClasses.IndividualInterline;
 
 import javax.swing.*;
 import javax.swing.table.TableColumn;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Properties;
 
 /**
  *
@@ -40,6 +45,25 @@ public class AdvisorMenu extends javax.swing.JFrame {
     public AdvisorMenu(String i, String n) {
         id = i;
         name = n;
+        try {
+            Properties prop = new Properties();
+
+            // Load the existing properties from the file, if any
+            InputStream input = new FileInputStream("userC.properties");
+            prop.load(input);
+            input.close();
+
+            // Set the new values for the properties
+            prop.setProperty("user.id", id);
+            prop.setProperty("user.name", name);
+
+            // Save the properties to the file
+            OutputStream output = new FileOutputStream("userC.properties");
+            prop.store(output, null);
+            output.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         initComponents();
     }
 

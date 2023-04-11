@@ -12,8 +12,8 @@ import ManagerClasses.OfficeManagerMenu;
 public class Start {
     public static void main(String[] args) {
         // Starts the program at the welcome page
-        //new StartPage().setVisible(true);
-        new OfficeManagerMenu("200081454", "Tharshika").setVisible(true);
+        new StartPage().setVisible(true);
+
     }
 }
 
