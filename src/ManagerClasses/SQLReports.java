@@ -1,12 +1,17 @@
 package ManagerClasses;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.io.FileInputStream;
 import java.sql.*;
+import java.util.Properties;
 
 /**
  *
- * @author Jamie-Lee
+ * @author Jamie-Lee & Abdul Rehman
  *
  * This class is used to fetch data from the MySQL regarding sales and display them in the necessary reports forms and tables.
  */
@@ -33,6 +38,11 @@ public class SQLReports {
                                  String advisorID, String paymentDetails, String saleType,
                            String country, String localTax, String otherTax, String status, String exchangeRate,
                            String commissionRate, String localCurr, String date) {
+
+        String email = null;
+        String lateMessage = """
+                You have 30 Days to pay the Outstanding Amount.
+                """;
         try {
             // connecting to the database server
             Connection con = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
@@ -56,7 +66,109 @@ public class SQLReports {
             JOptionPane.showMessageDialog(null, "Ticket sale has been successfully recorded");
             // close the connection to db
             con.close();
-        } catch (Exception e) {
+
+            // connecting to the database server
+            Connection connection = DriverManager.getConnection("jdbc:mysql://smcse-stuproj00.city.ac.uk:3306/in2018g08",
+                    "in2018g08_a", "R8pV1HmN");
+
+            Statement satement = connection.createStatement();
+            ResultSet rs = satement.executeQuery("SELECT Email FROM Customer WHERE ID = " +customerID);
+
+            while(rs.next()) {
+                email = rs.getString("Email");
+            }
+
+            connection.close();
+
+            // Load mail properties from config file
+            Properties props = new Properties();
+            FileInputStream fis = new FileInputStream("config.properties");
+            props.load(fis);
+
+            // Get mail credentials from config file
+            final String username = props.getProperty("mail.username");
+            final String password = props.getProperty("mail.password");
+            final String fromAddress = props.getProperty("mail.fromAddress");
+
+            // create the SMTP client
+            Properties p = new Properties();
+            p.put("mail.smtp.host", "smtp.gmail.com");
+            p.put("mail.smtp.port", "587");
+            p.put("mail.smtp.auth", "true");
+            p.put("mail.smtp.starttls.enable", "true");
+            p.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+
+            Session session = Session.getInstance(p, new javax.mail.Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(username, password);
+                }
+            });
+
+            // create the message
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(fromAddress));
+            message.setRecipients(
+                    Message.RecipientType.TO,
+                    InternetAddress.parse(email)
+            );
+            //email subject
+            message.setSubject("Receipt of Ticket Purchase");
+
+            //checks if its pay later or paid. different message respectively
+            if(status.compareTo("can pay later") == 0){
+                //email message
+                        message.setText("""
+                        Hi """ + customerID +
+                        """
+                        \nThank you for your purchase.
+                        Here is your Receipt: 
+                        Receipt ID: """ + saleID + """
+                        \nBlank ID: """ + blankID + """
+                        \nCustomer ID: """ + customerID + """
+                        \nAdvisor ID: """ + advisorID + """
+                        \nPayment Type: """ + paymentDetails + """
+                        \nSales Type: """ + saleType + """
+                        \nCountry: """ + country + """
+                        \nLocal Tax: """ + localTax + """
+                        \nOther Tax: """ + otherTax + """
+                        \nTotal: """ + localCurr + """
+                        \nDate: """ + date + '\n' +'\n'+
+                        lateMessage +
+                        """
+                                    
+                        \nKind Regards
+                        AirVia ATS
+                        """);
+            }
+            else {
+                //email message
+                message.setText("""
+                        Hi """ + customerID +
+                        """
+                        \nThank you for your purchase.
+                        Here is your Receipt: 
+                        Receipt ID: """ + saleID + """
+                        \nBlank ID: """ + blankID + """
+                        \nCustomer ID: """ + customerID + """
+                        \nAdvisor ID: """ + advisorID + """
+                        \nPayment Type: """ + paymentDetails + """
+                        \nSales Type: """ + saleType + """
+                        \nCountry: """ + country + """
+                        \nLocal Tax: """ + localTax + """
+                        \nOther Tax: """ + otherTax + """
+                        \nTotal: """ + localCurr + """
+                        \nDate: """ + date + """
+                                            
+                        \nKind Regards
+                        AirVia ATS
+                        """);
+            }
+
+            // send the message
+            Transport.send(message);
+
+            JOptionPane.showMessageDialog(null, "Receipt has been sent to Customer");
+        }catch (Exception e) {
             e.printStackTrace();
         }
     }
